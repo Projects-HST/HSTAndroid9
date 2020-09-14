@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#0469D7</color>
+    <color name="colorPrimaryDark">#02356C</color>
+    <color name="colorAccent">#f50057</color>
+    <!--splash screen-->
+    <color name="ss_bg_start_gradient">#E602356C</color>
+    <color name="ss_bg_end_gradient">#E60469D7</color>
+    <color name="white">#ffffff</color>
+
 </resources>
