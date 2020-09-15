@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    -->
+    <!--Tamil-->
+    <!--    -->
+    //app basics
+    <string name="app_name">SPV</string>
+    <string name="empty" />
+    <string name="error_no_net">இணையத்தை அணுக இயலவில்லை. உங்கள் இணைப்பை சரிப்பார்க்கவும்.</string>
+    <string name="error_occurred">இணைய சேவையக சிக்கல் ஏற்பட்டுள்ளது. சிறிது நேரம் கழித்து முயற்சி செய்யவும்.</string>
+    <string name="navigation_drawer_open">நாவிகேஷன் ட்ராயரை திறக்கவும்.</string>
+    <string name="navigation_drawer_close">நாவிகேஷன் ட்ராயரை மூடவும்.</string>
+    <string name="nav_header_title">ஆண்ட்ராய்டு ஸ்டூடியோ</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">நாவிகேஷன் ஹெடெர்</string>
+    <string name="action_settings">அமைப்புகள்</string>
+
+    //splash screen
+    <string name="ss_name_tag">S.P. Velumani</string>
+
+    <!--Dialog Fragment-->
+    <string name="alert_button_ok">சரி</string>
+    <string name="alert_button_yes">ஆம்</string>
+    <string name="alert_button_no">இல்லை</string>
+    <string name="alert_button_cancel">ரத்து செய்</string>
+
+    //fcm
+    <string name="default_notification_channel_id">10001</string>
+
+</resources>

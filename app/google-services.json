@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "583656225642",
+    "firebase_url": "https://spv-app.firebaseio.com",
+    "project_id": "spv-app",
+    "storage_bucket": "spv-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583656225642:android:4efd8a66c592fe51c8c313",
+        "android_client_info": {
+          "package_name": "com.hst.spv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583656225642-std8luobkbql6d37htjri4oh6d0k29ca.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hst.spv",
+            "certificate_hash": "0359e7dc48fefeb14bc7b8d941c6ca08301ad167"
+          }
+        },
+        {
+          "client_id": "583656225642-p8geqhjt9hq059tmc6nor6nfvj7s8a0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hst.spv",
+            "certificate_hash": "48009539d964eccfe57efd5fac0fb188eacffe54"
+          }
+        },
+        {
+          "client_id": "583656225642-lbmu0j6ie6khn109ge9hf771ahsv7rg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ_H3e8dzJdDsaGWPDORjKYIlxWxZVQbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583656225642-lbmu0j6ie6khn109ge9hf771ahsv7rg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
