@@ -7,5 +7,11 @@
     <color name="ss_bg_start_gradient">#E602356C</color>
     <color name="ss_bg_end_gradient">#E60469D7</color>
     <color name="white">#ffffff</color>
+    <!--your spv-->
+    <color name="tab_indicator">#1159A8</color>
+    <color name="tool_bg_st_grad">#03346B</color>
+    <color name="tool_bg_ct_grad">#0566D3</color>
+    <color name="tool_bg_ed_grad">#0568D6</color>
+    <color name="text_grey">#565656</color>
 
 </resources>
