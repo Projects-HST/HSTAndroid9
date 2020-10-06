@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/ic_news"
+        android:title="@string/title_news" />
+
+    <item
+        android:id="@+id/navigation_events"
+        android:icon="@drawable/ic_event"
+        android:title="@string/title_events" />
+
+    <item
+        android:id="@+id/navigation_social_initiatives"
+        android:icon="@drawable/ic_problem_solve"
+        android:title="@string/title_social_initiatives" />
+
+    <item
+        android:id="@+id/navigation_social_media"
+        android:icon="@drawable/ic_media"
+        android:title="@string/title_social_media" />
+
+</menu>

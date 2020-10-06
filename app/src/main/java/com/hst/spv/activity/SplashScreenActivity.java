@@ -45,10 +45,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         ImageView mImageView;
         Bitmap mBitmap;
 
-        // Get the Resources
+
         mResources = getResources();
 
-        // Get the widgets reference from XML layout
+
         mImageView = (ImageView) findViewById(R.id.img_spv);
 
         // Hide the action bar
@@ -105,7 +105,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
             }
         }, SPLASH_TIME_OUT);
-
     }
 
     private RoundedBitmapDrawable createRoundedBitmapDrawableWithBorder(Bitmap bitmap) {

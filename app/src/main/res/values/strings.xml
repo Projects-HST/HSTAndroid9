@@ -18,7 +18,7 @@
     //splash screen
     <string name="ss_name_tag">S.P. Velumani</string>
 
-    <!--Dialog Fragment-->
+    //Dialog Fragment
     <string name="alert_button_ok">OK</string>
     <string name="alert_button_cancel">Cancel</string>
     <string name="alert_button_yes">Yes</string>
@@ -26,5 +26,12 @@
 
     //fcm
     <string name="default_notification_channel_id">10001</string>
+
+    //menu item
+    <string name="title_home">Home</string>
+    <string name="title_news">News</string>
+    <string name="title_events">Events</string>
+    <string name="title_social_initiatives">Social Initiatives</string>
+    <string name="title_social_media">Social Media</string>
 
 </resources>
