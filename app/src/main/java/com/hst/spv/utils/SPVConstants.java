@@ -29,4 +29,7 @@ public class SPVConstants {
 
     //SP FCM ID
     public static final String KEY_FCM_ID = "fcm_id";
+    //SP FCM ID
+    public static final String PARAMS_FULL_NAME = "name";
+    public static final String KEY_USER_IMAGE = "user_pic";
 }

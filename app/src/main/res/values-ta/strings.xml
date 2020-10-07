@@ -28,6 +28,19 @@
     //fcm
     <string name="default_notification_channel_id">10001</string>
 
+
+    //Side item
+    <string name="side_menu_sign_in">Sign In</string>
+    <string name="side_menu_home">Home</string>
+    <string name="side_menu_spv">Your SPV</string>
+    <string name="side_menu_gallery">Gallery</string>
+    <string name="side_menu_nama">Namakaaga Initiatives</string>
+    <string name="side_menu_party">Party</string>
+    <string name="side_menu_blog">Blog</string>
+    <string name="side_menu_settings">Settings</string>
+    <string name="side_menu_log_out">Logout</string>
+
+
     //menu item
     <string name="title_home">Home</string>
     <string name="title_news">News</string>

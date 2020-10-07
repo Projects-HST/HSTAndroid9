@@ -7,5 +7,6 @@
     <color name="ss_bg_start_gradient">#E602356C</color>
     <color name="ss_bg_end_gradient">#E60469D7</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 
 </resources>
