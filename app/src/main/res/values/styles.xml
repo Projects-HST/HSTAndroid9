@@ -13,51 +13,8 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
-
-    <style name="ToolBarStyle" parent="ToolBarStyle.Base" />
-
-    <style name="ToolBarStyle.Base" parent="">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    <style name="AppThemeTabLayout">
+        <item name="fontFamily">@font/lato_bold</item>
     </style>
-
-    <style name="ToolBarStyle.Event" parent="ToolBarStyle">
-        <item name="titleTextAppearance">@style/TextAppearance.Widget.Event.Toolbar.Title</item>
-    </style>
-
-    <style name="TextAppearance.Widget.Event.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <!--Any text styling can be done here-->
-        <item name="android:textStyle">normal</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:textSize">@dimen/menuTextSize</item>
-    </style>
-
-    <style name="ThemeOverlay.MyApp.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <!-- Parent theme sets colorControlNormal to textColorPrimary. -->
-        <item name="titleTextColor">@color/white</item>
-        <!--<item name="logo">@drawable/ab_hobbistan_logo</item>-->
-    </style>
-
-
-    <declare-styleable name="SideDrawerLayout">
-        <attr name="menu" format="reference"/>
-        <attr name="content" format="reference"/>
-        <attr name="contentScaleClosed" format="float"/>
-        <attr name="clickToCloseScale" format="float"/>
-        <attr name="contentScaleOpen" format="float"/>
-        <attr name="menuScaleClosed" format="float"/>
-        <attr name="menuScaleOpen" format="float"/>
-        <attr name="menuAlphaClosed" format="float"/>
-        <attr name="menuAlphaOpen" format="float"/>
-        <attr name="marginFactor" format="float"/>
-    </declare-styleable>
-
-    <declare-styleable name="SideMenuView">
-        <attr name="header" format="reference"/>
-        <attr name="footer" format="reference"/>
-        <attr name="background" format="reference"/>
-    </declare-styleable>
-
 
 </resources>

@@ -17,21 +17,20 @@ public class YourSpv extends AppCompatActivity {
         setContentView(R.layout.activity_your_spv);
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_lay);
+        ViewPager viewPager = (ViewPager)findViewById(R.id.view_host);
+
         tabLayout.addTab(tabLayout.newTab().setText("Biography"));
         tabLayout.addTab(tabLayout.newTab().setText("Position Held"));
         tabLayout.addTab(tabLayout.newTab().setText("Awards"));
         tabLayout.addTab(tabLayout.newTab().setText("Notable Works"));
 
         tabLayout.setTabTextColors(getResources().getColor(R.color.text_grey), getResources().getColor(R.color.tab_indicator));
-
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager)findViewById(R.id.view_host);
-
-        final SpvAdapter spvAdapter = new SpvAdapter(getSupportFragmentManager());
-
+        SpvAdapter spvAdapter = new SpvAdapter(getSupportFragmentManager());
         viewPager.setAdapter(spvAdapter);
+
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -43,22 +43,29 @@
             android:textColor="@color/white" />
     </RelativeLayout>
     
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_lay"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:elevation="6dp"
-        android:minHeight="?android:attr/actionBarSize"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="5dp"
-        app:tabTextAppearance="@font/lato_bold"
-        app:tabIndicatorColor="@color/tab_indicator" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_host"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_lay"
+            style="@style/AppThemeTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:minHeight="?android:attr/actionBarSize"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="4dp"
+            app:tabIndicatorColor="@color/tab_indicator" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_host"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>
