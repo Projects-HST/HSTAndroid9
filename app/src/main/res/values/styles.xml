@@ -13,4 +13,8 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
+    <style name="AppThemeTabLayout">
+        <item name="fontFamily">@font/lato_bold</item>
+    </style>
+
 </resources>
