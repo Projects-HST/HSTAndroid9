@@ -1,9 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="vertical"
     tools:context=".fragment.NotableWorksFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:orientation="vertical" >
+
+            <com.hst.spv.customview.CircleImageView
+                android:id="@+id/spv_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/spv_circle_img"/>
+
+            <TextView
+                android:id="@+id/spvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="@string/ss_name_tag"
+                android:textColor="@color/txt_black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:fontFamily="@font/lato_bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/lay_half_rd_bg"
+            android:elevation="4dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/rwh"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="start|center"
+                android:background="@drawable/bg_half_round"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/wk_title_1"
+                android:inputType="textCapCharacters"
+                android:textSize="16sp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="@color/title_txt" />
+
+            <TextView
+                android:id="@+id/rwh_cont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="10dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/txt_cont"
+                android:textSize="14sp"
+                android:textColor="@color/txt_content"
+                android:maxLines="6"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/lay_half_rd_bg"
+            android:elevation="4dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/loc_gov"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="start|center"
+                android:background="@drawable/bg_half_round"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/wk_title_2"
+                android:inputType="textCapCharacters"
+                android:textSize="16sp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="@color/title_txt"/>
+
+            <TextView
+                android:id="@+id/loc_cont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/txt_cont"
+                android:textSize="14sp"
+                android:textColor="@color/txt_content"
+                android:maxLines="6"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/lay_half_rd_bg"
+            android:elevation="4dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/welfare"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="start|center"
+                android:background="@drawable/bg_half_round"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/wk_title_3"
+                android:inputType="textCapCharacters"
+                android:textSize="16sp"
+                android:fontFamily="@font/lato_bold"
+                android:textColor="@color/title_txt"/>
+
+            <TextView
+                android:id="@+id/well_cont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/txt_cont"
+                android:textSize="14sp"
+                android:textColor="@color/txt_content"
+                android:maxLines="6"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

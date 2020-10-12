@@ -12,6 +12,8 @@ import com.hst.spv.R;
 
 public class BiographyFragment extends Fragment {
 
+    private View rootView;
+
     public static BiographyFragment newInstance(int position) {
         BiographyFragment fragment = new BiographyFragment();
         Bundle args = new Bundle();
@@ -24,8 +26,12 @@ public class BiographyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_biography, container, false);
+        rootView = inflater.inflate(R.layout.fragment_biography, container, false);
+        return rootView;
     }
 
+    private void initView(){
 
+
+    }
 }

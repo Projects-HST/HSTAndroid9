@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SettingsActivity">
+
+    <RelativeLayout
+        android:id="@+id/tool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:minHeight="?android:attr/actionBarSize"
+            android:background="@drawable/tool_bg" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_left_arrow" />
+
+        <TextView
+            android:id="@+id/set_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/back"
+            android:layout_marginStart="20dp"
+            android:layout_centerInParent="true"
+            android:text="@string/sc_title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:fontFamily="@font/lato_bold"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/app_settings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@id/tool">
+
+        <TextView
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/hd_txt"
+            android:textColor="@color/tab_title"
+            android:textSize="16sp"
+            android:inputType="textCapCharacters" />
+
+
+        <ImageView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settings"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_user"/>
+
+        <TextView
+            android:id="@+id/img_title_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/settings"
+            android:layout_toEndOf="@id/user"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:inputType="textCapCharacters"
+            android:text="@string/set_title_1"
+            android:textSize="12sp"
+            android:textColor="@color/set_title" />
+
+        <ImageView
+            android:id="@+id/lang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_www"/>
+
+        <TextView
+            android:id="@+id/img_title_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/user"
+            android:layout_toEndOf="@id/user"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:inputType="textCapCharacters"
+            android:text="@string/set_title_2"
+            android:textSize="12sp"
+            android:textColor="@color/set_title" />
+
+        <ImageView
+            android:id="@+id/news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lang"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_news"/>
+
+        <TextView
+            android:id="@+id/img_title_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lang"
+            android:layout_toEndOf="@id/user"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:inputType="textCapCharacters"
+            android:text="@string/set_title_3"
+            android:textSize="12sp"
+            android:textColor="@color/set_title" />
+
+        <ImageView
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/news"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_bell"/>
+
+        <TextView
+            android:id="@+id/img_title_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/news"
+            android:layout_toEndOf="@id/user"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:inputType="textCapCharacters"
+            android:text="@string/set_title_4"
+            android:textSize="12sp"
+            android:textColor="@color/set_title" />
+
+        <RelativeLayout
+            android:id="@+id/checkList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_below="@id/lang">
+
+            <ImageView
+                android:id="@+id/check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_check" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_switch" />
+
+        </RelativeLayout>
+
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginVertical="20dp"
+            android:layout_below="@id/notification"
+            android:background="@color/divider"/>
+
+        <TextView
+            android:id="@+id/more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/hd_txt_1"
+            android:textColor="@color/tab_title"
+            android:textSize="16sp"
+            android:inputType="textCapCharacters" />
+
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/more"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_share"/>
+
+        <TextView
+            android:id="@+id/img_title_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/more"
+            android:layout_toEndOf="@id/user"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:inputType="textCapCharacters"
+            android:text="@string/set_title_5"
+            android:textSize="12sp"
+            android:textColor="@color/set_title" />
+
+        <ImageView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_star"/>
+
+        <TextView
+            android:id="@+id/img_title_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share"
+            android:layout_toEndOf="@id/user"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:inputType="textCapCharacters"
+            android:text="@string/set_title_6"
+            android:textSize="12sp"
+            android:textColor="@color/set_title" />
+
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="20dp"
+            android:inputType="textCapCharacters"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/version"
+            android:textColor="@color/ver"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

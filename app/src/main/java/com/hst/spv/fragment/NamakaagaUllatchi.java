@@ -8,10 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.hst.spv.R;
-import com.hst.spv.activity.YourSpv;
+import com.hst.spv.activity.NamakaagaInitiatives;
+import com.hst.spv.adapter.NamakaagaAdapter;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.servicehelpers.ServiceHelper;
@@ -25,18 +28,19 @@ import org.json.JSONObject;
 import static android.util.Log.d;
 
 
-public class PositionsFragment extends Fragment implements IServiceListener {
+public class NamakaagaUllatchi extends Fragment implements IServiceListener {
 
-    private static final String TAG = YourSpv.class.getName();
+    private static final String TAG = NamakaagaInitiatives.class.getName();
     private View rootView;
-    private TextView govt, party, ministry;
+    private TextView abt_ullatchi;
+    private Button visit;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
 
-    public static PositionsFragment newInstance(int position) {
-        PositionsFragment fragment = new PositionsFragment();
+    public static NamakaagaUllatchi newInstance(int position) {
+        NamakaagaUllatchi fragment = new NamakaagaUllatchi();
         Bundle args = new Bundle();
-        args.putInt("position", position);
+        args.putInt("ullatchi", position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,36 +48,36 @@ public class PositionsFragment extends Fragment implements IServiceListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        rootView = inflater.inflate(R.layout.fragment_positions, container, false);
+        // Inflate the layout for this fragment
+        rootView = inflater.inflate(R.layout.fragment_namakaaga_ullatchi, container, false);
         initView();
+        namakaaga();
         return rootView;
     }
 
-    private void initView(){
+    public void initView(){
 
-        govt = rootView.findViewById(R.id.govt_cont);
-        party = rootView.findViewById(R.id.party_cont);
-        ministry = rootView.findViewById(R.id.ministry_cont);
+        abt_ullatchi = rootView.findViewById(R.id.ullatchi_cont);
+        visit = rootView.findViewById(R.id.visit);
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
 
         dialogHelper = new ProgressDialogHelper(getActivity());
-
-        positionsHeld();
     }
 
-    private void positionsHeld(){
+    private void namakaaga(){
 
         JSONObject jsonObject = new JSONObject();
 
         try {
             jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.POSITIONS_URL;
+
+        dialogHelper.showProgressDialog("Loading");
+        String serverUrl = SPVConstants.Base_Url + SPVConstants.NAMAKAAGA_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 
@@ -109,31 +113,29 @@ public class PositionsFragment extends Fragment implements IServiceListener {
     @Override
     public void onResponse(JSONObject response) {
 
-        try {
+        dialogHelper.hideProgressDialog();
 
-            if (validateSignInResponse(response)) {
+        if(validateSignInResponse(response)){
 
-                JSONArray pos_details = response.getJSONArray("position_result");
-                JSONObject res_position = pos_details.getJSONObject(0);
+            try{
+                JSONArray posResult = response.getJSONArray("position_result");
+                JSONObject resUllatchi = posResult.getJSONObject(0);
 
-                Log.d(TAG, res_position.toString());
+                Log.d(TAG, resUllatchi.toString());
 
-                String gov = "";
-                String katchi = "";
-                String cabinet = "";
+                String content = "";
 
-                for (int i=0; i<pos_details.length(); i++){
+                for (int i=0; i < posResult.length(); i++) {
 
-                    gov = pos_details.getJSONObject(0).getString("position_text_en");
-                    govt.setText(gov);
-                    katchi= pos_details.getJSONObject(1).getString("position_text_en");
-                    party.setText(katchi);
-
+                    content = resUllatchi.getString("namakkaga_text_en");
+                    abt_ullatchi.setText(content);
                 }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
     }
 
     @Override

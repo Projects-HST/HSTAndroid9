@@ -1,13 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.AwardFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:src="@drawable/ic_awards" />
+        <ImageView
+            android:id="@+id/title_image"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:src="@drawable/ic_awards" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/lay_half_rd_bg" >
+
+
+        <TextView
+            android:id="@+id/award_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/txt_header"
+            android:textColor="@color/header_txt" />
+
+        <TextView
+            android:id="@+id/awd_cont"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/txt_cont"
+            android:textColor="@color/cont_txt" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp">
+
+        <ListView
+            android:id="@+id/awd_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:divider="@color/white"
+            android:dividerHeight="12dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

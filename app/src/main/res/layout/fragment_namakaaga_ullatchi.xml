@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.NamakaagaUllatchi">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/namakaaga"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/img_namakaaga" />
+
+                <TextView
+                    android:id="@+id/tab_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/namakaaga"
+                    android:paddingTop="10dp"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/tab_title_1"
+                    android:inputType="textCapCharacters"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/lato_bold"
+                    android:textColor="@color/title_txt" />
+
+                <ImageView
+                    android:id="@+id/health_logo"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/tab_title"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/health_logo" />
+
+                <TextView
+                    android:id="@+id/ullatchi_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/health_logo"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/txt_cont"
+                    android:textSize="14sp"
+                    android:textColor="@color/about_txt"
+                    android:fontFamily="@font/lato_bold" />
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/visit"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_bg_grad"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/btn_visit_1"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:inputType="textCapCharacters"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

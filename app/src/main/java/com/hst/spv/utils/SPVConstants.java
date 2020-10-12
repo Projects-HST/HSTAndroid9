@@ -6,6 +6,31 @@ package com.hst.spv.utils;
 
 public class SPVConstants {
 
+    // URLS
+    //BASE URL
+    public static final String Base_Url = "https://happysanz.in/spveluapp/";
+
+    //SPV Personal
+    public static final String PERSONAL_URL =  "apiuser/spv_personal";
+
+    //SPV Political
+    public static final String POLITICAL_URL = "apiuser/spv_political";
+
+    //SPV Positions Held
+    public static final String POSITIONS_URL = "apiuser/spv_positionheld";
+
+    //SPV Awards
+    public static final String AWARDS_URL = "apiuser/spv_awards";
+
+    //SPV Notable Works
+    public static final String NOTABLE_URL = "apiuser/spv_notable";
+
+    //Namakaaga Ullatchi
+    public static final String NAMAKAAGA_URL = "apiuser/spv_namakkaga/";
+
+    //Amma IAS Academy
+    public static final String ACADEMY_URL = "apiuser/spv_ias_academy";
+
     //service params
     public static String PARAM_MESSAGE = "msg";
     public static String PARAM_MESSAGE_ENG = "msg_en";

@@ -13,5 +13,29 @@
     <color name="tool_bg_ct_grad">#0566D3</color>
     <color name="tool_bg_ed_grad">#0568D6</color>
     <color name="text_grey">#565656</color>
+    <color name="bio_host">#155AA7</color>
+    <color name="transparent">#00000000</color>
+    <color name="txt_black">#131313</color>
+    <color name="circle_img_bg">#0B9421</color>
+    <color name="txt_bg">#D7E5F5</color>
+    <color name="title_txt">#171717</color>
+    <color name="txt_content">#383838</color>
 
+    //Namakaaga Ullatchi
+    <color name="tab_title">#000000</color>
+    <color name="btn_st_grad">#155AA7</color>
+    <color name="btn_ct_grad">#135197</color>
+    <color name="btn_end_grad">#0B2D54</color>
+    <color name="about_txt">#737070</color>
+
+    //Awards
+    <color name="header_txt">#0567D4</color>
+    <color name="cont_txt">#343434</color>
+    <color name="awd_cont">#6B6868</color>
+    <color name="stroke">#D3CDCD</color>
+
+    //Settings
+    <color name="set_title">#040404</color>
+    <color name="divider">#707070</color>
+    <color name="ver">#757575</color>
 </resources>

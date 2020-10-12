@@ -12,15 +12,30 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="170dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/spv_bio" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/personal"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="@string/spv_personal"
+                android:inputType="textCapCharacters"/>
+
+            <Button
+                android:id="@+id/political"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="@string/spv_polity"
+                android:inputType="textCapCharacters"/>
 
         </LinearLayout>
 
