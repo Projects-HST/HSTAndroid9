@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_bg"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <View
             android:id="@+id/highlighter"
             android:layout_width="5dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/header_txt" />
 
         <TextView
@@ -23,7 +24,8 @@
             android:layout_marginVertical="10dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/txt_cont"
-            android:textColor="@color/awd_cont" />
+            android:textColor="@color/awd_cont"
+            android:maxLines="4"/>
 
     </LinearLayout>
 

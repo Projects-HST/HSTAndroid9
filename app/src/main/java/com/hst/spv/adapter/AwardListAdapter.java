@@ -12,8 +12,6 @@ import com.hst.spv.R;
 import com.hst.spv.bean.AwardList;
 
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 
 public class AwardListAdapter extends BaseAdapter {
 
@@ -21,10 +19,10 @@ public class AwardListAdapter extends BaseAdapter {
     Context context;
     String className;
 
-    public AwardListAdapter( Context cont, ArrayList<AwardList> list, String className) {
+    public AwardListAdapter( Context cont, ArrayList<AwardList> list) {
         this.list = list;
         this.context = cont;
-        this.className = className;
+//        this.className = className;
     }
 
     @Override

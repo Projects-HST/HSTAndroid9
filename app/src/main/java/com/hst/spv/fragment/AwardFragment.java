@@ -62,7 +62,7 @@ public class AwardFragment extends Fragment implements IServiceListener {
     private void initView(){
 
         listView = (ListView) rootView.findViewById(R.id.awd_list);
-        className = this.getClass().getSimpleName();
+//        className = this.getClass().getSimpleName();
 
         awardList = new ArrayList<>();
 
@@ -133,12 +133,12 @@ public class AwardFragment extends Fragment implements IServiceListener {
 
                 for (int i=0; i < result.length(); i++){
 
-                    id = awd_result.getString("id");
-                    details = awd_result.getString("awards_text_en");
+                    id = result.getJSONObject(i).getString("id");
+                    details = result.getJSONObject(i).getString("awards_text_en");
 
                     awardList.add(new AwardList(id, details));
                 }
-                listAdapter = new AwardListAdapter(getActivity(), this.awardList, className);
+                listAdapter = new AwardListAdapter(getActivity(),awardList);
                 listView.setAdapter(listAdapter);
             }
 

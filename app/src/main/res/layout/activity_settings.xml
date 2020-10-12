@@ -82,7 +82,7 @@
             android:fontFamily="@font/lato_bold"
             android:inputType="textCapCharacters"
             android:text="@string/set_title_1"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/set_title" />
 
         <ImageView
@@ -104,7 +104,7 @@
             android:fontFamily="@font/lato_bold"
             android:inputType="textCapCharacters"
             android:text="@string/set_title_2"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/set_title" />
 
         <ImageView
@@ -126,7 +126,7 @@
             android:fontFamily="@font/lato_bold"
             android:inputType="textCapCharacters"
             android:text="@string/set_title_3"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/set_title" />
 
         <ImageView
@@ -148,33 +148,24 @@
             android:fontFamily="@font/lato_bold"
             android:inputType="textCapCharacters"
             android:text="@string/set_title_4"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/set_title" />
 
-        <RelativeLayout
-            android:id="@+id/checkList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_below="@id/lang">
-
-            <ImageView
+        <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_check" />
+                android:layout_below="@id/lang"
+                android:layout_marginTop="8dp"
+                android:layout_alignParentEnd="true" />
 
-            <ImageView
+        <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchNote"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="10dp"
                 android:layout_below="@id/check"
-                android:layout_marginTop="16dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_switch" />
-
-        </RelativeLayout>
+                android:layout_marginTop="3dp"
+                android:layout_alignParentEnd="true" />
 
 
         <View
@@ -216,7 +207,7 @@
             android:fontFamily="@font/lato_bold"
             android:inputType="textCapCharacters"
             android:text="@string/set_title_5"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/set_title" />
 
         <ImageView
@@ -238,7 +229,7 @@
             android:fontFamily="@font/lato_bold"
             android:inputType="textCapCharacters"
             android:text="@string/set_title_6"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/set_title" />
 
 

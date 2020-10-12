@@ -51,8 +51,8 @@
             android:id="@+id/awd_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:divider="@color/white"
-            android:dividerHeight="12dp"/>
+            android:divider="@color/transparent"
+            android:dividerHeight="10dp"/>
 
     </LinearLayout>
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.BiographyFragment">
 
     <LinearLayout
@@ -20,25 +21,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <Button
+            <TextView
                 android:id="@+id/personal"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:background="@drawable/btn_highlighter"
+                android:fontFamily="@font/lato_bold"
                 android:text="@string/spv_personal"
+                android:textSize="14sp"
+                android:inputType="textCapCharacters" />
+
+            <TextView
+                android:id="@+id/political"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:background="@drawable/btn_highlighter"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/spv_polity"
+                android:textSize="14sp"
                 android:inputType="textCapCharacters"/>
 
-            <Button
-                android:id="@+id/political"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:text="@string/spv_polity"
-                android:inputType="textCapCharacters"/>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
