@@ -26,10 +26,12 @@ public class SPVConstants {
     public static final String NOTABLE_URL = "apiuser/spv_notable";
 
     //Namakaaga Ullatchi
-    public static final String NAMAKAAGA_URL = "apiuser/spv_namakkaga/";
+    public static final String NAMAKAAGA_URL = "apiuser/spv_namakkaga";
+    public static final String BANNER_IMAGES = "assets/namakkaga/";
 
     //Amma IAS Academy
     public static final String ACADEMY_URL = "apiuser/spv_ias_academy";
+    public static final String ASSETS_URL = "assets/ias_academy/";
 
     //service params
     public static String PARAM_MESSAGE = "msg";

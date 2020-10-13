@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 import com.hst.spv.utils.SPVConstants;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +35,9 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
     private static final String TAG = NamakaagaInitiatives.class.getName();
     private View rootView;
     private TextView abt_ullatchi;
+    private ImageView namakkaga_img;
     private Button visit;
+    private String img_url;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
 
@@ -58,7 +62,10 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
     public void initView(){
 
         abt_ullatchi = rootView.findViewById(R.id.ullatchi_cont);
+        namakkaga_img = rootView.findViewById(R.id.namakaaga);
         visit = rootView.findViewById(R.id.visit);
+
+        img_url = SPVConstants.Base_Url + SPVConstants.BANNER_IMAGES;
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
@@ -76,7 +83,7 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
             e.printStackTrace();
         }
 
-        dialogHelper.showProgressDialog("Loading");
+        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
         String serverUrl = SPVConstants.Base_Url + SPVConstants.NAMAKAAGA_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
@@ -118,24 +125,36 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
         if(validateSignInResponse(response)){
 
             try{
-                JSONArray posResult = response.getJSONArray("position_result");
-                JSONObject resUllatchi = posResult.getJSONObject(0);
+                JSONArray namakkagaDetails = response.getJSONArray("namakkaga_result");
+                JSONObject namakkaga_result = namakkagaDetails.getJSONObject(0);
 
-                Log.d(TAG, resUllatchi.toString());
+                Log.d(TAG, namakkaga_result.toString());
 
                 String content = "";
+                String banner = "";
+                String image = "";
 
-                for (int i=0; i < posResult.length(); i++) {
+                for (int i=0; i < namakkagaDetails.length(); i++) {
 
-                    content = resUllatchi.getString("namakkaga_text_en");
+                    banner = namakkaga_result.getString("namakkaga_banner");
+                    image = img_url.concat(banner);
+                    content = namakkaga_result.getString("namakkaga_text_en");
                     abt_ullatchi.setText(content);
+                }
+                if (image.length() > 0){
+
+                    Picasso.get().load(image).fit().placeholder(R.drawable.party_logo)
+                            .error(R.drawable.party_logo).into(namakkaga_img);
+                }
+                else {
+
+                    namakkaga_img.setImageResource(R.drawable.party_logo);
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override

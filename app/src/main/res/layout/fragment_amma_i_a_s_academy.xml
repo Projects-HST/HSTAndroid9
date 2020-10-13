@@ -23,7 +23,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/namakaaga"
+                    android:id="@+id/namakkaga"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:contentDescription="@string/app_name"
@@ -88,6 +88,17 @@
                         android:src="@drawable/upsc_logo"/>
 
                     <TextView
+                        android:id="@+id/course_title_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_cont"
+                        android:textColor="@color/title_txt"
+                        android:textSize="14sp" />
+
+                    <TextView
                         android:id="@+id/abt_upsc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -117,6 +128,18 @@
                         android:layout_marginTop="5dp"
                         android:layout_gravity="center"
                         android:src="@drawable/tnpsc_logo"/>
+
+                    <TextView
+                        android:id="@+id/course_title_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_cont"
+                        android:textColor="@color/title_txt"
+                        android:textSize="14sp" />
+
 
                     <TextView
                         android:id="@+id/abt_tnpsc"

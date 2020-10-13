@@ -36,6 +36,7 @@ public class AwardFragment extends Fragment implements IServiceListener {
 
     private static final String TAG = YourSpv.class.getName();
     private View rootView;
+    private TextView award_title;
     private ListView listView;
     private ArrayList<AwardList> awardList;
     private AwardListAdapter listAdapter;
@@ -63,6 +64,7 @@ public class AwardFragment extends Fragment implements IServiceListener {
 
         listView = (ListView) rootView.findViewById(R.id.awd_list);
 //        className = this.getClass().getSimpleName();
+        award_title = (TextView)rootView.findViewById(R.id.awd_cont);
 
         awardList = new ArrayList<>();
 
@@ -140,6 +142,19 @@ public class AwardFragment extends Fragment implements IServiceListener {
                 }
                 listAdapter = new AwardListAdapter(getActivity(),awardList);
                 listView.setAdapter(listAdapter);
+            }
+            if (response.getString("status").equalsIgnoreCase("Success")){
+
+                JSONArray awardHeading = response.getJSONArray("award_page_heading");
+                JSONObject award = awardHeading.getJSONObject(0);
+
+                String awd_title = "";
+
+                for (int i=0; i < awardHeading.length(); i++){
+
+                    awd_title = award.getString("page_title_en");
+                    award_title.setText(awd_title);
+                }
             }
 
         }catch (Exception ex){

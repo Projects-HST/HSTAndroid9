@@ -46,7 +46,7 @@
                     android:layout_height="70dp"
                     android:layout_below="@id/tab_title"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/health_logo" />
+                    android:src="@drawable/health_logo"/>
 
                 <TextView
                     android:id="@+id/ullatchi_cont"

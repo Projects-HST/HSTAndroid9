@@ -6,53 +6,73 @@
     android:orientation="vertical"
     tools:context=".fragment.BiographyFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/spv_bio" />
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/personal"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_weight="0.5"
+                android:layout_height="170dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/spv_bio" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
                 android:gravity="center"
                 android:background="@drawable/btn_highlighter"
-                android:fontFamily="@font/lato_bold"
-                android:text="@string/spv_personal"
-                android:textSize="14sp"
-                android:inputType="textCapCharacters" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/personal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:background="@drawable/btn_highlighter"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/spv_personal"
+                    android:textSize="14sp"
+                    android:inputType="textCapCharacters" />
+
+                <TextView
+                    android:id="@+id/political"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:background="@drawable/btn_highlighter"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/spv_polity"
+                    android:textSize="14sp"
+                    android:inputType="textCapCharacters"/>
+
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/political"
+                android:id="@+id/viewText"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:background="@drawable/btn_highlighter"
-                android:fontFamily="@font/lato_bold"
-                android:text="@string/spv_polity"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="true"
+                android:text="@string/txt_cont"
                 android:textSize="14sp"
-                android:inputType="textCapCharacters"/>
+                android:textColor="@color/txt_content">
 
+            </TextView>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

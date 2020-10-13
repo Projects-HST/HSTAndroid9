@@ -24,6 +24,7 @@
     <string name="alert_button_cancel">Cancel</string>
     <string name="alert_button_yes">Yes</string>
     <string name="alert_button_no">No</string>
+    <string name="progress_bar">Loading</string>
 
     //fcm
     <string name="default_notification_channel_id">10001</string>
@@ -38,23 +39,18 @@
     //your SPV
     <string name="spv_polity">Political Career</string>
     <string name="spv_personal">Personal Life</string>
-    <string name="title_1">In Government</string>
     <string name="txt_cont">Content Description</string>
-    <string name="title_2">In Party - AIADMK</string>
-    <string name="title_3">In Ministry</string>
-    <string name="wk_title_1">Rain Water Harvesting</string>
-    <string name="wk_title_2">Local Governance</string>
-    <string name="wk_title_3">Welfare for all</string>
-    <string name="page_title">Namakaaga Initiatives</string>
+
+    //Namakkaga Initiatives    <string name="page_title">Namakaaga Initiatives</string>
     <string name="tab_title_1">Namakaaga Ullatchi</string>
     <string name="btn_visit_1">Visit Namakaaga Ullatchi</string>
     <string name="tab_title_2">Amma IAS Academy</string>
     <string name="btn_visit_2">Visit Amma IAS Academy</string>
     <string name="txt_courses">Our Courses</string>
-    <string name="sc_title">Settings</string>
     <string name="txt_header"><![CDATA[Awards & Honors]]></string>
 
     //Settings
+    <string name="sc_title">Settings</string>
     <string name="hd_txt">Account Settings</string>
     <string name="set_title_1">Edit Profile</string>
     <string name="set_title_2">Change Language</string>

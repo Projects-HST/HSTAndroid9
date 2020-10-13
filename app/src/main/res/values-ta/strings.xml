@@ -25,6 +25,7 @@
     <string name="alert_button_yes">ஆம்</string>
     <string name="alert_button_no">இல்லை</string>
     <string name="alert_button_cancel">ரத்து செய்</string>
+    <string name="progress_bar">Loading</string>
 
     //fcm
     <string name="default_notification_channel_id">10001</string>
@@ -39,14 +40,8 @@
     //your SPV
     <string name="spv_polity">Political Career</string>
     <string name="spv_personal">Personal Life</string>
-    <string name="title_1">In Government</string>
     <string name="txt_cont">Content Description</string>
-    <string name="title_2">In Party - AIADMK</string>
-    <string name="title_3">In Ministry</string>
     <string name="txt_header"><![CDATA[Awards & Honors]]></string>
-    <string name="wk_title_1">Rain Water Harvesting</string>
-    <string name="wk_title_2">Local Governance</string>
-    <string name="wk_title_3">Welfare for all</string>
 
     //Namakkaga Initiatives
     <string name="page_title">Namakaaga Initiatives</string>

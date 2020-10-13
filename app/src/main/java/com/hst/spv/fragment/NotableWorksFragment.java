@@ -31,6 +31,7 @@ public class NotableWorksFragment extends Fragment implements IServiceListener {
     private static final String TAG = YourSpv.class.getName();
     private View rootView;
     private TextView rwh, loc_govern, welfare;
+    private TextView title_rwh, title_govern, title_welfare;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
 
@@ -53,8 +54,11 @@ public class NotableWorksFragment extends Fragment implements IServiceListener {
 
     private void initView(){
 
+        title_rwh = rootView.findViewById(R.id.rwh);
         rwh = rootView.findViewById(R.id.rwh_cont);
+        title_govern = rootView.findViewById(R.id.loc_gov);
         loc_govern = rootView.findViewById(R.id.loc_cont);
+        title_welfare = rootView.findViewById(R.id.welfare);
         welfare = rootView.findViewById(R.id.well_cont);
 
         serviceHelper = new ServiceHelper(getActivity());
@@ -118,16 +122,25 @@ public class NotableWorksFragment extends Fragment implements IServiceListener {
 
                 Log.d(TAG, res_position.toString());
 
+                String title_1 = "";
                 String rain_water = "";
+                String title_2 = "";
                 String loc_gov = "";
+                String title_3 = "";
                 String wel = "";
 
                 for (int i=0; i<pos_details.length(); i++){
 
+                    title_1 = pos_details.getJSONObject(0).getString("title_en");
+                    title_rwh.setText(title_1);
                     rain_water = pos_details.getJSONObject(0).getString("noteable_text_en");
                     rwh.setText(rain_water);
+                    title_2 = pos_details.getJSONObject(1).getString("title_en");
+                    title_govern.setText(title_2);
                     loc_gov = pos_details.getJSONObject(1).getString("noteable_text_en");
                     loc_govern.setText(loc_gov);
+                    title_3 = pos_details.getJSONObject(2).getString("title_en");
+                    title_welfare.setText(title_3);
                     wel = pos_details.getJSONObject(2).getString("noteable_text_en");
                     welfare.setText(wel);
                 }
