@@ -1,10 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="vertical"
     tools:context=".fragment.PositionsFragment">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:orientation="vertical" >
+
+                <com.hst.spv.customview.CircleImageView
+                    android:id="@+id/spv_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/spv_circle_img"/>
+
+                <TextView
+                    android:id="@+id/spvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/ss_name_tag"
+                    android:textColor="@color/txt_black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato_bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/lay_half_rd_bg"
+                android:elevation="4dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/govt"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="start|center"
+                    android:background="@drawable/bg_half_round"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/txt_cont"
+                    android:inputType="textCapCharacters"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/lato_bold"
+                    android:textColor="@color/title_txt" />
+
+                <TextView
+                    android:id="@+id/govt_cont"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="10dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/txt_cont"
+                    android:textSize="14sp"
+                    android:textColor="@color/txt_content"
+                    android:maxLines="3"/>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/lay_half_rd_bg"
+                    android:elevation="4dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/party"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="start|center"
+                        android:background="@drawable/bg_half_round"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/txt_cont"
+                        android:inputType="textCapCharacters"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/title_txt"/>
+
+                    <ImageView
+                        android:id="@+id/party_logo"
+                        android:layout_width="41dp"
+                        android:layout_height="36dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/party_logo" />
+
+                    <TextView
+                        android:id="@+id/party_cont"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_cont"
+                        android:textSize="14sp"
+                        android:textColor="@color/txt_content"
+                        android:maxLines="3" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/lay_half_rd_bg"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/ministry"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="start|center"
+                        android:background="@drawable/bg_half_round"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/txt_cont"
+                        android:inputType="textCapCharacters"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_bold"
+                        android:textColor="@color/title_txt" />
+
+                    <TextView
+                        android:id="@+id/ministry_cont"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_cont"
+                        android:textSize="14sp"
+                        android:textColor="@color/txt_content"
+                        android:maxLines="3"/>
+
+                </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

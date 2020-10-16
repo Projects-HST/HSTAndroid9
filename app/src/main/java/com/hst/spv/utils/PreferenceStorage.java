@@ -112,4 +112,26 @@ public class PreferenceStorage {
         return sharedPreferences.getString(SPVConstants.KEY_FCM_ID, "");
     }
     /*End*/
+
+
+    /*To store language*/
+    public static void saveLang(Context context, String lang) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_LANGUAGE, lang);
+        editor.apply();
+    }
+
+    public static String getLang(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String lang;
+        lang = sharedPreferences.getString(SPVConstants.KEY_LANGUAGE, "");
+        return lang;
+    }
+    /*End*/
+
+
+
 }

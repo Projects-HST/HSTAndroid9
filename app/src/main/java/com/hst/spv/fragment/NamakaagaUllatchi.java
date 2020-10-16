@@ -8,15 +8,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Space;
 import android.widget.TextView;
 
 import com.hst.spv.R;
-import com.hst.spv.activity.YourSpv;
+import com.hst.spv.activity.NamakaagaInitiatives;
+import com.hst.spv.adapter.NamakaagaAdapter;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 import com.hst.spv.utils.SPVConstants;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,19 +30,21 @@ import org.json.JSONObject;
 import static android.util.Log.d;
 
 
-public class PositionsFragment extends Fragment implements IServiceListener {
+public class NamakaagaUllatchi extends Fragment implements IServiceListener {
 
-    private static final String TAG = YourSpv.class.getName();
+    private static final String TAG = NamakaagaInitiatives.class.getName();
     private View rootView;
-    private TextView govt, party, ministry;
-    private TextView title_govt, title_party, title_ministry;
+    private TextView abt_ullatchi;
+    private ImageView namakkaga_img;
+    private Button visit;
+    private String img_url;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
 
-    public static PositionsFragment newInstance(int position) {
-        PositionsFragment fragment = new PositionsFragment();
+    public static NamakaagaUllatchi newInstance(int position) {
+        NamakaagaUllatchi fragment = new NamakaagaUllatchi();
         Bundle args = new Bundle();
-        args.putInt("position", position);
+        args.putInt("ullatchi", position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -45,39 +52,39 @@ public class PositionsFragment extends Fragment implements IServiceListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        rootView = inflater.inflate(R.layout.fragment_positions, container, false);
+        // Inflate the layout for this fragment
+        rootView = inflater.inflate(R.layout.fragment_namakaaga_ullatchi, container, false);
         initView();
+        namakaaga();
         return rootView;
     }
 
-    private void initView(){
+    public void initView(){
 
-        title_govt = rootView.findViewById(R.id.govt);
-        govt = rootView.findViewById(R.id.govt_cont);
-        title_party = rootView.findViewById(R.id.party);
-        party = rootView.findViewById(R.id.party_cont);
-        title_ministry = rootView.findViewById(R.id.ministry);
-        ministry = rootView.findViewById(R.id.ministry_cont);
+        abt_ullatchi = rootView.findViewById(R.id.ullatchi_cont);
+        namakkaga_img = rootView.findViewById(R.id.namakaaga);
+        visit = rootView.findViewById(R.id.visit);
+
+        img_url = SPVConstants.Base_Url + SPVConstants.BANNER_IMAGES;
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
 
         dialogHelper = new ProgressDialogHelper(getActivity());
-
-        positionsHeld();
     }
 
-    private void positionsHeld(){
+    private void namakaaga(){
 
         JSONObject jsonObject = new JSONObject();
 
         try {
             jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.POSITIONS_URL;
+
+        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+        String serverUrl = SPVConstants.Base_Url + SPVConstants.NAMAKAAGA_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 
@@ -113,42 +120,40 @@ public class PositionsFragment extends Fragment implements IServiceListener {
     @Override
     public void onResponse(JSONObject response) {
 
-        try {
+        dialogHelper.hideProgressDialog();
 
-            if (validateSignInResponse(response)) {
+        if(validateSignInResponse(response)){
 
-                JSONArray pos_details = response.getJSONArray("position_result");
-                JSONObject res_position = pos_details.getJSONObject(0);
+            try{
+                JSONArray namakkagaDetails = response.getJSONArray("namakkaga_result");
+                JSONObject namakkaga_result = namakkagaDetails.getJSONObject(0);
 
-                Log.d(TAG, res_position.toString());
+                Log.d(TAG, namakkaga_result.toString());
 
-                String title_1 = "";
-                String gov = "";
-                String title_2 = "";
-                String katchi = "";
-                String title_3 = "";
-                String cabinet = "";
+                String content = "";
+                String banner = "";
+                String image = "";
 
-                for (int i=0; i<pos_details.length(); i++){
+                for (int i=0; i < namakkagaDetails.length(); i++) {
 
-                    title_1 = pos_details.getJSONObject(0).getString("title_en");
-                    title_govt.setText(title_1);
-                    gov = pos_details.getJSONObject(0).getString("position_text_en");
-                    govt.setText(gov);
-                    title_2 = pos_details.getJSONObject(1).getString("title_en");
-                    title_party.setText(title_2);
-                    katchi= pos_details.getJSONObject(1).getString("position_text_en");
-                    party.setText(katchi);
-                    title_3 = pos_details.getJSONObject(2).getString("title_en");
-                    title_ministry.setText(title_3);
-                    cabinet = pos_details.getJSONObject(2).getString("position_text_en");
-                    ministry.setText(cabinet);
-
-
+                    banner = namakkaga_result.getString("namakkaga_banner");
+                    image = img_url.concat(banner);
+                    content = namakkaga_result.getString("namakkaga_text_en");
+                    abt_ullatchi.setText(content);
                 }
+                if (image.length() > 0){
+
+                    Picasso.get().load(image).fit().placeholder(R.drawable.party_logo)
+                            .error(R.drawable.party_logo).into(namakkaga_img);
+                }
+                else {
+
+                    namakkaga_img.setImageResource(R.drawable.party_logo);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

@@ -15,6 +15,7 @@
 
     <style name="AppThemeTabLayout">
         <item name="fontFamily">@font/lato_bold</item>
+        <item name="android:inputType">textCapCharacters</item>
     </style>
 
 </resources>
