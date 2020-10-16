@@ -56,4 +56,8 @@ public class SPVConstants {
 
     //SP FCM ID
     public static final String KEY_FCM_ID = "fcm_id";
+
+    public static final String KEY_LANGUAGE = "language";
+
+
 }
