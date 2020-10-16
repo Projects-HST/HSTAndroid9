@@ -14,4 +14,7 @@
     <color name="tool_bg_ed_grad">#0568D6</color>
     <color name="text_grey">#565656</color>
 
+    <color name="black">#000000</color>
+
+
 </resources>
