@@ -68,7 +68,7 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener {
         cr_title_2 = rootView.findViewById(R.id.course_title_2);
         visit = rootView.findViewById(R.id.visit);
 
-        assets_url = SPVConstants.Base_Url + SPVConstants.ASSETS_URL;
+        assets_url = SPVConstants.BUILD_URL + SPVConstants.ASSETS_URL_ACADEMY;
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
@@ -87,7 +87,7 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener {
         }
 
         dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.ACADEMY_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL;
         serviceHelper.makeGetServiceCall(object.toString(), serverUrl);
     }
 

@@ -23,6 +23,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import com.hst.spv.R;
 
+
 public class CircleImageView extends AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
@@ -30,9 +31,9 @@ public class CircleImageView extends AppCompatImageView {
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
     private static final int COLORDRAWABLE_DIMENSION = 2;
 
-    private static final int DEFAULT_BORDER_WIDTH = 1;
-    private static final int DEFAULT_BORDER_COLOR = R.color.transparent;
-    private static final int DEFAULT_FILL_COLOR = R.color.circle_img_bg;
+    private static final int DEFAULT_BORDER_WIDTH = 8;
+    private static final int DEFAULT_BORDER_COLOR = Color.WHITE;
+    private final int DEFAULT_FILL_COLOR = getResources().getColor(R.color.white);
     private static final boolean DEFAULT_BORDER_OVERLAY = false;
 
     private final RectF mDrawableRect = new RectF();
@@ -43,9 +44,9 @@ public class CircleImageView extends AppCompatImageView {
     private final Paint mBorderPaint = new Paint();
     private final Paint mFillPaint = new Paint();
 
-    private int mBorderColor = getResources().getColor(DEFAULT_BORDER_COLOR);
+    private int mBorderColor = DEFAULT_BORDER_COLOR;
     private int mBorderWidth = DEFAULT_BORDER_WIDTH;
-    private int mFillColor = getResources().getColor(DEFAULT_FILL_COLOR);
+    private int mFillColor = DEFAULT_FILL_COLOR;
 
     private Bitmap mBitmap;
     private BitmapShader mBitmapShader;
@@ -77,9 +78,9 @@ public class CircleImageView extends AppCompatImageView {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
 
         mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_civ_border_width, DEFAULT_BORDER_WIDTH);
-        mBorderColor = a.getColor(R.styleable.CircleImageView_civ_border_color, getResources().getColor(DEFAULT_BORDER_COLOR));
+        mBorderColor = a.getColor(R.styleable.CircleImageView_civ_border_color, DEFAULT_BORDER_COLOR);
         mBorderOverlay = a.getBoolean(R.styleable.CircleImageView_civ_border_overlay, DEFAULT_BORDER_OVERLAY);
-        mFillColor = a.getColor(R.styleable.CircleImageView_civ_fill_color, getResources().getColor(DEFAULT_FILL_COLOR));
+        mFillColor = a.getColor(R.styleable.CircleImageView_civ_fill_color, DEFAULT_FILL_COLOR);
 
         a.recycle();
 
@@ -332,4 +333,3 @@ public class CircleImageView extends AppCompatImageView {
     }
 
 }
-

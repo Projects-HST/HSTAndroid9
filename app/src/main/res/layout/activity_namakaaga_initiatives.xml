@@ -35,7 +35,7 @@
             android:layout_toEndOf="@id/back"
             android:layout_marginStart="20dp"
             android:layout_centerInParent="true"
-            android:text="@string/page_title"
+            android:text="@string/namakaaga_page_title"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:fontFamily="@font/lato_bold"
             android:textSize="20sp"

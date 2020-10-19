@@ -30,6 +30,34 @@
     //fcm
     <string name="default_notification_channel_id">10001</string>
 
+
+    //Side item
+    <string name="side_menu_sign_in">Sign In</string>
+    <string name="side_menu_home">Home</string>
+    <string name="side_menu_spv">Your SPV</string>
+    <string name="side_menu_gallery">Gallery</string>
+    <string name="side_menu_nama">Namakaaga Initiatives</string>
+    <string name="side_menu_party">Party</string>
+    <string name="side_menu_blog">Blog</string>
+    <string name="side_menu_settings">Settings</string>
+    <string name="side_menu_log_out">Logout</string>
+
+    //Home Page
+    <string name="your_spv">Your SPV</string>
+    <string name="gallery">Gallery</string>
+    <string name="namakaaga">Namakaaga Initiatives</string>
+    <string name="party">Party</string>
+
+    //News Page
+    <string name="all_news">Your SPV</string>
+    <string name="local_news">Gallery</string>
+    <string name="state_news">Namakaaga Initiatives</string>
+
+    //News Page
+    <string name="all_events">All Events</string>
+    <string name="local_events">Local Events</string>
+    <string name="state_events">State Events</string>
+
     //menu item
     <string name="title_home">Home</string>
     <string name="title_news">News</string>
@@ -44,7 +72,7 @@
     <string name="txt_header"><![CDATA[Awards & Honors]]></string>
 
     //Namakkaga Initiatives
-    <string name="page_title">Namakaaga Initiatives</string>
+    <string name="namakaaga_page_title">Namakaaga Initiatives</string>
     <string name="tab_title_1">Namakaaga Ullatchi</string>
     <string name="btn_visit_1">Visit Namakaaga Ullatchi</string>
     <string name="tab_title_2">Amma IAS Academy</string>

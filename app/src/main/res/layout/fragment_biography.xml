@@ -25,10 +25,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/btn_highlighter"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -36,24 +36,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="0.5"
-                    android:gravity="center"
                     android:background="@drawable/btn_highlighter"
                     android:fontFamily="@font/lato_bold"
+                    android:gravity="center"
+                    android:inputType="textCapCharacters"
                     android:text="@string/spv_personal"
-                    android:textSize="14sp"
-                    android:inputType="textCapCharacters" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/political"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_weight="0.5"
-                    android:gravity="center"
                     android:background="@drawable/btn_highlighter"
                     android:fontFamily="@font/lato_bold"
+                    android:gravity="center"
+                    android:inputType="textCapCharacters"
                     android:text="@string/spv_polity"
-                    android:textSize="14sp"
-                    android:inputType="textCapCharacters"/>
+                    android:textSize="14sp" />
 
 
             </LinearLayout>
@@ -62,12 +62,12 @@
                 android:id="@+id/viewText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
                 android:enabled="true"
                 android:text="@string/txt_cont"
-                android:textSize="14sp"
-                android:textColor="@color/txt_content">
+                android:textColor="@color/txt_content"
+                android:textSize="14sp">
 
             </TextView>
 

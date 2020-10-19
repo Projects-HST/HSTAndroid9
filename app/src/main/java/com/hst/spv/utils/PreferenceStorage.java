@@ -60,6 +60,43 @@ public class PreferenceStorage {
     }
     /*End*/
 
+    /*To store full name*/
+    public static void saveFullName(Context context, String type) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.PARAMS_FULL_NAME, type);
+        editor.apply();
+    }
+
+    public static String getFullName(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String fullName;
+        fullName = sharedPreferences.getString(SPVConstants.PARAMS_FULL_NAME, "");
+        return fullName;
+    }
+    /*End*/
+
+    /* User Image*/
+    public static void saveUserPicture(Context context, String userPicture) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_USER_IMAGE, userPicture);
+        editor.apply();
+    }
+
+    public static String getUserPicture(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String userPicture;
+        userPicture = sharedPreferences.getString(SPVConstants.KEY_USER_IMAGE, "");
+        return userPicture;
+    }
+    /*End*/
+
+
     /*To save FCM key locally*/
     public static void saveFCM(Context context, String gcmId) {
         SharedPreferences sharedPreferences = PreferenceManager
@@ -75,4 +112,26 @@ public class PreferenceStorage {
         return sharedPreferences.getString(SPVConstants.KEY_FCM_ID, "");
     }
     /*End*/
+
+
+    /*To store language*/
+    public static void saveLang(Context context, String lang) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_LANGUAGE, lang);
+        editor.apply();
+    }
+
+    public static String getLang(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String lang;
+        lang = sharedPreferences.getString(SPVConstants.KEY_LANGUAGE, "");
+        return lang;
+    }
+    /*End*/
+
+
+
 }
