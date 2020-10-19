@@ -3,18 +3,26 @@ package com.hst.spv.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.hst.spv.R;
 import com.hst.spv.adapter.SpvAdapter;
 
-public class YourSpv extends AppCompatActivity {
+public class YourSpv extends AppCompatActivity implements View.OnClickListener {
+
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_spv);
+
+        back = (ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_lay);
         ViewPager viewPager = (ViewPager)findViewById(R.id.view_host);
@@ -50,5 +58,15 @@ public class YourSpv extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == back){
+
+            startActivity(new Intent(this, MainActivity.class));
+            this.finish();
+        }
     }
 }

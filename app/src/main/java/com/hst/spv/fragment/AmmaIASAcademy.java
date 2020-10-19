@@ -147,12 +147,12 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener {
                 }
                 if (bannerImage.length() > 0){
 
-                    Picasso.get().load(bannerImage).fit().placeholder(R.drawable.party_logo)
-                                .error(R.drawable.party_logo).into(aca_banner);
+                    Picasso.get().load(bannerImage).fit().placeholder(R.drawable.academy_img)
+                                .error(R.drawable.academy_img).into(aca_banner);
                 }
                 else {
 
-                    aca_banner.setImageResource(R.drawable.party_logo);
+                    aca_banner.setImageResource(R.drawable.academy_img);
                 }
             }
             if(response.getString("status").equalsIgnoreCase("Success")) {

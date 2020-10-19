@@ -24,8 +24,7 @@
                     android:id="@+id/namakaaga"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/img_namakaaga" />
+                    android:contentDescription="@string/app_name" />
 
                 <TextView
                     android:id="@+id/tab_title"

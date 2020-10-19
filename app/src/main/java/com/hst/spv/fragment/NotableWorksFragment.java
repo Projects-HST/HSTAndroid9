@@ -78,6 +78,7 @@ public class NotableWorksFragment extends Fragment implements IServiceListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
         String serverUrl = SPVConstants.Base_Url + SPVConstants.NOTABLE_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
@@ -113,6 +114,7 @@ public class NotableWorksFragment extends Fragment implements IServiceListener {
     @Override
     public void onResponse(JSONObject response) {
 
+        dialogHelper.hideProgressDialog();
         try {
 
             if (validateSignInResponse(response)) {
