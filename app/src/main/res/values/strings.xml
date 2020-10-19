@@ -47,12 +47,29 @@
     <string name="title_social_initiatives">Social Initiatives</string>
     <string name="title_social_media">Social Media</string>
 
-    //your SPV
+    //Home Page
+    <string name="your_spv">Your SPV</string>
+    <string name="gallery">Gallery</string>
+    <string name="namakaaga">Namakaaga Initiatives</string>
+    <string name="party">Party</string>
+
+    //News Page
+    <string name="all_news">All News</string>
+    <string name="local_news">Local News</string>
+    <string name="state_news">State News</string>
+
+    //News Page
+    <string name="all_events">All Events</string>
+    <string name="local_events">Local Events</string>
+    <string name="state_events">State Events</string>
+
+
     <string name="spv_polity">Political Career</string>
     <string name="spv_personal">Personal Life</string>
     <string name="txt_cont">Content Description</string>
 
-    //Namakkaga Initiatives    <string name="page_title">Namakaaga Initiatives</string>
+    //Namakkaga Initiatives
+    <string name="namakaaga_page_title">Namakaaga Initiatives</string>
     <string name="tab_title_1">Namakaaga Ullatchi</string>
     <string name="btn_visit_1">Visit Namakaaga Ullatchi</string>
     <string name="tab_title_2">Amma IAS Academy</string>

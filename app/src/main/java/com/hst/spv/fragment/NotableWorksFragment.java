@@ -78,7 +78,7 @@ public class NotableWorksFragment extends Fragment implements IServiceListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.NOTABLE_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.NOTABLE_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 

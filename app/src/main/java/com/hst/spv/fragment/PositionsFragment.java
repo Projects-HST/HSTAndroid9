@@ -77,7 +77,7 @@ public class PositionsFragment extends Fragment implements IServiceListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.POSITIONS_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POSITIONS_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 

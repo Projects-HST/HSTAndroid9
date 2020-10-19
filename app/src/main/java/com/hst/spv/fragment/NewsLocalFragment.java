@@ -1,6 +1,5 @@
 package com.hst.spv.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,8 +17,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.hst.spv.R;
-import com.hst.spv.activity.NamakaagaInitiatives;
-import com.hst.spv.activity.YourSpv;
 import com.hst.spv.adapter.NewsFeedListAdapter;
 import com.hst.spv.bean.NewsFeed;
 import com.hst.spv.bean.NewsFeedList;
@@ -36,7 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment implements IServiceListener, DialogClickListener, NewsFeedListAdapter.OnItemClickListener, View.OnClickListener {
+public class NewsLocalFragment extends Fragment implements IServiceListener, DialogClickListener, NewsFeedListAdapter.OnItemClickListener{
 
     private static final String TAG = HomeFragment.class.getName();
     private View view;
@@ -79,7 +76,7 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        view = inflater.inflate(R.layout.fragment_all_news, container, false);
         serviceHelper = new ServiceHelper(view.getContext());
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(view.getContext());
@@ -112,16 +109,6 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
                 return false;
             }
         });
-
-        txtYouSPV = view.findViewById(R.id.your_spv_button);
-        txtGallery = view.findViewById(R.id.gallery_button);
-        txtNamakaaga = view.findViewById(R.id.namakaaga_button);
-        txtParty = view.findViewById(R.id.party_button);
-
-        txtYouSPV.setOnClickListener(this);
-        txtGallery.setOnClickListener(this);
-        txtNamakaaga.setOnClickListener(this);
-        txtParty.setOnClickListener(this);
 
         getNewsfeed(String.valueOf(listcount));
 
@@ -162,6 +149,7 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 //                if (val == 0) {
 //                    paguthiID = "ALL";
 //                }
+                jsonObject.put(SPVConstants.KEY_NEWSFEED_ID, "1");
                 jsonObject.put(SPVConstants.KEY_OFFSET, count);
                 jsonObject.put(SPVConstants.KEY_ROWCOUNT, "50");
 
@@ -170,7 +158,7 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
             }
 
 //            progressDialogHelper.showProgressDialog(getString(R.string.progress_loading));
-            String url = SPVConstants.BUILD_URL + SPVConstants.GET_NEWSFEED;
+            String url = SPVConstants.BUILD_URL + SPVConstants.GET_NEWS_CATEGORY;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         } else {
             AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
@@ -220,23 +208,4 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 //        startActivity(intent);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v == txtYouSPV) {
-            Intent intent = new Intent(getActivity(), YourSpv.class);
-//            intent.putExtra("meetingObj", meeting.getId());
-            startActivity(intent);
-        }
-        if (v == txtGallery) {
-
-        }
-        if (v == txtNamakaaga) {
-            Intent intent = new Intent(getActivity(), NamakaagaInitiatives.class);
-//            intent.putExtra("meetingObj", meeting.getId());
-            startActivity(intent);
-        }
-        if (v == txtParty) {
-
-        }
-    }
 }

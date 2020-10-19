@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class NewsFeed implements Serializable {
 
-    @SerializedName("newsfeed_id")
+    @SerializedName("id")
     @Expose
     private String id;
 
@@ -31,7 +31,7 @@ public class NewsFeed implements Serializable {
     @Expose
     private String descriptionEnglish;
 
-    @SerializedName("news_date")
+    @SerializedName("created_at")
     @Expose
     private String newsDate;
 
@@ -59,17 +59,9 @@ public class NewsFeed implements Serializable {
     @Expose
     private String shareCount;
 
-    @SerializedName("comments_count")
-    @Expose
-    private String commentCount;
-
     @SerializedName("status")
     @Expose
     private String status;
-
-    @SerializedName("like_status")
-    @Expose
-    private String likeStatus;
 
     /**
      * @return The id
@@ -254,20 +246,6 @@ public class NewsFeed implements Serializable {
     }
 
     /**
-     * @return The commentCount
-     */
-    public String getCommentCount() {
-        return commentCount;
-    }
-
-    /**
-     * @param commentCount The commentCount
-     */
-    public void setCommentCount(String commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    /**
      * @return The status
      */
     public String getStatus() {
@@ -279,20 +257,6 @@ public class NewsFeed implements Serializable {
      */
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    /**
-     * @return The likeStatus
-     */
-    public String getLikeStatus() {
-        return likeStatus;
-    }
-
-    /**
-     * @param likeStatus The likeStatus
-     */
-    public void setLikeStatus(String likeStatus) {
-        this.likeStatus = likeStatus;
     }
 
 }

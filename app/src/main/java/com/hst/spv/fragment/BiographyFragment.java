@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hst.spv.R;
@@ -104,7 +103,7 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
             e.printStackTrace();
         }
         dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.PERSONAL_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.PERSONAL_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 
@@ -120,7 +119,7 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
             e.printStackTrace();
         }
         dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.POLITICAL_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POLITICAL_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 

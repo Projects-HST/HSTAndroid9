@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Space;
 import android.widget.TextView;
 
 import com.hst.spv.R;
 import com.hst.spv.activity.NamakaagaInitiatives;
-import com.hst.spv.adapter.NamakaagaAdapter;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.servicehelpers.ServiceHelper;
@@ -65,7 +63,7 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
         namakkaga_img = rootView.findViewById(R.id.namakaaga);
         visit = rootView.findViewById(R.id.visit);
 
-        img_url = SPVConstants.Base_Url + SPVConstants.BANNER_IMAGES;
+        img_url = SPVConstants.BUILD_URL + SPVConstants.BANNER_IMAGES;
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
@@ -84,7 +82,7 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
         }
 
         dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.NAMAKAAGA_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.NAMAKAAGA_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hst.spv.R;
 import com.hst.spv.bean.NewsFeed;
 import com.hst.spv.utils.PreferenceStorage;
+import com.hst.spv.utils.SPVConstants;
 import com.hst.spv.utils.SPVValidator;
 import com.squareup.picasso.Picasso;
 
@@ -29,7 +30,7 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
     private OnItemClickListener onItemClickListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtNewsfeedTitle, txtNewsDate, txtNewsfeedDescription, txtLikes, txtComments, txtShares;
+        public TextView txtNewsfeedTitle, txtNewsDate, txtNewsfeedDescription, txtShares;
         public LinearLayout newsfeedLayout;
         public ImageView newsImage;
         public MyViewHolder(View view) {
@@ -40,8 +41,6 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
             txtNewsfeedTitle = (TextView) view.findViewById(R.id.news_title);
             txtNewsDate = (TextView) view.findViewById(R.id.news_date);
             txtNewsfeedDescription = (TextView) view.findViewById(R.id.news_description);
-            txtLikes = (TextView) view.findViewById(R.id.likes_count);
-            txtComments = (TextView) view.findViewById(R.id.comments_count);
             txtShares = (TextView) view.findViewById(R.id.shares_count);
 
         }
@@ -84,20 +83,15 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
             holder.txtNewsfeedTitle.setText(capitalizeString(newsFeed.getTitleEnglish()));
             holder.txtNewsfeedDescription.setMovementMethod(LinkMovementMethod.getInstance());
             holder.txtNewsfeedDescription.setText(HtmlCompat.fromHtml(newsFeed.getDescriptionEnglish(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-            holder.txtLikes.setText(capitalizeString(newsFeed.getLikesCount()) + " Likes");
-            holder.txtComments.setText(capitalizeString(newsFeed.getCommentCount()) + " Comments");
-            holder.txtShares.setText(capitalizeString(newsFeed.getShareCount()) + " Shares");
         } else {
             holder.txtNewsfeedTitle.setText(capitalizeString(newsFeed.getTitleTamil()));
             holder.txtNewsfeedDescription.setMovementMethod(LinkMovementMethod.getInstance());
             holder.txtNewsfeedDescription.setText(HtmlCompat.fromHtml(newsFeed.getDescriptionTamil(), HtmlCompat.FROM_HTML_MODE_LEGACY));
-            holder.txtLikes.setText(capitalizeString(newsFeed.getLikesCount()) + " விருப்ப");
-            holder.txtComments.setText(capitalizeString(newsFeed.getCommentCount()) + " கருத்து");
-            holder.txtShares.setText(capitalizeString(newsFeed.getShareCount()) + " பகிர்");
         }
         holder.txtNewsDate.setText(getserverdateformat(newsFeed.getNewsDate()));
         if (SPVValidator.checkNullString(newsFeed.getCoverImage())) {
-            Picasso.get().load(newsFeed.getCoverImage()).into(holder.newsImage);
+            String url = SPVConstants.BUILD_URL + SPVConstants.ASSETS_URL_NEWSFEED + newsFeed.getCoverImage();
+            Picasso.get().load(url).into(holder.newsImage);
         } else {
 //            newsImage.setImageResource(R.drawable.news_banner);
         }

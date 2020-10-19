@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:id="@+id/your_spv_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:background="@drawable/btn_round_gradient"
+                android:text="@string/your_spv"/>
+
+            <TextView
+                android:id="@+id/gallery_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:background="@drawable/btn_round_gradient"
+                android:text="@string/gallery"/>
+
+            <TextView
+                android:id="@+id/namakaaga_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:background="@drawable/btn_round_gradient"
+                android:text="@string/namakaaga"/>
+
+            <TextView
+                android:id="@+id/party_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:background="@drawable/btn_round_gradient"
+                android:text="@string/party"/>
+
+        </LinearLayout>
+        
+    </HorizontalScrollView>
+    
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/list_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

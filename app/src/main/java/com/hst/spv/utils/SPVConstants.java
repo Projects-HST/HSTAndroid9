@@ -8,30 +8,53 @@ public class SPVConstants {
 
     // URLS
     //BASE URL
-    public static final String Base_Url = "https://happysanz.in/spveluapp/";
+    public static final String BASE_URL = "https://happysanz.in/";
+
+    //Development Mode
+    //development
+//    public static final String JOINT_URL = "development/";
+    //uat
+//    public static final String JOINT_URL = "uat/";
+    //live
+    public static final String JOINT_URL = "spveluapp/";
+    //
+//    //BUILD URL
+    public static final String BUILD_URL = BASE_URL + JOINT_URL + "apiuser/";
+
 
     //SPV Personal
-    public static final String PERSONAL_URL =  "apiuser/spv_personal";
+    public static final String PERSONAL_URL =  "spv_personal";
 
     //SPV Political
-    public static final String POLITICAL_URL = "apiuser/spv_political";
+    public static final String POLITICAL_URL = "spv_political";
 
     //SPV Positions Held
-    public static final String POSITIONS_URL = "apiuser/spv_positionheld";
+    public static final String POSITIONS_URL = "spv_positionheld";
 
     //SPV Awards
-    public static final String AWARDS_URL = "apiuser/spv_awards";
+    public static final String AWARDS_URL = "spv_awards";
 
     //SPV Notable Works
-    public static final String NOTABLE_URL = "apiuser/spv_notable";
+    public static final String NOTABLE_URL = "spv_notable";
 
     //Namakaaga Ullatchi
-    public static final String NAMAKAAGA_URL = "apiuser/spv_namakkaga";
+    public static final String NAMAKAAGA_URL = "spv_namakkaga";
     public static final String BANNER_IMAGES = "assets/namakkaga/";
 
     //Amma IAS Academy
-    public static final String ACADEMY_URL = "apiuser/spv_ias_academy";
-    public static final String ASSETS_URL = "assets/ias_academy/";
+    public static final String ACADEMY_URL = "spv_ias_academy";
+    public static final String ASSETS_URL_ACADEMY = "assets/ias_academy/";
+
+    //NEWS
+    public static final String GET_NEWSFEED = "all_newsfeeds";
+    public static final String ASSETS_URL_NEWSFEED = "assets/news_feed/";
+
+    //NEWS
+    public static final String GET_ALL_NEWS = "all_news";
+    public static final String GET_NEWS_CATEGORY = "newsfeeds_categoryid";
+
+    //NEWS
+    public static final String GET_ALL_EVENTS = "all_events";
 
     //service params
     public static String PARAM_MESSAGE = "msg";
@@ -62,6 +85,10 @@ public class SPVConstants {
     public static final String KEY_USER_IMAGE = "user_pic";
 
     public static final String KEY_LANGUAGE = "language";
+    public static final String KEY_OFFSET = "offset";
+    public static final String KEY_ROWCOUNT = "rowcount";
+
+    public static final String KEY_NEWSFEED_ID = "nf_category_id";
 
 
 }

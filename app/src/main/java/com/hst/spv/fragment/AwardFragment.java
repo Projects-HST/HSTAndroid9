@@ -26,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.util.Log.d;
 import static android.util.Log.i;
@@ -85,7 +84,7 @@ public class AwardFragment extends Fragment implements IServiceListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.AWARDS_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.AWARDS_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 
