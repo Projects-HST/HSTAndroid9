@@ -86,7 +86,7 @@ public class AwardFragment extends Fragment implements IServiceListener {
             e.printStackTrace();
         }
         dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.AWARDS_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.AWARDS_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 

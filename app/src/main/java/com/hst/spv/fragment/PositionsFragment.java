@@ -78,7 +78,7 @@ public class PositionsFragment extends Fragment implements IServiceListener {
             e.printStackTrace();
         }
         dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.Base_Url + SPVConstants.POSITIONS_URL;
+        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POSITIONS_URL;
         serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 

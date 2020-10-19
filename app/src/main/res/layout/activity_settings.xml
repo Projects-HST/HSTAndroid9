@@ -151,7 +151,7 @@
             android:textSize="14sp"
             android:textColor="@color/set_title" />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
+        <CheckBox
                 android:id="@+id/check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_alignParentEnd="true" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchNote"
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
