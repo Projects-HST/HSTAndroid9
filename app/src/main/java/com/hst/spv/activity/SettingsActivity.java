@@ -30,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private SwitchCompat pushNotification;
     private CheckBox subscribe;
     private String resString;
+    private boolean notifyOn = false;
 
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
@@ -54,15 +55,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 getPushNotification();
             }
         });
-
-        subscribe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                getNewsSubscription();
-            }
-        });
-
     }
 
     private void getPushNotification() {
@@ -159,6 +151,17 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
 
         if (v == subscribe){
+
+            if (!notifyOn){
+
+                notifyOn = true;
+                getNewsSubscription();
+            }
+            else {
+
+                notifyOn = false;
+                getNewsSubscription();
+            }
 
         }
     }
