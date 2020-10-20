@@ -197,7 +197,6 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
                             swipeRefreshLayout.setVisibility(View.GONE);
                         }
                         swipeRefreshLayout.setRefreshing(false);
-
                     }
                 }
             } catch (JSONException e) {

@@ -22,26 +22,26 @@ public class SPVConstants {
     public static final String BUILD_URL = BASE_URL + JOINT_URL + "apiuser/";
 
 
-    //SPV Personal
+    //SPV PERSONAL
     public static final String PERSONAL_URL =  "spv_personal";
 
-    //SPV Political
+    //SPV POLITICAL
     public static final String POLITICAL_URL = "spv_political";
 
-    //SPV Positions Held
+    //SPV POSITION HELD
     public static final String POSITIONS_URL = "spv_positionheld";
 
-    //SPV Awards
+    //SPV AWARDS
     public static final String AWARDS_URL = "spv_awards";
 
-    //SPV Notable Works
+    //SPV NOTABLE WORKS
     public static final String NOTABLE_URL = "spv_notable";
 
-    //Namakaaga Ullatchi
+    //NAMAKKAGA ULLATCHI
     public static final String NAMAKAAGA_URL = "spv_namakkaga";
     public static final String BANNER_IMAGES = "assets/namakkaga/";
 
-    //Amma IAS Academy
+    //AMMA IAS ACADEMY
     public static final String ACADEMY_URL = "spv_ias_academy";
     public static final String ASSETS_URL_ACADEMY = "assets/ias_academy/";
 
@@ -57,6 +57,10 @@ public class SPVConstants {
     //NEWS
     public static final String GET_ALL_EVENTS = "all_events";
 
+    //SUBSCRIPTION
+    public static final String NEWS_SUBSCRIBE = "subscription_update";
+    public static final String PUSH_NOTIFICATION = "notification_update";
+
     //service params
     public static String PARAM_MESSAGE = "msg";
     public static String PARAM_MESSAGE_ENG = "msg_en";
@@ -64,6 +68,9 @@ public class SPVConstants {
 
     //user details
     public static final String KEY_USER_ID = "user_id";
+
+    //update_status
+    public static final String KEY_STATUS = "status";
 
     // Alert Dialog Constants
     public static String ALERT_DIALOG_TITLE = "alertDialogTitle";

@@ -141,12 +141,12 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
                 }
                 if (image.length() > 0){
 
-                    Picasso.get().load(image).fit().placeholder(R.drawable.party_logo)
-                            .error(R.drawable.party_logo).into(namakkaga_img);
+                    Picasso.get().load(image).fit().placeholder(R.drawable.img_namakaaga)
+                            .error(R.drawable.img_namakaaga).into(namakkaga_img);
                 }
                 else {
 
-                    namakkaga_img.setImageResource(R.drawable.party_logo);
+                    namakkaga_img.setImageResource(R.drawable.img_namakaaga);
                 }
 
             } catch (JSONException e) {
