@@ -14,7 +14,7 @@
       "versionCode": 1,
       "versionName": "1.0",
       "enabled": true,
-      "outputFile": "SPV_1.0.apk"
+      "outputFile": "SPV_flavorRelease_1.0.apk"
     }
   ]
 }

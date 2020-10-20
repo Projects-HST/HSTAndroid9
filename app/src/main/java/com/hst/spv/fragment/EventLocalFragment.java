@@ -1,5 +1,6 @@
 package com.hst.spv.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.hst.spv.R;
+import com.hst.spv.activity.NewsfeedDetailActivity;
 import com.hst.spv.adapter.NewsFeedListAdapter;
 import com.hst.spv.bean.NewsFeed;
 import com.hst.spv.bean.NewsFeedList;
@@ -203,9 +205,9 @@ public class EventLocalFragment extends Fragment implements IServiceListener, Di
     public void onItemClick(View view, int position) {
         NewsFeed meeting = null;
         meeting = newsFeedArrayList.get(position);
-//        Intent intent = new Intent(getActivity(), NewsfeedDetailActivity.class);
-//        intent.putExtra("meetingObj", meeting.getId());
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(), NewsfeedDetailActivity.class);
+        intent.putExtra("meetingObj", meeting.getId());
+        startActivity(intent);
     }
 
 }

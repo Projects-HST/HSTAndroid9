@@ -35,7 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class EventStateFragment extends Fragment implements IServiceListener, DialogClickListener, NewsFeedListAdapter.OnItemClickListener{
+public class SocialInitiativesFragment extends Fragment implements IServiceListener, DialogClickListener, NewsFeedListAdapter.OnItemClickListener{
 
     private static final String TAG = HomeFragment.class.getName();
     private View view;
@@ -151,7 +151,7 @@ public class EventStateFragment extends Fragment implements IServiceListener, Di
 //                if (val == 0) {
 //                    paguthiID = "ALL";
 //                }
-                jsonObject.put(SPVConstants.KEY_NEWSFEED_ID, "4");
+                jsonObject.put(SPVConstants.KEY_NEWSFEED_ID, "5");
                 jsonObject.put(SPVConstants.KEY_OFFSET, count);
                 jsonObject.put(SPVConstants.KEY_ROWCOUNT, "50");
 

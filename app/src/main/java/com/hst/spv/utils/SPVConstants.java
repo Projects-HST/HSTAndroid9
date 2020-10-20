@@ -51,6 +51,7 @@ public class SPVConstants {
 
     //NEWS
     public static final String GET_ALL_NEWS = "all_news";
+    public static final String GET_NEWSFEED_DETAIL = "newsfeed_details/";
     public static final String GET_NEWS_CATEGORY = "newsfeeds_categoryid";
 
     //NEWS
@@ -85,10 +86,13 @@ public class SPVConstants {
     public static final String KEY_USER_IMAGE = "user_pic";
 
     public static final String KEY_LANGUAGE = "language";
+
+    //    Newsfeed Params
+    public static final String KEY_NEWSFEED_ID = "nf_category_id";
+    public static final String NEWSFEED_ID = "newsfeed_id";
     public static final String KEY_OFFSET = "offset";
     public static final String KEY_ROWCOUNT = "rowcount";
-
-    public static final String KEY_NEWSFEED_ID = "nf_category_id";
+    public static final String KEY_SEARCH_KEYWORD = "search_text";
 
 
 }

@@ -55,6 +55,13 @@
             android:theme="@style/AppThemeNoActionBarLogin"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity
+            android:name=".activity.NewsfeedDetailActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBarLogin"
+            android:windowSoftInputMode="adjustResize" />
+
         <service
             android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">

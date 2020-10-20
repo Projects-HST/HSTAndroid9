@@ -38,4 +38,21 @@
     <color name="set_title">#040404</color>
     <color name="divider">#707070</color>
     <color name="ver">#757575</color>
+    <color name="active_dot">#FFFFFF</color>
+    <color name="inactive_dot">#80FFFFFF</color>
+
+    <array name="array_dot_active">
+        <item>@color/active_dot</item>
+        <item>@color/active_dot</item>
+        <item>@color/active_dot</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/inactive_dot</item>
+        <item>@color/inactive_dot</item>
+        <item>@color/inactive_dot</item>
+    </array>
+
+
+
 </resources>

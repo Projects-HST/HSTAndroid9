@@ -1,8 +1,6 @@
 package com.hst.spv.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hst.spv.R;
@@ -24,45 +21,29 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapter.MyViewHolder> {
+public class NallaramTrustAdapter extends RecyclerView.Adapter<NallaramTrustAdapter.MyViewHolder> {
 
     private ArrayList<NewsFeed> newsFeedArrayList;
     Context context;
     private OnItemClickListener onItemClickListener;
-    NewsFeed newsFeed;
+
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtNewsfeedTitle, txtNewsDate, txtNewsfeedDescription, txtShares;
-        public LinearLayout newsfeedLayout, shareLayout;
+        public TextView txtNewsfeedTitle, txtNewsDate, txtNewsfeedDescription, txtLikes, txtComments, txtShares;
+        public LinearLayout newsfeedLayout;
         public ImageView newsImage;
         public MyViewHolder(View view) {
             super(view);
             newsfeedLayout = (LinearLayout) view.findViewById(R.id.newsfeed_layout);
-            newsfeedLayout.setOnClickListener(this);
-            shareLayout = (LinearLayout) view.findViewById(R.id.share_layout);
-            shareLayout.setOnClickListener(this);
             newsImage = (ImageView) view.findViewById(R.id.news_img);
+            newsfeedLayout.setOnClickListener(this);
             txtNewsfeedTitle = (TextView) view.findViewById(R.id.news_title);
             txtNewsDate = (TextView) view.findViewById(R.id.news_date);
-            txtNewsfeedDescription = (TextView) view.findViewById(R.id.news_description);
-            txtShares = (TextView) view.findViewById(R.id.shares_count);
-
         }
 
         @Override
         public void onClick(View v) {
             if (onItemClickListener != null) {
                 onItemClickListener.onItemClick(v, getAdapterPosition());
-                if (v == shareLayout) {
-                    String text = "";
-                    text = newsFeed.getTitleEnglish() + "\n"
-                            + newsFeed.getNewsDate() + "\n" + newsFeed.getDescriptionEnglish() + "\n";
-                    Intent i = new Intent(android.content.Intent.ACTION_SEND);
-                    i.setType("text/plain");
-                    i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share with");
-                    i.putExtra(android.content.Intent.EXTRA_TEXT, text);
-                    shareLayout.getContext().startActivity(Intent.createChooser(i, "Share via"));
-
-                }
             }
 //            else {
 //                onClickListener.onClick(Selecttick);
@@ -71,7 +52,7 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
     }
 
 
-    public NewsFeedListAdapter(ArrayList<NewsFeed> newsFeedArrayList, OnItemClickListener onItemClickListener) {
+    public NallaramTrustAdapter(ArrayList<NewsFeed> newsFeedArrayList, OnItemClickListener onItemClickListener) {
         this.newsFeedArrayList = newsFeedArrayList;
         this.onItemClickListener = onItemClickListener;
     }
@@ -82,25 +63,22 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
 
 
     @Override
-    public NewsFeedListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_newsfeed, parent, false);
+                .inflate(R.layout.list_item_gallery, parent, false);
 
-        return new NewsFeedListAdapter.MyViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(NewsFeedListAdapter.MyViewHolder holder, int position) {
-        newsFeed = newsFeedArrayList.get(position);
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        NewsFeed newsFeed = newsFeedArrayList.get(position);
 
         if (PreferenceStorage.getLang(holder.txtNewsfeedTitle.getContext()).equalsIgnoreCase("english")) {
             holder.txtNewsfeedTitle.setText(capitalizeString(newsFeed.getTitleEnglish()));
-            holder.txtNewsfeedDescription.setMovementMethod(LinkMovementMethod.getInstance());
-            holder.txtNewsfeedDescription.setText(HtmlCompat.fromHtml(newsFeed.getDescriptionEnglish(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+
         } else {
             holder.txtNewsfeedTitle.setText(capitalizeString(newsFeed.getTitleTamil()));
-            holder.txtNewsfeedDescription.setMovementMethod(LinkMovementMethod.getInstance());
-            holder.txtNewsfeedDescription.setText(HtmlCompat.fromHtml(newsFeed.getDescriptionTamil(), HtmlCompat.FROM_HTML_MODE_LEGACY));
         }
         holder.txtNewsDate.setText(getserverdateformat(newsFeed.getNewsDate()));
         if (SPVValidator.checkNullString(newsFeed.getCoverImage())) {
@@ -148,4 +126,5 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
     public int getItemCount() {
         return newsFeedArrayList.size();
     }
+
 }

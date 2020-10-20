@@ -6,6 +6,7 @@
     //app basics
     <string name="app_name">SPV</string>
     <string name="empty" />
+    <string name="progress_loading">Loading…</string>
     <string name="error_no_net">No internet access. Please check your connection and try again.</string>
     <string name="error_occurred">Failed to connect to the server. Please try again.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
