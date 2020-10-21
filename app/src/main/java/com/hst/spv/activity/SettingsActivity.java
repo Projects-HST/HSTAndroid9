@@ -152,7 +152,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         if (v == subscribe){
 
-            if (!notifyOn){
+            if(!notifyOn){
 
                 notifyOn = true;
                 getNewsSubscription();
@@ -162,7 +162,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 notifyOn = false;
                 getNewsSubscription();
             }
-
         }
     }
 
