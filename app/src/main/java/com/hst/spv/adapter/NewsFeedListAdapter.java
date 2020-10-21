@@ -1,6 +1,7 @@
 package com.hst.spv.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,15 +29,17 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
     private ArrayList<NewsFeed> newsFeedArrayList;
     Context context;
     private OnItemClickListener onItemClickListener;
-
+    NewsFeed newsFeed;
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtNewsfeedTitle, txtNewsDate, txtNewsfeedDescription, txtShares;
-        public LinearLayout newsfeedLayout;
+        public LinearLayout newsfeedLayout, shareLayout;
         public ImageView newsImage;
         public MyViewHolder(View view) {
             super(view);
             newsfeedLayout = (LinearLayout) view.findViewById(R.id.newsfeed_layout);
             newsfeedLayout.setOnClickListener(this);
+            shareLayout = (LinearLayout) view.findViewById(R.id.share_layout);
+            shareLayout.setOnClickListener(this);
             newsImage = (ImageView) view.findViewById(R.id.news_img);
             txtNewsfeedTitle = (TextView) view.findViewById(R.id.news_title);
             txtNewsDate = (TextView) view.findViewById(R.id.news_date);
@@ -49,6 +52,17 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
         public void onClick(View v) {
             if (onItemClickListener != null) {
                 onItemClickListener.onItemClick(v, getAdapterPosition());
+                if (v == shareLayout) {
+                    String text = "";
+                    text = newsFeed.getTitleEnglish() + "\n"
+                            + newsFeed.getNewsDate() + "\n" + newsFeed.getDescriptionEnglish() + "\n";
+                    Intent i = new Intent(android.content.Intent.ACTION_SEND);
+                    i.setType("text/plain");
+                    i.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share with");
+                    i.putExtra(android.content.Intent.EXTRA_TEXT, text);
+                    shareLayout.getContext().startActivity(Intent.createChooser(i, "Share via"));
+
+                }
             }
 //            else {
 //                onClickListener.onClick(Selecttick);
@@ -77,7 +91,7 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
 
     @Override
     public void onBindViewHolder(NewsFeedListAdapter.MyViewHolder holder, int position) {
-        NewsFeed newsFeed = newsFeedArrayList.get(position);
+        newsFeed = newsFeedArrayList.get(position);
 
         if (PreferenceStorage.getLang(holder.txtNewsfeedTitle.getContext()).equalsIgnoreCase("english")) {
             holder.txtNewsfeedTitle.setText(capitalizeString(newsFeed.getTitleEnglish()));

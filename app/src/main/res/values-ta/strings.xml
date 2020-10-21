@@ -7,6 +7,7 @@
     //app basics
     <string name="app_name">SPV</string>
     <string name="empty" />
+    <string name="progress_loading">உருவாக்கப்படுகிறது&#8230;</string>
     <string name="error_no_net">இணையத்தை அணுக இயலவில்லை. உங்கள் இணைப்பை சரிப்பார்க்கவும்.</string>
     <string name="error_occurred">இணைய சேவையக சிக்கல் ஏற்பட்டுள்ளது. சிறிது நேரம் கழித்து முயற்சி செய்யவும்.</string>
     <string name="navigation_drawer_open">நாவிகேஷன் ட்ராயரை திறக்கவும்.</string>

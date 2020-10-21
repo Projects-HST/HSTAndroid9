@@ -14,7 +14,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/visit"
+            android:layout_marginBottom="60dp"
             android:scrollbars="vertical">
 
             <RelativeLayout
@@ -25,7 +25,9 @@
                     android:id="@+id/namakaaga"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:contentDescription="@string/app_name" />
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/img_namakaaga" />
 
                 <TextView
                     android:id="@+id/tab_title"

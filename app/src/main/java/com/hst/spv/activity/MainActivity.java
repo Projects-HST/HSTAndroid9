@@ -23,8 +23,10 @@ import com.hst.spv.R;
 import com.hst.spv.customview.SideDrawerLayout;
 import com.hst.spv.customview.SideDrawerToggle;
 import com.hst.spv.customview.SideMenuView;
+import com.hst.spv.fragment.EventFragment;
 import com.hst.spv.fragment.HomeFragment;
 import com.hst.spv.fragment.NewsFragment;
+import com.hst.spv.fragment.SocialInitiativesFragment;
 import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 
@@ -72,49 +74,19 @@ public class MainActivity extends AppCompatActivity implements SideMenuView.OnMe
 
                             case R.id.navigation_home:
                                 changeFragment(0);
-//                                finish();
-//                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                                fabView.setVisibility(View.VISIBLE);
                                 break;
-
                             case R.id.navigation_news:
                                 changeFragment(1);
-//                                fabView.setVisibility(View.VISIBLE);
                                 break;
-
                             case R.id.navigation_events:
                                 changeFragment(2);
-//                                fabView.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_social_initiatives:
                                 changeFragment(3);
-//                                fabView.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.navigation_social_media:
-//                                if (PreferenceStorage.getUserType(getApplicationContext()).equalsIgnoreCase("1")) {
                                     changeFragment(4);
-//                                } else {
-//                                    android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
-//                                    alertDialogBuilder.setTitle("Login");
-//                                    alertDialogBuilder.setMessage("Log in to Access");
-//                                    alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface arg0, int arg1) {
-//                                            doLogout();
-//                                        }
-//                                    });
-//                                    alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(DialogInterface dialog, int which) {
-//                                            dialog.dismiss();
-//                                        }
-//                                    });
-//                                    alertDialogBuilder.show();
-//                                }
-//                                fabView.setVisibility(View.INVISIBLE);
-//                                closeSubMenusFab();
                                 break;
-
                         }
                         return true;
                     }
@@ -255,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements SideMenuView.OnMe
 //            imgSocial.setImageResource(R.drawable.ic_social);
 //            txtSocial.setTextColor(ContextCompat.getColor(this, R.color.menu_grey));
         } else if (position == 2) {
-//            newFragment = new EventFragment();
+            newFragment = new EventFragment();
 //            imgHome.setImageResource(R.drawable.ic_home);
 //            txtHome.setTextColor(ContextCompat.getColor(this, R.color.menu_grey));
 //            imgGallery.setImageResource(R.drawable.ic_gallery);
@@ -265,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements SideMenuView.OnMe
 //            imgSocial.setImageResource(R.drawable.ic_social);
 //            txtSocial.setTextColor(ContextCompat.getColor(this, R.color.menu_grey));
         } else if (position == 3) {
-//            newFragment = new SocialFragment();
+            newFragment = new SocialInitiativesFragment();
 //            imgHome.setImageResource(R.drawable.ic_home);
 //            txtHome.setTextColor(ContextCompat.getColor(this, R.color.menu_grey));
 //            imgGallery.setImageResource(R.drawable.ic_gallery);

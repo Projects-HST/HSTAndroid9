@@ -19,6 +19,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.gson.Gson;
 import com.hst.spv.R;
 import com.hst.spv.activity.NamakaagaInitiatives;
+import com.hst.spv.activity.NewsfeedDetailActivity;
 import com.hst.spv.activity.YourSpv;
 import com.hst.spv.adapter.NewsFeedListAdapter;
 import com.hst.spv.bean.NewsFeed;
@@ -205,9 +206,9 @@ public class NewsAllFragment extends Fragment implements IServiceListener, Dialo
     public void onItemClick(View view, int position) {
         NewsFeed meeting = null;
         meeting = newsFeedArrayList.get(position);
-//        Intent intent = new Intent(getActivity(), NewsfeedDetailActivity.class);
-//        intent.putExtra("meetingObj", meeting.getId());
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(), NewsfeedDetailActivity.class);
+        intent.putExtra("meetingObj", meeting.getId());
+        startActivity(intent);
     }
 
 }

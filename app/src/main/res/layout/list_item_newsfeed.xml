@@ -58,11 +58,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/share_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_weight="0.5"
                 android:gravity="end"
+                android:elevation="1dp"
                 android:orientation="horizontal">
 
                 <ImageView
