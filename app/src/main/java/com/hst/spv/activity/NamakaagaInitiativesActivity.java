@@ -14,7 +14,7 @@ import com.hst.spv.R;
 import com.hst.spv.adapter.NamakaagaAdapter;
 import com.hst.spv.adapter.SpvAdapter;
 
-public class NamakaagaInitiatives extends AppCompatActivity implements View.OnClickListener {
+public class NamakaagaInitiativesActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView back;
 

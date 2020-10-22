@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hst.spv.R;
-import com.hst.spv.activity.YourSpv;
+import com.hst.spv.activity.YourSpvActivity;
 import com.hst.spv.adapter.AwardListAdapter;
 import com.hst.spv.bean.AwardList;
 import com.hst.spv.helper.AlertDialogHelper;
@@ -26,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.util.Log.d;
 import static android.util.Log.i;
@@ -34,7 +33,7 @@ import static android.util.Log.i;
 
 public class AwardFragment extends Fragment implements IServiceListener {
 
-    private static final String TAG = YourSpv.class.getName();
+    private static final String TAG = YourSpvActivity.class.getName();
     private View rootView;
     private TextView award_title;
     private ListView listView;

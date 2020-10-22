@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hst.spv.R;
-import com.hst.spv.activity.NamakaagaInitiatives;
+import com.hst.spv.activity.NamakaagaInitiativesActivity;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.servicehelpers.ServiceHelper;
@@ -29,7 +29,7 @@ import static android.util.Log.d;
 
 public class AmmaIASAcademy extends Fragment implements IServiceListener {
 
-    private static final String TAG = NamakaagaInitiatives.class.getName();
+    private static final String TAG = NamakaagaInitiativesActivity.class.getName();
     private View rootView;
     private TextView abt_academy, abt_upsc, abt_tnpsc, cr_title_1, cr_title_2;
     private ImageView aca_banner, cr_img_1, cr_img_2;

@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.hst.spv.R;
 import com.hst.spv.adapter.SpvAdapter;
 
-public class YourSpv extends AppCompatActivity implements View.OnClickListener {
+public class YourSpvActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView back;
 

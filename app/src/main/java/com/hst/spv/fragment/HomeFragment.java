@@ -18,9 +18,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.hst.spv.R;
-import com.hst.spv.activity.NamakaagaInitiatives;
+import com.hst.spv.activity.NamakaagaInitiativesActivity;
 import com.hst.spv.activity.NewsfeedDetailActivity;
-import com.hst.spv.activity.YourSpv;
+import com.hst.spv.activity.YourSpvActivity;
 import com.hst.spv.adapter.NewsFeedListAdapter;
 import com.hst.spv.bean.NewsFeed;
 import com.hst.spv.bean.NewsFeedList;
@@ -223,7 +223,7 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
     @Override
     public void onClick(View v) {
         if (v == txtYouSPV) {
-            Intent intent = new Intent(getActivity(), YourSpv.class);
+            Intent intent = new Intent(getActivity(), YourSpvActivity.class);
 //            intent.putExtra("meetingObj", meeting.getId());
             startActivity(intent);
         }
@@ -231,7 +231,7 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
 
         }
         if (v == txtNamakaaga) {
-            Intent intent = new Intent(getActivity(), NamakaagaInitiatives.class);
+            Intent intent = new Intent(getActivity(), NamakaagaInitiativesActivity.class);
 //            intent.putExtra("meetingObj", meeting.getId());
             startActivity(intent);
         }

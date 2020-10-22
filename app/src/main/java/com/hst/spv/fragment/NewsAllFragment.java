@@ -18,9 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.hst.spv.R;
-import com.hst.spv.activity.NamakaagaInitiatives;
 import com.hst.spv.activity.NewsfeedDetailActivity;
-import com.hst.spv.activity.YourSpv;
 import com.hst.spv.adapter.NewsFeedListAdapter;
 import com.hst.spv.bean.NewsFeed;
 import com.hst.spv.bean.NewsFeedList;
