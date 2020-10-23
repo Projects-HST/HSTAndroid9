@@ -53,5 +53,16 @@
         <item name="android:colorControlNormal" tools:targetApi="lollipop">@color/colorPrimary</item>
     </style>
 
+    <style name="datePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/header_txt</item>
+        <item name="android:textColorSecondary">@color/header_txt</item>
+        <item name="android:textColorTertiary">@color/header_txt</item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+
 
 </resources>

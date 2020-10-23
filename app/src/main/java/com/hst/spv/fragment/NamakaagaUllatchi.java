@@ -71,11 +71,12 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener, Dia
         serviceHelper.setServiceListener(this);
 
         dialogHelper = new ProgressDialogHelper(getActivity());
+
     }
 
     private void namakaaga(){
 
-        if (CommonUtils.isNetworkAvailable(getContext())) {
+        if (CommonUtils.isNetworkAvailable(getActivity())) {
 
             JSONObject jsonObject = new JSONObject();
 

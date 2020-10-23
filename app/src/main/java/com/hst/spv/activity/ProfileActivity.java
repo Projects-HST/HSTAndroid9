@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -40,7 +41,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-public class ProfileActivity extends AppCompatActivity implements DialogClickListener, IServiceListener, View.OnClickListener {
+public class ProfileActivity extends AppCompatActivity implements DialogClickListener, IServiceListener, View.OnClickListener,
+        DatePickerDialog.OnDateSetListener {
 
     private static final String TAG = ProfileActivity.class.getName();
     ImageView prof_pic;
@@ -53,6 +55,12 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     private SimpleDateFormat mDateFormatter;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
+    private DatePickerDialog mDatePicker;
+
+    String fullName ="";
+    String mailId = "";
+    String birthDay = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +101,22 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                 }
             }
         });
+
+        String birthdayval = dob.getText().toString().trim();
+
+        if (birthdayval != null) {
+
+            dob.setText(birthdayval);
+        }
+
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "birthday widget selected");
+                showBirthdayDate();
+            }
+        });
+
 
         mDateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
@@ -135,6 +159,29 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         }
     }
 
+    private void saveProfileData(){
+
+        fullName = prof_name.getText().toString().trim();
+        mailId = prof_mail.getText().toString().trim();
+        birthDay = dob.getText().toString().trim();
+
+        String newFormat = "";
+        if (dob.getText().toString() != null && dob.getText().toString() == "") {
+
+            String date = dob.getText().toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+            Date testDate = null;
+            try {
+                testDate = sdf.parse(date);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd");
+            newFormat = formatter.format(testDate);
+            System.out.println(".....Date..." + newFormat);
+        }
+    }
+
     private void saveUserDetails(){
 
         if (CommonUtils.isNetworkAvailable(getApplicationContext())) {
@@ -164,6 +211,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
         if (v == save) {
 
+            saveProfileData();
             saveUserDetails();
         }
     }
@@ -238,6 +286,42 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
 
+    private void showBirthdayDate() {
+
+        Log.d(TAG, "Show the birthday date");
+        Calendar newCalendar = Calendar.getInstance();
+        String currentdate = dob.getText().toString();
+        Log.d(TAG, "current date is" + currentdate);
+        int month = newCalendar.get(Calendar.MONTH);
+        int day = newCalendar.get(Calendar.DAY_OF_MONTH);
+        int year = newCalendar.get(Calendar.YEAR);
+        if ((currentdate != null) && !(currentdate.isEmpty())) {
+            //extract the date/month and year
+            try {
+                Date startDate = mDateFormatter.parse(currentdate);
+                Calendar newDate = Calendar.getInstance();
+
+                newDate.setTime(startDate);
+                month = newDate.get(Calendar.MONTH);
+                day = newDate.get(Calendar.DAY_OF_MONTH);
+                year = newDate.get(Calendar.YEAR);
+                Log.d(TAG, "month" + month + "day" + day + "year" + year);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } finally {
+                mDatePicker = new DatePickerDialog(this, R.style.datePickerTheme, this, year, month, day);
+                mDatePicker.show();
+            }
+        } else {
+            Log.d(TAG, "show default date");
+
+            mDatePicker = new DatePickerDialog(this, R.style.datePickerTheme, this, year, month, day);
+            mDatePicker.show();
+        }
+    }
+
+
     @Override
     public void onAlertPositiveClicked(int tag) {
 
@@ -246,5 +330,12 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     @Override
     public void onAlertNegativeClicked(int tag) {
 
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar newDate = Calendar.getInstance();
+        newDate.set(year, month, dayOfMonth);
+        dob.setText(mDateFormatter.format(newDate.getTime()));
     }
 }
