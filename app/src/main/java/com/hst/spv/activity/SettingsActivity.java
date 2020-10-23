@@ -3,19 +3,23 @@ package com.hst.spv.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.hst.spv.R;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 import com.hst.spv.utils.CommonUtils;
@@ -24,14 +28,15 @@ import com.hst.spv.utils.SPVConstants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, IServiceListener {
+public class SettingsActivity extends AppCompatActivity implements DialogClickListener, View.OnClickListener, IServiceListener {
 
     private static final String TAG = SettingsActivity.class.getName();
     private SwitchCompat pushNotification;
     private CheckBox subscribe;
     private String resString;
     private boolean notifyOn = false;
-
+    TextView ed_profile;
+    ImageView back;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
 
@@ -44,6 +49,17 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         pushNotification.setOnClickListener(this);
         subscribe = (CheckBox) findViewById(R.id.check);
         subscribe.setOnClickListener(this);
+        ed_profile = (TextView) findViewById(R.id.img_title_1);
+        ed_profile.setOnClickListener(this);
+
+        back = (ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+                finish();
+            }
+        });
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
@@ -163,6 +179,13 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 getNewsSubscription();
             }
         }
+
+        if (v == ed_profile){
+
+            Intent homeIntent = new Intent(this, ProfileActivity.class);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
+        }
     }
 
     @Override
@@ -192,6 +215,16 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onError(String error) {
+
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
 
     }
 }

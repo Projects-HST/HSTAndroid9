@@ -18,6 +18,7 @@ import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
+import com.hst.spv.utils.CommonUtils;
 import com.hst.spv.utils.SPVConstants;
 import com.squareup.picasso.Picasso;
 
@@ -73,17 +74,22 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
 
     private void namakaaga(){
 
-        JSONObject jsonObject = new JSONObject();
+        if (CommonUtils.isNetworkAvailable(getContext())) {
 
-        try {
-            jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (Exception e) {
-            e.printStackTrace();
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.NAMAKAAGA_URL;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
+        }else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
         }
-
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.NAMAKAAGA_URL;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 
     private boolean validateSignInResponse(JSONObject response){

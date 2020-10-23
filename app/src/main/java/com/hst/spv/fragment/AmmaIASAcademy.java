@@ -18,6 +18,7 @@ import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
+import com.hst.spv.utils.CommonUtils;
 import com.hst.spv.utils.SPVConstants;
 import com.squareup.picasso.Picasso;
 
@@ -77,18 +78,22 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener {
     }
 
     private void academy(){
+        if (CommonUtils.isNetworkAvailable(getContext())) {
 
-        JSONObject object = new JSONObject();
+            JSONObject object = new JSONObject();
 
-        try {
-            object.put(SPVConstants.KEY_USER_ID, "");
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                object.put(SPVConstants.KEY_USER_ID, "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL;
+            serviceHelper.makeGetServiceCall(object.toString(), serverUrl);
         }
-
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL;
-        serviceHelper.makeGetServiceCall(object.toString(), serverUrl);
+        else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
+        }
     }
 
     private boolean validateSignInResponse(JSONObject response){

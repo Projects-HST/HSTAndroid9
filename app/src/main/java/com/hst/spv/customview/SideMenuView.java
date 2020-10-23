@@ -27,6 +27,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.hst.spv.R;
+import com.hst.spv.activity.SettingsActivity;
 import com.hst.spv.activity.SplashScreenActivity;
 import com.hst.spv.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
@@ -510,6 +511,9 @@ public class SideMenuView extends RelativeLayout implements View.OnClickListener
 //                        });
 //                        alertDialogBuilder.show();
 //                    }
+                    Intent homeIntent = new Intent(context, SettingsActivity.class);
+                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    context.startActivity(homeIntent);
                 }
             });
             this.vSignOut = (RelativeLayout) rootView.findViewById(R.id.sign_out_img);

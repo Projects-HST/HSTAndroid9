@@ -92,5 +92,20 @@
     <string name="set_title_6">Rate this app</string>
     <string name="version">Version 1.0</string>
 
+    //Profile
+    <string name="txt_name">Name*</string>
+    <string name="txt_password">Password*</string>
+    <string name="txt_mail">Email Id*</string>
+    <string name="txt_dob">Date of Birth</string>
+    <string name="txt_gen">Gender</string>
+    <string name="txt_gen_m">Male</string>
+    <string name="txt_gen_ot">Other</string>
+    <string name="txt_gen_f">Female</string>
+    <string name="save">Save</string>
+
+    //General
+    <string name="error_entry">Entry Invalid</string>
+    <string name="error_mail">Enter valid mail ID</string>
+    <string name="empty_entry">Field cannot be empty</string>
 
 </resources>
