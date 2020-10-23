@@ -17,6 +17,7 @@ import com.hst.spv.adapter.AwardListAdapter;
 import com.hst.spv.bean.AwardList;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 import com.hst.spv.utils.CommonUtils;
@@ -33,7 +34,7 @@ import static android.util.Log.d;
 import static android.util.Log.i;
 
 
-public class AwardFragment extends Fragment implements IServiceListener {
+public class AwardFragment extends Fragment implements IServiceListener, DialogClickListener {
 
     private static final String TAG = YourSpv.class.getName();
     private View rootView;
@@ -176,5 +177,15 @@ public class AwardFragment extends Fragment implements IServiceListener {
 
         dialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

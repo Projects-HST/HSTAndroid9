@@ -215,7 +215,8 @@ public class SettingsActivity extends AppCompatActivity implements DialogClickLi
 
     @Override
     public void onError(String error) {
-
+        dialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
 
     @Override

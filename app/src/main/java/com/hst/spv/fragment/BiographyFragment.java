@@ -14,6 +14,7 @@ import com.hst.spv.R;
 import com.hst.spv.activity.YourSpv;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 import com.hst.spv.utils.CommonUtils;
@@ -25,7 +26,8 @@ import org.json.JSONObject;
 
 import static android.util.Log.d;
 
-public class BiographyFragment extends Fragment implements View.OnClickListener, IServiceListener {
+public class BiographyFragment extends Fragment implements View.OnClickListener, IServiceListener,
+        DialogClickListener {
 
     private static final String TAG = YourSpv.class.getName();
     private View rootView;
@@ -216,5 +218,15 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
 
         dialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

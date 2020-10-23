@@ -135,30 +135,36 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         }
     }
 
+    private void saveUserDetails(){
+
+        if (CommonUtils.isNetworkAvailable(getApplicationContext())) {
+
+            if (validateFields()) {
+
+                JSONObject jsonObject = new JSONObject();
+
+                try {
+                    jsonObject.put(SPVConstants.KEY_USER_ID, "1");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                dialogHelper.showProgressDialog(getString(R.string.progress_bar));
+                String url = SPVConstants.BUILD_URL + SPVConstants.EDIT_URL;
+                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+            }
+        }
+        else {
+            AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.error_no_net));
+        }
+
+    }
+
     @Override
     public void onClick(View v) {
 
         if (v == save) {
 
-            if (CommonUtils.isNetworkAvailable(getApplicationContext())) {
-
-                if (validateFields()) {
-
-                    JSONObject jsonObject = new JSONObject();
-
-                    try {
-                        jsonObject.put(SPVConstants.KEY_USER_ID, "1");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    dialogHelper.showProgressDialog(getString(R.string.progress_bar));
-                    String url = SPVConstants.BUILD_URL + SPVConstants.EDIT_URL;
-                    serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
-                }
-            }
-            else {
-                AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.error_no_net));
-            }
+            saveUserDetails();
         }
     }
 
@@ -228,6 +234,8 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     @Override
     public void onError(String error) {
 
+        dialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
 
     @Override
