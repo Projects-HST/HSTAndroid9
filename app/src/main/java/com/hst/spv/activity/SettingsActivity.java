@@ -111,6 +111,7 @@ public class SettingsActivity extends AppCompatActivity implements DialogClickLi
         if (CommonUtils.isNetworkAvailable(getApplicationContext())) {
 
             resString = "news_subscription";
+
             JSONObject jsonObject = new JSONObject();
             boolean state = subscribe.isChecked();
             String status = "";

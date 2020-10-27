@@ -65,6 +65,9 @@ public class SPVConstants {
     public static final String EDIT_BASE_URL = "profile_details/";
     public static final String EDIT_URL = EDIT_BASE_URL + "assets/users/";
 
+    //ProfileUpdate
+    public static final String PROFILE_UPDATE = "profile_update";
+
     //service params
     public static String PARAM_MESSAGE = "msg";
     public static String PARAM_MESSAGE_ENG = "msg_en";
@@ -72,6 +75,7 @@ public class SPVConstants {
 
     //user details
     public static final String KEY_USER_ID = "user_id";
+    public static final String KEY_PHONE_NO = "phone_number";
 
     //update_status
     public static final String KEY_STATUS = "status";
@@ -92,9 +96,14 @@ public class SPVConstants {
     //SP FCM ID
     public static final String KEY_FCM_ID = "fcm_id";
 
-    //SP FCM ID
+    //SAVE PARAMS
     public static final String PARAMS_FULL_NAME = "name";
     public static final String KEY_USER_IMAGE = "user_pic";
+
+    public static final String KEY_USER_GENDER = "gender";
+    public static final String KEY_USERNAME = "full_name";
+    public static final String KEY_USER_BIRTHDAY = "dob";
+    public static final String KEY_USER_EMAIL_ID = "email_id";
 
     public static final String KEY_LANGUAGE = "language";
 

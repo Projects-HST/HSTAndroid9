@@ -132,6 +132,76 @@ public class PreferenceStorage {
     }
     /*End*/
 
+    /*User Name*/
+    public static void saveUserName(Context context, String type) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_USERNAME, type);
+        editor.apply();
+    }
 
+    public static String getUserName(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String fullName;
+        fullName = sharedPreferences.getString(SPVConstants.KEY_USERNAME, "");
+        return fullName;
+    }
+    /*End*/
+
+    /*Mail Id*/
+    public static void saveEmailId(Context context, String type) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_USER_EMAIL_ID, type);
+        editor.apply();
+    }
+
+    public static String getEmailId(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String emailId;
+        emailId = sharedPreferences.getString(SPVConstants.KEY_USER_EMAIL_ID, "");
+        return emailId;
+    }
+
+    /*To store user birthday*/
+    public static void saveUserBirthday(Context context, String data) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_USER_BIRTHDAY, data);
+        editor.apply();
+    }
+
+    public static String getUserBirthday(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String birthDay;
+        birthDay = sharedPreferences.getString(SPVConstants.KEY_USER_BIRTHDAY, "");
+        return birthDay;
+    }
+    /*End*/
+
+    /*To store user gender*/
+    public static void saveUserGender(Context context, String data) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_USER_GENDER, data);
+        editor.apply();
+    }
+
+    public static String getUserGender(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String gender;
+        gender = sharedPreferences.getString(SPVConstants.KEY_USER_GENDER, "");
+
+        return gender;
+    }
+    /*End*/
 
 }

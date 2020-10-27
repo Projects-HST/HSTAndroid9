@@ -17,9 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.hst.spv.R;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
@@ -27,6 +26,7 @@ import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 import com.hst.spv.utils.CommonUtils;
+import com.hst.spv.utils.PreferenceStorage;
 import com.hst.spv.utils.SPVConstants;
 import com.hst.spv.utils.SPVValidator;
 
@@ -46,21 +46,22 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
     private static final String TAG = ProfileActivity.class.getName();
     ImageView prof_pic;
-    EditText prof_name, prof_password, prof_mail, dob;
+    EditText prof_name, prof_password, prof_mail, prof_dob;
     RadioGroup prof_gen;
     RadioButton male, female, others;
     Button save;
 
-    private String gender;
     private SimpleDateFormat mDateFormatter;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
     private DatePickerDialog mDatePicker;
 
+    private RadioButton radioButton;
+    private String resString;
     String fullName ="";
     String mailId = "";
     String birthDay = "";
-
+    String gender = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         prof_name = (EditText) findViewById(R.id.prof_name);
         prof_password = (EditText) findViewById(R.id.prof_password);
         prof_mail = (EditText) findViewById(R.id.prof_mail);
-        dob = (EditText) findViewById(R.id.prof_dob);
+        prof_dob = (EditText) findViewById(R.id.prof_dob);
         prof_gen = (RadioGroup)findViewById(R.id.prof_gen);
         male = (RadioButton) findViewById(R.id.male);
         female = (RadioButton) findViewById(R.id.female);
@@ -82,34 +83,21 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent homeIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK|
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
             }
         });
 
-        prof_gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//        String birthdayval = PreferenceStorage.getUserBirthday(this);
+//
+//        if (birthdayval != null) {
+//
+//            prof_dob.setText(birthdayval);
+//        }
 
-                if (checkedId == R.id.male){
-                    male.isChecked();
-                }
-                else if (checkedId == R.id.female){
-                    female.isChecked();
-                }
-                else if (checkedId == R.id.other){
-                    others.isChecked();
-                }
-            }
-        });
-
-        String birthdayval = dob.getText().toString().trim();
-
-        if (birthdayval != null) {
-
-            dob.setText(birthdayval);
-        }
-
-        dob.setOnClickListener(new View.OnClickListener() {
+        prof_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "birthday widget selected");
@@ -117,12 +105,13 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
             }
         });
 
-
-        mDateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        mDateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
         serviceHelper = new ServiceHelper(this);
         serviceHelper.setServiceListener(this);
         dialogHelper = new ProgressDialogHelper(this);
+
+        showUserDetails();
     }
 
     private boolean validateFields() {
@@ -133,12 +122,12 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
             reqFocus(prof_name);
             return false;
         }
-        else if (!SPVValidator.checkNullString(prof_password.getText().toString().trim())) {
-
-            prof_password.setError(getString(R.string.error_entry));
-            reqFocus(prof_password);
-            return false;
-        }
+//        else if (!SPVValidator.checkNullString(prof_password.getText().toString().trim())) {
+//
+//            prof_password.setError(getString(R.string.error_entry));
+//            reqFocus(prof_password);
+//            return false;
+//        }
         else if (prof_mail.getText().length() > 0) {
 
             if (!SPVValidator.isEmailValid(this.prof_mail.getText().toString().trim())) {
@@ -161,15 +150,50 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
     private void saveProfileData(){
 
+        resString = "saveProfile";
+
         fullName = prof_name.getText().toString().trim();
+        PreferenceStorage.saveUserName(this, fullName);
         mailId = prof_mail.getText().toString().trim();
-        birthDay = dob.getText().toString().trim();
+        PreferenceStorage.saveEmailId(this, mailId);
+        birthDay = prof_dob.getText().toString().trim();
+        PreferenceStorage.saveUserBirthday(this, birthDay);
+
+//        int radioId = prof_gen.getCheckedRadioButtonId();
+//        radioButton = prof_gen.findViewById(radioId);
+//        gender = radioButton.getText().toString();
+//        PreferenceStorage.saveUserGender(this, gender);
+
+        prof_gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                checkedId = prof_gen.getCheckedRadioButtonId();
+                radioButton = prof_gen.findViewById(checkedId);
+
+                if (male != null) {
+                    gender = radioButton.getText().toString();
+                    male.isChecked();
+                    PreferenceStorage.saveUserGender(getApplicationContext(), gender);
+                }
+                else if (female != null){
+                    gender = radioButton.getText().toString();
+                    female.isChecked();
+                    PreferenceStorage.saveUserGender(getApplicationContext(), gender);
+                }
+                else if (others != null) {
+                    gender = radioButton.getText().toString();
+                    others.isChecked();
+                    PreferenceStorage.saveUserGender(getApplicationContext(), gender);
+                }
+            }
+        });
 
         String newFormat = "";
-        if (dob.getText().toString() != null && dob.getText().toString() == "") {
+        if ((birthDay != null) && (birthDay.equals(""))) {
 
-            String date = dob.getText().toString();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+            String date = prof_dob.getText().toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
             Date testDate = null;
             try {
                 testDate = sdf.parse(date);
@@ -180,30 +204,46 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
             newFormat = formatter.format(testDate);
             System.out.println(".....Date..." + newFormat);
         }
+
+        if (validateFields()) {
+
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "1");
+                jsonObject.put(SPVConstants.KEY_USERNAME, fullName);
+                jsonObject.put(SPVConstants.KEY_PHONE_NO, "9994449999");
+                jsonObject.put(SPVConstants.KEY_USER_EMAIL_ID, mailId);
+                jsonObject.put(SPVConstants.KEY_USER_GENDER, gender);
+                jsonObject.put(SPVConstants.KEY_USER_BIRTHDAY, birthDay);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String serviceUrl = SPVConstants.BUILD_URL + SPVConstants.PROFILE_UPDATE;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), serviceUrl);
+        }
     }
 
-    private void saveUserDetails(){
+    private void showUserDetails(){
+
+        resString = "userDetails";
 
         if (CommonUtils.isNetworkAvailable(getApplicationContext())) {
 
-            if (validateFields()) {
+            JSONObject jsonObject = new JSONObject();
 
-                JSONObject jsonObject = new JSONObject();
-
-                try {
-                    jsonObject.put(SPVConstants.KEY_USER_ID, "1");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                dialogHelper.showProgressDialog(getString(R.string.progress_bar));
-                String url = SPVConstants.BUILD_URL + SPVConstants.EDIT_URL;
-                serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "1");
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            dialogHelper.showProgressDialog(getString(R.string.progress_bar));
+            String url = SPVConstants.BUILD_URL + SPVConstants.EDIT_URL;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), url);
         }
         else {
             AlertDialogHelper.showSimpleAlertDialog(this, getString(R.string.error_no_net));
         }
-
     }
 
     @Override
@@ -212,7 +252,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         if (v == save) {
 
             saveProfileData();
-            saveUserDetails();
         }
     }
 
@@ -250,32 +289,76 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     @Override
     public void onResponse(JSONObject response) {
 
-        if (validateResponse(response)){
-            try{
-                JSONArray userDetails = response.getJSONArray("user_details");
-                JSONObject object = userDetails.getJSONObject(0);
+        dialogHelper.hideProgressDialog();
+        try{
+            if (validateResponse(response)) {
 
-                Log.d(TAG, object.toString());
+                if (resString.equalsIgnoreCase("userDetails")) {
 
-                String name = prof_name.getText().toString();
-                String password = prof_password.getText().toString().trim();
-                String mail = prof_mail.getText().toString().trim();
-                String gender = "";
+                    JSONArray userDetails = response.getJSONArray("user_details");
+                    JSONObject object = userDetails.getJSONObject(0);
 
-                for (int i=0; i<userDetails.length(); i++){
+                    Log.d(TAG, object.toString());
 
-                    name = object.getString("full_name");
-                    mail = object.getString("email_id");
-                    gender = object.getString("gender");
+                    fullName = PreferenceStorage.getUserName(this);
+                    mailId = PreferenceStorage.getEmailId(this);
+                    birthDay = PreferenceStorage.getUserBirthday(this);
+                    gender = PreferenceStorage.getUserGender(this);
+
+                    for (int i = 0; i < userDetails.length(); i++) {
+
+                        fullName = object.getString("full_name");
+                        if (fullName != null) {
+                            prof_name.setText(fullName);
+                        }
+                        mailId = object.getString("email_id");
+                        if (mailId != null) {
+                            prof_mail.setText(mailId);
+                        }
+                        birthDay = object.getString("dob");
+                        if (birthDay != null) {
+                            prof_dob.setText(birthDay);
+                        }
+                        gender = object.getString("gender");
+                        prof_gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                                checkedId = prof_gen.getCheckedRadioButtonId();
+                                radioButton = prof_gen.findViewById(checkedId);
+                                boolean gen = radioButton.isChecked();
+                                String gen_cat = "";
+
+                                if (gen) {
+
+                                    gen_cat = "Male";
+                                }
+                                else if (gen){
+
+                                    gen_cat = "Female";
+                                }
+                                else if (gen) {
+
+                                    gen_cat = "Others";
+                                }
+                            }
+                        });
+
+                    }
                 }
+                if (resString.equalsIgnoreCase("saveProfile")) {
 
-                Intent saveIntent = new Intent(this, SettingsActivity.class);
-                saveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(saveIntent);
-            }catch (Exception ex){
-                ex.printStackTrace();
+                    Log.d(TAG, response.toString());
+                    Toast.makeText(getApplicationContext(), response.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                    Intent saveIntent = new Intent(this, SettingsActivity.class);
+                    saveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(saveIntent);
+                }
             }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 
@@ -290,15 +373,15 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
         Log.d(TAG, "Show the birthday date");
         Calendar newCalendar = Calendar.getInstance();
-        String currentdate = dob.getText().toString();
-        Log.d(TAG, "current date is" + currentdate);
+        String currentDate = prof_dob.getText().toString();
+        Log.d(TAG, "current date is" + currentDate);
         int month = newCalendar.get(Calendar.MONTH);
         int day = newCalendar.get(Calendar.DAY_OF_MONTH);
         int year = newCalendar.get(Calendar.YEAR);
-        if ((currentdate != null) && !(currentdate.isEmpty())) {
+        if ((currentDate != null) && !(currentDate.isEmpty())) {
             //extract the date/month and year
             try {
-                Date startDate = mDateFormatter.parse(currentdate);
+                Date startDate = mDateFormatter.parse(currentDate);
                 Calendar newDate = Calendar.getInstance();
 
                 newDate.setTime(startDate);
@@ -336,6 +419,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar newDate = Calendar.getInstance();
         newDate.set(year, month, dayOfMonth);
-        dob.setText(mDateFormatter.format(newDate.getTime()));
+        prof_dob.setText(mDateFormatter.format(newDate.getTime()));
     }
 }
