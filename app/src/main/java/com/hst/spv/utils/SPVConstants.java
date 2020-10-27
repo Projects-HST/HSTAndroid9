@@ -61,6 +61,10 @@ public class SPVConstants {
     public static final String NEWS_SUBSCRIBE = "subscription_update";
     public static final String PUSH_NOTIFICATION = "notification_update";
 
+    //EditProfile
+    public static final String EDIT_BASE_URL = "profile_details/";
+    public static final String EDIT_URL = EDIT_BASE_URL + "assets/users/";
+
     //service params
     public static String PARAM_MESSAGE = "msg";
     public static String PARAM_MESSAGE_ENG = "msg_en";
@@ -100,6 +104,5 @@ public class SPVConstants {
     public static final String KEY_OFFSET = "offset";
     public static final String KEY_ROWCOUNT = "rowcount";
     public static final String KEY_SEARCH_KEYWORD = "search_text";
-
 
 }

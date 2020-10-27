@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/save"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/tool"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/tool_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/tool_bg"/>
+
+                    <ImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:contentDescription="@string/app_name"
+                        android:padding="20dp"
+                        android:src="@drawable/ic_left_arrow" />
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_toEndOf="@id/img_back"
+                        android:fontFamily="@font/lato_bold"
+                        android:gravity="center"
+                        android:text="@string/set_title_1"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.hst.spv.customview.CircleImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="110dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/default_profile_img" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/in_lay_1"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    app:boxStrokeColor="@color/lay_outline">
+
+                    <EditText
+                        android:id="@+id/prof_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/txt_name"
+                        android:textColorHint="@color/txt_prof"
+                        android:inputType="text"
+                        android:textColor="@color/txt_prof"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/in_lay_2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:boxStrokeColor="@color/lay_outline">
+
+                    <EditText
+                        android:id="@+id/prof_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/txt_password"
+                        android:textColorHint="@color/txt_prof"
+                        android:inputType="textPassword"
+                        android:textColor="@color/txt_prof"
+                        android:maxLength="8"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/in_lay_3"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:boxStrokeColor="@color/lay_outline">
+
+                    <EditText
+                        android:id="@+id/prof_mail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/txt_mail"
+                        android:textColorHint="@color/txt_prof"
+                        android:inputType="text"
+                        android:textColor="@color/txt_prof"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/in_lay_4"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:boxStrokeColor="@color/lay_outline">
+
+                    <EditText
+                        android:id="@+id/prof_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/txt_dob"
+                        android:textColorHint="@color/txt_prof"
+                        android:inputType="text"
+                        android:textColor="@color/txt_prof"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/ic_calender"
+                        android:focusable="false"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/txt_gen"
+                    android:textColor="@color/txt_prof"
+                    android:textSize="17sp" />
+
+                <RadioGroup
+                    android:id="@+id/prof_gen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_gen_m"
+                        android:textSize="16sp"
+                        android:textColor="@color/txt_prof" />
+
+                    <RadioButton
+                        android:id="@+id/female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_gen_f"
+                        android:textSize="16sp"
+                        android:textColor="@color/txt_prof" />
+
+                    <RadioButton
+                        android:id="@+id/other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:text="@string/txt_gen_ot"
+                        android:textSize="16sp"
+                        android:textColor="@color/txt_prof" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_bg_grad"
+        android:inputType="textCapCharacters"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+</RelativeLayout>

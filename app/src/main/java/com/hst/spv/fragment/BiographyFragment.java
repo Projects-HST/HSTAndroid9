@@ -14,8 +14,10 @@ import com.hst.spv.R;
 import com.hst.spv.activity.YourSpvActivity;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
+import com.hst.spv.utils.CommonUtils;
 import com.hst.spv.utils.SPVConstants;
 
 import org.json.JSONArray;
@@ -24,7 +26,8 @@ import org.json.JSONObject;
 
 import static android.util.Log.d;
 
-public class BiographyFragment extends Fragment implements View.OnClickListener, IServiceListener {
+public class BiographyFragment extends Fragment implements View.OnClickListener, IServiceListener,
+        DialogClickListener {
 
     private static final String TAG = YourSpvActivity.class.getName();
     private View rootView;
@@ -54,6 +57,7 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
     private void initView(){
 
         personal = (TextView)rootView.findViewById(R.id.personal);
+        personal.setEnabled(true);
         personal.setOnClickListener(this);
         political = (TextView)rootView.findViewById(R.id.political);
         political.setOnClickListener(this);
@@ -93,34 +97,46 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
 
     private void personalCareer(){
 
-        resString = "personal_career";
+        if (CommonUtils.isNetworkAvailable(getActivity())) {
 
-        JSONObject jsonObject = new JSONObject();
+            resString = "personal_career";
 
-        try {
-            jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (JSONException e) {
-            e.printStackTrace();
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.PERSONAL_URL;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
         }
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.PERSONAL_URL;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
+        else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
+        }
     }
 
     private void politicalCareer(){
 
-        resString = "political_career";
+        if (CommonUtils.isNetworkAvailable(getActivity())) {
 
-        JSONObject jsonObject = new JSONObject();
+            resString = "political_career";
 
-        try {
-            jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (JSONException e) {
-            e.printStackTrace();
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POLITICAL_URL;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
         }
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POLITICAL_URL;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
+        else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
+        }
     }
 
     private boolean validateSignInResponse(JSONObject response){
@@ -202,5 +218,15 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
 
         dialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

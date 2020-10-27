@@ -41,6 +41,10 @@
     <color name="active_dot">#FFFFFF</color>
     <color name="inactive_dot">#80FFFFFF</color>
 
+    //Profile
+    <color name="txt_prof">#69696B</color>
+    <color name="lay_outline">#BBBBBB</color>
+
     <array name="array_dot_active">
         <item>@color/active_dot</item>
         <item>@color/active_dot</item>

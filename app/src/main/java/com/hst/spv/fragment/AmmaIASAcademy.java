@@ -16,8 +16,10 @@ import com.hst.spv.R;
 import com.hst.spv.activity.NamakaagaInitiativesActivity;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
+import com.hst.spv.utils.CommonUtils;
 import com.hst.spv.utils.SPVConstants;
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +29,7 @@ import org.json.JSONObject;
 
 import static android.util.Log.d;
 
-public class AmmaIASAcademy extends Fragment implements IServiceListener {
+public class AmmaIASAcademy extends Fragment implements IServiceListener, DialogClickListener {
 
     private static final String TAG = NamakaagaInitiativesActivity.class.getName();
     private View rootView;
@@ -77,18 +79,22 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener {
     }
 
     private void academy(){
+        if (CommonUtils.isNetworkAvailable(getContext())) {
 
-        JSONObject object = new JSONObject();
+            JSONObject object = new JSONObject();
 
-        try {
-            object.put(SPVConstants.KEY_USER_ID, "");
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                object.put(SPVConstants.KEY_USER_ID, "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL;
+            serviceHelper.makeGetServiceCall(object.toString(), serverUrl);
         }
-
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL;
-        serviceHelper.makeGetServiceCall(object.toString(), serverUrl);
+        else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
+        }
     }
 
     private boolean validateSignInResponse(JSONObject response){
@@ -209,6 +215,15 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener {
 
         dialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
 
     }
 }

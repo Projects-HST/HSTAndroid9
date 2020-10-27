@@ -14,8 +14,10 @@ import com.hst.spv.R;
 import com.hst.spv.activity.YourSpvActivity;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
+import com.hst.spv.utils.CommonUtils;
 import com.hst.spv.utils.SPVConstants;
 
 import org.json.JSONArray;
@@ -25,7 +27,7 @@ import org.json.JSONObject;
 import static android.util.Log.d;
 
 
-public class PositionsFragment extends Fragment implements IServiceListener {
+public class PositionsFragment extends Fragment implements IServiceListener, DialogClickListener {
 
     private static final String TAG = YourSpvActivity.class.getName();
     private View rootView;
@@ -70,16 +72,21 @@ public class PositionsFragment extends Fragment implements IServiceListener {
 
     private void positionsHeld(){
 
-        JSONObject jsonObject = new JSONObject();
+        if (CommonUtils.isNetworkAvailable(getContext())) {
 
-        try {
-            jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (JSONException e) {
-            e.printStackTrace();
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POSITIONS_URL;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
+        }else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
         }
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POSITIONS_URL;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 
     private boolean validateSignInResponse(JSONObject response){
@@ -159,5 +166,15 @@ public class PositionsFragment extends Fragment implements IServiceListener {
 
         dialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

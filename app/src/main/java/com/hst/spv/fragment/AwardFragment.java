@@ -17,8 +17,10 @@ import com.hst.spv.adapter.AwardListAdapter;
 import com.hst.spv.bean.AwardList;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
+import com.hst.spv.utils.CommonUtils;
 import com.hst.spv.utils.SPVConstants;
 
 import org.json.JSONArray;
@@ -31,7 +33,7 @@ import static android.util.Log.d;
 import static android.util.Log.i;
 
 
-public class AwardFragment extends Fragment implements IServiceListener {
+public class AwardFragment extends Fragment implements IServiceListener, DialogClickListener {
 
     private static final String TAG = YourSpvActivity.class.getName();
     private View rootView;
@@ -77,16 +79,22 @@ public class AwardFragment extends Fragment implements IServiceListener {
 
     private void awards(){
 
-        JSONObject jsonObject = new JSONObject();
+        if (CommonUtils.isNetworkAvailable(getContext())) {
 
-        try {
-            jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (JSONException e) {
-            e.printStackTrace();
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.AWARDS_URL;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
         }
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.AWARDS_URL;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
+        else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
+        }
     }
 
     private boolean validateSignInResponse(JSONObject response){
@@ -168,5 +176,15 @@ public class AwardFragment extends Fragment implements IServiceListener {
 
         dialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }

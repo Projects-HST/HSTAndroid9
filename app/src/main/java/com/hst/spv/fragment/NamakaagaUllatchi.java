@@ -16,8 +16,10 @@ import com.hst.spv.R;
 import com.hst.spv.activity.NamakaagaInitiativesActivity;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
+import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.servicehelpers.ServiceHelper;
 import com.hst.spv.serviceinterfaces.IServiceListener;
+import com.hst.spv.utils.CommonUtils;
 import com.hst.spv.utils.SPVConstants;
 import com.squareup.picasso.Picasso;
 
@@ -28,7 +30,7 @@ import org.json.JSONObject;
 import static android.util.Log.d;
 
 
-public class NamakaagaUllatchi extends Fragment implements IServiceListener {
+public class NamakaagaUllatchi extends Fragment implements IServiceListener, DialogClickListener {
 
     private static final String TAG = NamakaagaInitiativesActivity.class.getName();
     private View rootView;
@@ -69,21 +71,27 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
         serviceHelper.setServiceListener(this);
 
         dialogHelper = new ProgressDialogHelper(getActivity());
+
     }
 
     private void namakaaga(){
 
-        JSONObject jsonObject = new JSONObject();
+        if (CommonUtils.isNetworkAvailable(getActivity())) {
 
-        try {
-            jsonObject.put(SPVConstants.KEY_USER_ID, "");
-        } catch (Exception e) {
-            e.printStackTrace();
+            JSONObject jsonObject = new JSONObject();
+
+            try {
+                jsonObject.put(SPVConstants.KEY_USER_ID, "");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+            String serverUrl = SPVConstants.BUILD_URL + SPVConstants.NAMAKAAGA_URL;
+            serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
+        }else {
+            AlertDialogHelper.showSimpleAlertDialog(getActivity(), getString(R.string.error_no_net));
         }
-
-        dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
-        String serverUrl = SPVConstants.BUILD_URL + SPVConstants.NAMAKAAGA_URL;
-        serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
     }
 
     private boolean validateSignInResponse(JSONObject response){
@@ -160,5 +168,15 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener {
 
         dialogHelper.hideProgressDialog();
         AlertDialogHelper.showSimpleAlertDialog(getActivity(), error);
+    }
+
+    @Override
+    public void onAlertPositiveClicked(int tag) {
+
+    }
+
+    @Override
+    public void onAlertNegativeClicked(int tag) {
+
     }
 }
