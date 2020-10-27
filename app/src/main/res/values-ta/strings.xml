@@ -91,6 +91,16 @@
     <string name="set_title_5">Share this app</string>
     <string name="set_title_6">Rate this app</string>
     <string name="version">Version 1.0</string>
+    //Namakkaga Initiatives
+    <string name="gallery_photos">Photos</string>
+    <string name="gallery_videos">Videos</string>
+
+
+    <string name="select_language">Choose Your Preferred Language</string>
+    <string name="select_language_line_2">Please select your language</string>
+    <string name="select_english">English</string>
+    <string name="select_tamil">தமிழ்</string>
+    <string name="confirm">Confirm</string>
 
     //Profile
     <string name="txt_name">Name*</string>

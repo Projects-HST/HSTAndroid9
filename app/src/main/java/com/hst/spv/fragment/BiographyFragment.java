@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hst.spv.R;
-import com.hst.spv.activity.YourSpv;
+import com.hst.spv.activity.YourSpvActivity;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.interfaces.DialogClickListener;
@@ -29,7 +29,7 @@ import static android.util.Log.d;
 public class BiographyFragment extends Fragment implements View.OnClickListener, IServiceListener,
         DialogClickListener {
 
-    private static final String TAG = YourSpv.class.getName();
+    private static final String TAG = YourSpvActivity.class.getName();
     private View rootView;
     private TextView personal, political, career_cont;
     private ServiceHelper serviceHelper;

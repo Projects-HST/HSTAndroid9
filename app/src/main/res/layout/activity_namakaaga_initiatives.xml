@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.NamakaagaInitiatives">
+    tools:context=".activity.NamakaagaInitiativesActivity">
 
     <RelativeLayout
         android:id="@+id/tool"

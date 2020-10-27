@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -27,8 +26,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.hst.spv.R;
+import com.hst.spv.activity.NamakaagaInitiativesActivity;
 import com.hst.spv.activity.SettingsActivity;
 import com.hst.spv.activity.SplashScreenActivity;
+import com.hst.spv.activity.YourSpvActivity;
 import com.hst.spv.utils.PreferenceStorage;
 import com.squareup.picasso.Picasso;
 
@@ -411,8 +412,8 @@ public class SideMenuView extends RelativeLayout implements View.OnClickListener
             this.vYourSPV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent homeIntent = new Intent(context, SetUpPreferenceActivity.class);
-//                    context.startActivity(homeIntent);
+                    Intent homeIntent = new Intent(context, YourSpvActivity.class);
+                    context.startActivity(homeIntent);
                 }
             });
             this.vGallery = (RelativeLayout) rootView.findViewById(R.id.gallery_img);
@@ -428,34 +429,8 @@ public class SideMenuView extends RelativeLayout implements View.OnClickListener
             this.vNamakaga.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    if (PreferenceStorage.getUserType(context).equalsIgnoreCase("1")) {
-//                        Intent homeIntent = new Intent(context, WishListActivity.class);
-//                        context.startActivity(homeIntent);
-//                    } else {
-//                        android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(context);
-//                        alertDialogBuilder.setTitle("Login");
-//                        alertDialogBuilder.setMessage("Log in to Access");
-//                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface arg0, int arg1) {
-//                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-//                                sharedPreferences.edit().clear().apply();
-////        TwitterUtil.getInstance().resetTwitterRequestToken();
-//
-//                                Intent homeIntent = new Intent(context, SplashScreenActivity.class);
-//                                homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                context.startActivity(homeIntent);
-//
-//                            }
-//                        });
-//                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//                        alertDialogBuilder.show();
-//                    }
+                    Intent homeIntent = new Intent(context, NamakaagaInitiativesActivity.class);
+                    context.startActivity(homeIntent);
                 }
             });
             this.vParty = (RelativeLayout) rootView.findViewById(R.id.party_img);
@@ -482,37 +457,7 @@ public class SideMenuView extends RelativeLayout implements View.OnClickListener
             this.vSettings.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    if (PreferenceStorage.getUserType(context).equalsIgnoreCase("1")) {
-//                        Intent homeIntent = new Intent(context, SettingsActivity.class);
-//                        context.startActivity(homeIntent);
-//                    }
-//                    else {
-//                        android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(context);
-//                        alertDialogBuilder.setTitle("Login");
-//                        alertDialogBuilder.setMessage("Log in to Access");
-//                        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface arg0, int arg1) {
-//                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-//                                sharedPreferences.edit().clear().apply();
-////        TwitterUtil.getInstance().resetTwitterRequestToken();
-//
-//                                Intent homeIntent = new Intent(context, SplashScreenActivity.class);
-//                                homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                context.startActivity(homeIntent);
-//
-//                            }
-//                        });
-//                        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//                        alertDialogBuilder.show();
-//                    }
                     Intent homeIntent = new Intent(context, SettingsActivity.class);
-                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     context.startActivity(homeIntent);
                 }
             });

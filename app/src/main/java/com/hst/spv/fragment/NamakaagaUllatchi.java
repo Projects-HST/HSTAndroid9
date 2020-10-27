@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hst.spv.R;
-import com.hst.spv.activity.NamakaagaInitiatives;
+import com.hst.spv.activity.NamakaagaInitiativesActivity;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.interfaces.DialogClickListener;
@@ -32,7 +32,7 @@ import static android.util.Log.d;
 
 public class NamakaagaUllatchi extends Fragment implements IServiceListener, DialogClickListener {
 
-    private static final String TAG = NamakaagaInitiatives.class.getName();
+    private static final String TAG = NamakaagaInitiativesActivity.class.getName();
     private View rootView;
     private TextView abt_ullatchi;
     private ImageView namakkaga_img;
