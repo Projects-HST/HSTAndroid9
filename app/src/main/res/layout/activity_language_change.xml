@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/select_language_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shadow_oval">
+
+            <TextView
+                android:id="@+id/select_language_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/select_language"
+                android:textColor="@color/txt_black"
+                android:textSize="20sp" />
+            
+            <TextView
+                android:id="@+id/select_language_txt_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lato_regular"
+                android:layout_below="@id/select_language_txt"
+                android:text="@string/select_language_line_2"
+                android:textColor="@color/txt_content"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/select_language_txt_one"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/english"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/img_english"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/lato_regular"
+                        android:text="A"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:gravity="center"
+                        android:text="@string/select_english"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/img_eng_check"
+                        android:layout_width="20dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/ic_language_check" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tamil"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/img_tamil"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/lato_regular"
+                        android:gravity="center"
+                        android:text="அ"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/lato_bold"
+                        android:gravity="center"
+                        android:text="@string/select_tamil"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/img_tamil_check"
+                        android:layout_width="20dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/ic_language_uncheck"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/confirm_language"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/tamil"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_round"
+        android:layout_marginEnd="20dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/confirm"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
+
+</LinearLayout>
