@@ -320,30 +320,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                             prof_dob.setText(birthDay);
                         }
                         gender = object.getString("gender");
-                        prof_gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                                checkedId = prof_gen.getCheckedRadioButtonId();
-                                radioButton = prof_gen.findViewById(checkedId);
-                                boolean gen = radioButton.isChecked();
-                                String gen_cat = "";
-
-                                if (gen) {
-
-                                    gen_cat = "Male";
-                                }
-                                else if (gen){
-
-                                    gen_cat = "Female";
-                                }
-                                else if (gen) {
-
-                                    gen_cat = "Others";
-                                }
-                            }
-                        });
-
                     }
                 }
                 if (resString.equalsIgnoreCase("saveProfile")) {
