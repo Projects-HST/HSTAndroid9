@@ -57,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     private DatePickerDialog mDatePicker;
 
     private RadioButton radioButton;
+    private int radioId;
     private String resString;
     String fullName ="";
     String mailId = "";
@@ -158,36 +159,20 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         PreferenceStorage.saveEmailId(this, mailId);
         birthDay = prof_dob.getText().toString().trim();
         PreferenceStorage.saveUserBirthday(this, birthDay);
+        radioId = prof_gen.getCheckedRadioButtonId();
+        radioButton = prof_gen.findViewById(radioId);
+        gender = radioButton.getText().toString();
+        PreferenceStorage.saveUserGender(this, gender);
 
-//        int radioId = prof_gen.getCheckedRadioButtonId();
-//        radioButton = prof_gen.findViewById(radioId);
-//        gender = radioButton.getText().toString();
-//        PreferenceStorage.saveUserGender(this, gender);
-
-        prof_gen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                checkedId = prof_gen.getCheckedRadioButtonId();
-                radioButton = prof_gen.findViewById(checkedId);
-
-                if (male != null) {
-                    gender = radioButton.getText().toString();
-                    male.isChecked();
-                    PreferenceStorage.saveUserGender(getApplicationContext(), gender);
-                }
-                else if (female != null){
-                    gender = radioButton.getText().toString();
-                    female.isChecked();
-                    PreferenceStorage.saveUserGender(getApplicationContext(), gender);
-                }
-                else if (others != null) {
-                    gender = radioButton.getText().toString();
-                    others.isChecked();
-                    PreferenceStorage.saveUserGender(getApplicationContext(), gender);
-                }
+            if (male != null) {
+                male.isChecked();
             }
-        });
+            else if (female != null){
+                female.isChecked();
+            }
+            else if (others != null) {
+                others.isChecked();
+            }
 
         String newFormat = "";
         if ((birthDay != null) && (birthDay.equals(""))) {
@@ -320,8 +305,32 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                             prof_dob.setText(birthDay);
                         }
                         gender = object.getString("gender");
+
+                        if (gender != null) {
+
+                            for (int i1 = 0; i1 < prof_gen.getChildCount(); i1++) {
+
+                                radioButton = (RadioButton) prof_gen.getChildAt(i1);
+                                radioButton.isChecked();
+
+                                if (male.getText().toString().equals(gender)) {
+
+                                    male.setChecked(true);
+
+                                } else if (female.getText().toString().equals(gender)) {
+
+                                    female.setChecked(true);
+
+                                }
+                                else if (others.getText().toString().equals(gender)) {
+
+                                    others.setChecked(true);
+                                }
+                            }
+                        }
                     }
                 }
+
                 if (resString.equalsIgnoreCase("saveProfile")) {
 
                     Log.d(TAG, response.toString());
