@@ -4,6 +4,15 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--Hardware Permission-->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name=".app.AppController"
@@ -16,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBarLogin"
         android:usesCleartextTraffic="true">
+
+        <uses-library android:name ="org.apache.http.legacy"
+            android:required ="false"/>
 
         <activity
             android:name=".activity.ProfileActivity"
@@ -37,13 +49,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.YourSpv"
+            android:name=".activity.YourSpvActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarLogin"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity.NamakaagaInitiatives"
+            android:name=".activity.NamakaagaInitiativesActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBarLogin"

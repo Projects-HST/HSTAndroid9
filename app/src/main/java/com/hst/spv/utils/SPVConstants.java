@@ -68,6 +68,9 @@ public class SPVConstants {
     //ProfileUpdate
     public static final String PROFILE_UPDATE = "profile_update";
 
+    //ProfilePicUpload
+    public static final String UPLOAD_IMAGE = "profilepic_update/1/";
+
     //service params
     public static String PARAM_MESSAGE = "msg";
     public static String PARAM_MESSAGE_ENG = "msg_en";
