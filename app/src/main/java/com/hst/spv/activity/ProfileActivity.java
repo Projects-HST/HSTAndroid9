@@ -11,6 +11,7 @@ import androidx.loader.content.CursorLoader;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -205,28 +206,51 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
             if (v == prof_pic) {
 
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                } else {
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            == PackageManager.PERMISSION_DENIED) {
-                        ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                    } else {
-                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                                == PackageManager.PERMISSION_DENIED) {
-                            ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                        }
-                        openImageIntent();
-                    }
+//                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+//                        == PackageManager.PERMISSION_DENIED) {
+//                    ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//                } else {
+//                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                            == PackageManager.PERMISSION_DENIED) {
+//                        ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//                    } else {
+//                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+//                                == PackageManager.PERMISSION_DENIED) {
+//                            ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//                        }
+//                    }
+//                }
+                if (checkPermission(ProfileActivity.this)){
+                    openImageIntent();
                 }
             }
             if (v == save) {
 
-                saveProfileData();
+                saveProfile();
             }
+        }
+    }
+
+    private void saveUserImage() {
+
+        Log.d(TAG, "image Uri is" + mSelectedImageUri);
+        if (mSelectedImageUri != null) {
+            Log.d(TAG, "image URI is" + mSelectedImageUri);
+            mUpdatedImageUrl = null;
+            mCurrentUserImageBitmap = decodeFile(destFile);
+            new UploadFileToServer().execute();
+        }
+    }
+
+    void saveProfile() {
+
+        if ((mActualFilePath != null)) {
+            Log.d(TAG, "Update profile picture");
+            saveUserImage();
+        } else {
+            saveProfileData();
         }
     }
 
@@ -240,15 +264,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         PreferenceStorage.saveEmailId(this, mailId);
         birthDay = prof_dob.getText().toString().trim();
         PreferenceStorage.saveUserBirthday(this, birthDay);
-
-//        if(((imageUrl != null) && (imageUrl.isEmpty()))){
-//
-//            Picasso.get().load(imageUrl).fit().into(prof_pic);
-//        }
-//        else {
-//            prof_pic.setImageResource(R.drawable.default_profile_img);
-//        }
-//        PreferenceStorage.saveUserPicture(this, imageUrl);
 
         radioId = prof_gen.getCheckedRadioButtonId();
         radioButton = prof_gen.findViewById(radioId);
@@ -405,100 +420,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     }
 
     @Override
-    public void onResponse(JSONObject response) {
-
-        dialogHelper.hideProgressDialog();
-        try{
-            if (validateResponse(response)) {
-
-                if (resString.equalsIgnoreCase("userDetails")) {
-
-                    JSONArray userDetails = response.getJSONArray("user_details");
-                    JSONObject object = userDetails.getJSONObject(0);
-
-                    Log.d(TAG, object.toString());
-
-                    fullName = PreferenceStorage.getUserName(this);
-                    mailId = PreferenceStorage.getEmailId(this);
-                    birthDay = PreferenceStorage.getUserBirthday(this);
-                    gender = PreferenceStorage.getUserGender(this);
-                    profile_image = PreferenceStorage.getUserPicture(this);
-
-                    for (int i = 0; i < userDetails.length(); i++) {
-
-                        fullName = object.getString("full_name");
-                        if (fullName != null) {
-                            prof_name.setText(fullName);
-                        }
-                        mailId = object.getString("email_id");
-                        if (mailId != null) {
-                            prof_mail.setText(mailId);
-                        }
-                        birthDay = object.getString("dob");
-                        if (birthDay != null) {
-                            prof_dob.setText(birthDay);
-                        }
-                        gender = object.getString("gender");
-
-                        if (gender != null) {
-
-                            for (int i1 = 0; i1 < prof_gen.getChildCount(); i1++) {
-
-                                radioButton = (RadioButton) prof_gen.getChildAt(i1);
-                                radioButton.isChecked();
-
-                                if (male.getText().toString().equals(gender)) {
-
-                                    male.setChecked(true);
-                                }
-                                else if (female.getText().toString().equals(gender)) {
-
-                                    female.setChecked(true);
-                                }
-                                else if (others.getText().toString().equals(gender)) {
-
-                                    others.setChecked(true);
-                                }
-                            }
-                        }
-
-                        profile_image = object.getString("profile_pic");
-
-                        if (profile_image != null){
-
-                            Picasso.get().load(profile_image).fit().placeholder(R.drawable.default_profile_img)
-                                .error(R.drawable.default_profile_img).into(prof_pic);
-                        }
-                        else {
-                            prof_pic.setImageResource(R.drawable.default_profile_img);
-                        }
-                    }
-                }
-
-                if (resString.equalsIgnoreCase("saveProfile")) {
-
-                    Log.d(TAG, response.toString());
-                    Toast.makeText(getApplicationContext(), response.getString("msg"), Toast.LENGTH_SHORT).show();
-
-                    Intent saveIntent = new Intent(this, SettingsActivity.class);
-                    saveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(saveIntent);
-                }
-            }
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onError(String error) {
-
-        dialogHelper.hideProgressDialog();
-        AlertDialogHelper.showSimpleAlertDialog(this, error);
-    }
-
-        @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -519,7 +440,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                         isCamera = action.equals(MediaStore.ACTION_IMAGE_CAPTURE);
                     }
                 }
-
 
                 if (isCamera) {
                     Log.d(TAG, "Add to gallery");
@@ -560,16 +480,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                         setResult(RESULT_CANCELED, returnFromGalleryIntent);
                         finish();
                     }
-
-                }
-                Log.d(TAG, "image Uri is" + mSelectedImageUri);
-                if (mSelectedImageUri != null) {
-                    Log.d(TAG, "image URI is" + mSelectedImageUri);
-//                    performCrop();
-//                    setPic(mSelectedImageUri);
-                    mUpdatedImageUrl = null;
-                    mCurrentUserImageBitmap = decodeFile(destFile);
-                    new UploadFileToServer().execute();
                 }
             }
         }
@@ -745,10 +655,104 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 //            saveProfileData();
         }
 
-            @Override
-            protected void onCancelled() {
-            super.onCancelled();
+        @Override
+        protected void onCancelled() {
+                super.onCancelled();
         }
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+        dialogHelper.hideProgressDialog();
+        try{
+            if (validateResponse(response)) {
+
+                if (resString.equalsIgnoreCase("userDetails")) {
+
+                    JSONArray userDetails = response.getJSONArray("user_details");
+                    JSONObject object = userDetails.getJSONObject(0);
+
+                    Log.d(TAG, object.toString());
+
+                    fullName = PreferenceStorage.getUserName(this);
+                    mailId = PreferenceStorage.getEmailId(this);
+                    birthDay = PreferenceStorage.getUserBirthday(this);
+                    gender = PreferenceStorage.getUserGender(this);
+                    profile_image = PreferenceStorage.getUserPicture(this);
+
+                    for (int i = 0; i < userDetails.length(); i++) {
+
+                        fullName = object.getString("full_name");
+                        if (fullName != null) {
+                            prof_name.setText(fullName);
+                        }
+                        mailId = object.getString("email_id");
+                        if (mailId != null) {
+                            prof_mail.setText(mailId);
+                        }
+                        birthDay = object.getString("dob");
+                        if (birthDay != null) {
+                            prof_dob.setText(birthDay);
+                        }
+                        gender = object.getString("gender");
+
+                        if (gender != null) {
+
+                            for (int i1 = 0; i1 < prof_gen.getChildCount(); i1++) {
+
+                                radioButton = (RadioButton) prof_gen.getChildAt(i1);
+                                radioButton.isChecked();
+
+                                if (male.getText().toString().equals(gender)) {
+
+                                    male.setChecked(true);
+                                }
+                                else if (female.getText().toString().equals(gender)) {
+
+                                    female.setChecked(true);
+                                }
+                                else if (others.getText().toString().equals(gender)) {
+
+                                    others.setChecked(true);
+                                }
+                            }
+                        }
+
+                        profile_image = object.getString("profile_pic");
+
+                        if ((mUpdatedImageUrl != null) && !(mUpdatedImageUrl.isEmpty())) {
+
+                            Picasso.get().load(profile_image).fit().placeholder(R.drawable.ic_default_profile)
+                                    .error(R.drawable.ic_default_profile).into(prof_pic);
+                        }
+                        else {
+                            prof_pic.setImageResource(R.drawable.ic_default_profile);
+                        }
+                    }
+                }
+
+                if (resString.equalsIgnoreCase("saveProfile")) {
+
+                    Log.d(TAG, response.toString());
+                    Toast.makeText(getApplicationContext(), response.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                    Intent saveIntent = new Intent(this, SettingsActivity.class);
+                    saveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(saveIntent);
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onError(String error) {
+
+        dialogHelper.hideProgressDialog();
+        AlertDialogHelper.showSimpleAlertDialog(this, error);
     }
     private void galleryAddPic(Uri uriRequest){
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -795,14 +799,16 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                     alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         //                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                            ActivityCompat.requestPermissions((Activity) context, new String[]
+                                    {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                         }
                     });
                     AlertDialog alert = alertBuilder.create();
                     alert.show();
 
                 } else {
-                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                    ActivityCompat.requestPermissions((Activity) context, new String[]
+                            {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                 }
                 return false;
             } else {
