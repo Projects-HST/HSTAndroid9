@@ -8,10 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hst.spv.R;
 import com.hst.spv.activity.YourSpvActivity;
+import com.hst.spv.adapter.AwardListAdapter;
+import com.hst.spv.adapter.PositionListAdapter;
+import com.hst.spv.bean.AwardList;
+import com.hst.spv.bean.PositionList;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.interfaces.DialogClickListener;
@@ -24,15 +29,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import static android.util.Log.d;
 
 
 public class PositionsFragment extends Fragment implements IServiceListener, DialogClickListener {
 
     private static final String TAG = YourSpvActivity.class.getName();
+
     private View rootView;
-    private TextView govt, party, ministry;
-    private TextView title_govt, title_party, title_ministry;
+    private ListView posList;
+
+    private ArrayList<PositionList> positionList;
+    private PositionListAdapter positionAdapter;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
 
@@ -55,12 +65,9 @@ public class PositionsFragment extends Fragment implements IServiceListener, Dia
 
     private void initView(){
 
-        title_govt = rootView.findViewById(R.id.govt);
-        govt = rootView.findViewById(R.id.govt_cont);
-        title_party = rootView.findViewById(R.id.party);
-        party = rootView.findViewById(R.id.party_cont);
-        title_ministry = rootView.findViewById(R.id.ministry);
-        ministry = rootView.findViewById(R.id.ministry_cont);
+        posList = (ListView) rootView.findViewById(R.id.position_list);
+
+        positionList = new ArrayList<>();
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
@@ -131,30 +138,20 @@ public class PositionsFragment extends Fragment implements IServiceListener, Dia
 
                 Log.d(TAG, res_position.toString());
 
-                String title_1 = "";
-                String gov = "";
-                String title_2 = "";
-                String katchi = "";
-                String title_3 = "";
-                String cabinet = "";
+                String id = "";
+                String title = "";
+                String cont_description = "";
 
                 for (int i=0; i<pos_details.length(); i++){
 
-                    title_1 = pos_details.getJSONObject(0).getString("title_en");
-                    title_govt.setText(title_1);
-                    gov = pos_details.getJSONObject(0).getString("position_text_en");
-                    govt.setText(gov);
-                    title_2 = pos_details.getJSONObject(1).getString("title_en");
-                    title_party.setText(title_2);
-                    katchi= pos_details.getJSONObject(1).getString("position_text_en");
-                    party.setText(katchi);
-                    title_3 = pos_details.getJSONObject(2).getString("title_en");
-                    title_ministry.setText(title_3);
-                    cabinet = pos_details.getJSONObject(2).getString("position_text_en");
-                    ministry.setText(cabinet);
+                    id = pos_details.getJSONObject(i).getString("id");
+                    title = pos_details.getJSONObject(i).getString("title_en");
+                    cont_description = pos_details.getJSONObject(i).getString("position_text_en");
 
-
+                    positionList.add(new PositionList(id, title, cont_description));
                 }
+                positionAdapter = new PositionListAdapter(getActivity(),positionList);
+                posList.setAdapter(positionAdapter);
             }
         } catch (Exception e) {
             e.printStackTrace();

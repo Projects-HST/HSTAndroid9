@@ -60,7 +60,8 @@
                     android:layout_width="110dp"
                     android:layout_height="125dp"
                     android:layout_margin="20dp"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_default_profile"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/in_lay_1"

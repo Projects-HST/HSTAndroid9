@@ -8,10 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hst.spv.R;
 import com.hst.spv.activity.YourSpvActivity;
+import com.hst.spv.adapter.NotableListAdapter;
+import com.hst.spv.adapter.PositionListAdapter;
+import com.hst.spv.bean.NotableList;
+import com.hst.spv.bean.PositionList;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.interfaces.DialogClickListener;
@@ -24,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import static android.util.Log.d;
 import static android.util.Log.i;
 
@@ -32,8 +39,10 @@ public class NotableWorksFragment extends Fragment implements IServiceListener, 
 
     private static final String TAG = YourSpvActivity.class.getName();
     private View rootView;
-    private TextView rwh, loc_govern, welfare;
-    private TextView title_rwh, title_govern, title_welfare;
+    private ListView noteList;
+
+    private ArrayList<NotableList> notableList;
+    private NotableListAdapter notableAdapter;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
 
@@ -56,12 +65,10 @@ public class NotableWorksFragment extends Fragment implements IServiceListener, 
 
     private void initView(){
 
-        title_rwh = rootView.findViewById(R.id.rwh);
-        rwh = rootView.findViewById(R.id.rwh_cont);
-        title_govern = rootView.findViewById(R.id.loc_gov);
-        loc_govern = rootView.findViewById(R.id.loc_cont);
-        title_welfare = rootView.findViewById(R.id.welfare);
-        welfare = rootView.findViewById(R.id.well_cont);
+        noteList = (ListView) rootView.findViewById(R.id.note_list);
+
+        notableList = new ArrayList<>();
+
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
@@ -131,28 +138,20 @@ public class NotableWorksFragment extends Fragment implements IServiceListener, 
 
                 Log.d(TAG, res_position.toString());
 
-                String title_1 = "";
-                String rain_water = "";
-                String title_2 = "";
-                String loc_gov = "";
-                String title_3 = "";
-                String wel = "";
+                String id = "";
+                String title = "";
+                String cont_description = "";
 
                 for (int i=0; i<pos_details.length(); i++){
 
-                    title_1 = pos_details.getJSONObject(0).getString("title_en");
-                    title_rwh.setText(title_1);
-                    rain_water = pos_details.getJSONObject(0).getString("noteable_text_en");
-                    rwh.setText(rain_water);
-                    title_2 = pos_details.getJSONObject(1).getString("title_en");
-                    title_govern.setText(title_2);
-                    loc_gov = pos_details.getJSONObject(1).getString("noteable_text_en");
-                    loc_govern.setText(loc_gov);
-                    title_3 = pos_details.getJSONObject(2).getString("title_en");
-                    title_welfare.setText(title_3);
-                    wel = pos_details.getJSONObject(2).getString("noteable_text_en");
-                    welfare.setText(wel);
+                    id = pos_details.getJSONObject(i).getString("id");
+                    title = pos_details.getJSONObject(i).getString("title_en");
+                    cont_description = pos_details.getJSONObject(i).getString("noteable_text_en");
+
+                    notableList.add(new NotableList(id, title, cont_description));
                 }
+                notableAdapter = new NotableListAdapter(getActivity(), notableList);
+                noteList.setAdapter(notableAdapter);
             }
         } catch (Exception e) {
             e.printStackTrace();

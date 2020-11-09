@@ -192,16 +192,20 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
                     aboutTnpsc = academyResult.getJSONObject(1).getString("course_details_en");
                     abt_tnpsc.setText(aboutTnpsc);
                 }
-                if ((image_1.length() > 0) && (image_2.length() > 0)){
+                if ((image_1.length() > 0)) {
 
                     Picasso.get().load(image_1).fit().placeholder(R.drawable.party_logo)
                             .error(R.drawable.party_logo).into(cr_img_1);
+                }
+                else {
+                    cr_img_1.setImageResource(R.drawable.party_logo);
+                }
 
+                if ((image_2.length() > 0)) {
                     Picasso.get().load(image_2).fit().placeholder(R.drawable.party_logo)
                             .error(R.drawable.party_logo).into(cr_img_2);
                 }
                 else {
-                    cr_img_1.setImageResource(R.drawable.party_logo);
                     cr_img_2.setImageResource(R.drawable.party_logo);
                 }
             }

@@ -101,7 +101,7 @@ public class SPVConstants {
 
     //SAVE PARAMS
     public static final String PARAMS_FULL_NAME = "name";
-    public static final String KEY_USER_IMAGE = "user_pic";
+    public static final String KEY_USER_IMAGE = "profile_pic";
 
     public static final String KEY_USER_GENDER = "gender";
     public static final String KEY_USERNAME = "full_name";

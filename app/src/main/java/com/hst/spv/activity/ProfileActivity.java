@@ -222,35 +222,14 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 //                        }
 //                    }
 //                }
-                if (checkPermission(ProfileActivity.this)){
+                if (checkPermission(ProfileActivity.this)) {
                     openImageIntent();
                 }
             }
             if (v == save) {
 
-                saveProfile();
+                saveProfileData();
             }
-        }
-    }
-
-    private void saveUserImage() {
-
-        Log.d(TAG, "image Uri is" + mSelectedImageUri);
-        if (mSelectedImageUri != null) {
-            Log.d(TAG, "image URI is" + mSelectedImageUri);
-            mUpdatedImageUrl = null;
-            mCurrentUserImageBitmap = decodeFile(destFile);
-            new UploadFileToServer().execute();
-        }
-    }
-
-    void saveProfile() {
-
-        if ((mActualFilePath != null)) {
-            Log.d(TAG, "Update profile picture");
-            saveUserImage();
-        } else {
-            saveProfileData();
         }
     }
 
@@ -480,6 +459,13 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                         setResult(RESULT_CANCELED, returnFromGalleryIntent);
                         finish();
                     }
+                    Log.d(TAG, "image Uri is" + mSelectedImageUri);
+                    if (mSelectedImageUri != null) {
+                        Log.d(TAG, "image URI is" + mSelectedImageUri);
+                        mUpdatedImageUrl = null;
+                        mCurrentUserImageBitmap = decodeFile(destFile);
+                        new UploadFileToServer().execute();
+                    }
                 }
             }
         }
@@ -679,7 +665,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                     mailId = PreferenceStorage.getEmailId(this);
                     birthDay = PreferenceStorage.getUserBirthday(this);
                     gender = PreferenceStorage.getUserGender(this);
-                    profile_image = PreferenceStorage.getUserPicture(this);
 
                     for (int i = 0; i < userDetails.length(); i++) {
 
@@ -721,9 +706,11 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
                         profile_image = object.getString("profile_pic");
 
-                        if ((mUpdatedImageUrl != null) && !(mUpdatedImageUrl.isEmpty())) {
+                        if (profile_image != null) {
 
-                            Picasso.get().load(profile_image).fit().placeholder(R.drawable.ic_default_profile)
+                            profile_image = PreferenceStorage.getUserPicture(this);
+
+                            Picasso.get().load(profile_image).placeholder(R.drawable.ic_default_profile)
                                     .error(R.drawable.ic_default_profile).into(prof_pic);
                         }
                         else {
