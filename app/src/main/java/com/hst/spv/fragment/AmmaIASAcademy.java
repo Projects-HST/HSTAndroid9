@@ -60,17 +60,17 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
 
     public void initView(){
 
-        aca_banner = rootView.findViewById(R.id.namakkaga);
+        aca_banner = (ImageView) rootView.findViewById(R.id.namakkaga);
         abt_academy = rootView.findViewById(R.id.abt_academy);
-        cr_img_1 = rootView.findViewById(R.id.upsc_logo);
-        cr_img_2 = rootView.findViewById(R.id.tnpsc_logo);
+        cr_img_1 = (ImageView) rootView.findViewById(R.id.upsc_logo);
+        cr_img_2 = (ImageView) rootView.findViewById(R.id.tnpsc_logo);
         abt_upsc = rootView.findViewById(R.id.abt_upsc);
         abt_tnpsc = rootView.findViewById(R.id.abt_tnpsc);
         cr_title_1 = rootView.findViewById(R.id.course_title_1);
         cr_title_2 = rootView.findViewById(R.id.course_title_2);
         visit = rootView.findViewById(R.id.visit);
 
-        assets_url = SPVConstants.BUILD_URL + SPVConstants.ASSETS_URL_ACADEMY;
+        assets_url = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL + SPVConstants.ASSETS_URL_ACADEMY;
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);
@@ -157,7 +157,6 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
                                 .error(R.drawable.academy_img).into(aca_banner);
                 }
                 else {
-
                     aca_banner.setImageResource(R.drawable.academy_img);
                 }
             }
@@ -201,7 +200,8 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
                     cr_img_1.setImageResource(R.drawable.party_logo);
                 }
 
-                if ((image_2.length() > 0)) {
+                if ((image_2.length() > 0)){
+
                     Picasso.get().load(image_2).fit().placeholder(R.drawable.party_logo)
                             .error(R.drawable.party_logo).into(cr_img_2);
                 }
