@@ -70,7 +70,7 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
         cr_title_2 = rootView.findViewById(R.id.course_title_2);
         visit = rootView.findViewById(R.id.visit);
 
-        assets_url = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL + SPVConstants.ASSETS_URL_ACADEMY;
+        assets_url = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_URL_ACADEMY;
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);

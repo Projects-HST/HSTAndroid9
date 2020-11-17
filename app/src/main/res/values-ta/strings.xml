@@ -100,7 +100,7 @@
     <string name="select_language_line_2">Please select your language</string>
     <string name="select_english">English</string>
     <string name="select_tamil">தமிழ்</string>
-    <string name="confirm">Confirm</string>
+    <string name="confirm">Update</string>
 
     //Profile
     <string name="txt_name">Name*</string>

@@ -21,6 +21,9 @@ public class SPVConstants {
 //    //BUILD URL
     public static final String BUILD_URL = BASE_URL + JOINT_URL + "apiuser/";
 
+    //ASSETS URL
+    public static final String ASSETS_URL = BASE_URL + JOINT_URL;
+
 
     //SPV PERSONAL
     public static final String PERSONAL_URL =  "spv_personal";
@@ -39,7 +42,7 @@ public class SPVConstants {
 
     //NAMAKKAGA ULLATCHI
     public static final String NAMAKAAGA_URL = "spv_namakkaga";
-    public static final String BANNER_IMAGES = "assets/namakkaga/";
+    public static final String ASSETS_NAMAKKAGA_URL = "assets/namakkaga/";
 
     //AMMA IAS ACADEMY
     public static final String ACADEMY_URL = "spv_ias_academy";

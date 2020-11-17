@@ -206,25 +206,26 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
             if (v == prof_pic) {
 
-//                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-//                        == PackageManager.PERMISSION_DENIED) {
-//                    ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-//                } else {
-//                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                            == PackageManager.PERMISSION_DENIED) {
-//                        ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-//                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-//                    } else {
-//                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-//                                == PackageManager.PERMISSION_DENIED) {
-//                            ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-//                                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-//                        }
-//                    }
-//                }
-                if (checkPermission(ProfileActivity.this)) {
-                    openImageIntent();
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                } else {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED) {
+                        ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                    } else {
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                                == PackageManager.PERMISSION_DENIED) {
+                            ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                        }
+                        openImageIntent();
+                    }
                 }
+//                if (checkPermission(ProfileActivity.this)) {
+//                    openImageIntent();
+//                }
             }
             if (v == save) {
 
@@ -445,7 +446,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                             //return Image Path to the Main Activity
                             Intent returnFromGalleryIntent = new Intent();
                             returnFromGalleryIntent.putExtra("picturePath", mActualFilePath);
-
                             setResult(RESULT_OK, returnFromGalleryIntent);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -773,38 +773,38 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         }
     }
 
-    public static boolean checkPermission(final Context context){
-        int currentAPIVersion = Build.VERSION.SDK_INT;
-        if (currentAPIVersion >= Build.VERSION_CODES.M) {
-            if ((ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) ||
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-                    alertBuilder.setCancelable(true);
-                    alertBuilder.setTitle("Permission necessary");
-                    alertBuilder.setMessage("External storage permission is necessary");
-                    alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        //                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                        public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions((Activity) context, new String[]
-                                    {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                        }
-                    });
-                    AlertDialog alert = alertBuilder.create();
-                    alert.show();
-
-                } else {
-                    ActivityCompat.requestPermissions((Activity) context, new String[]
-                            {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                }
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return true;
-        }
-    }
+//    public static boolean checkPermission(final Context context){
+//        int currentAPIVersion = Build.VERSION.SDK_INT;
+//        if (currentAPIVersion >= Build.VERSION_CODES.M) {
+//            if ((ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) ||
+//                    ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+//                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
+//                    alertBuilder.setCancelable(true);
+//                    alertBuilder.setTitle("Permission necessary");
+//                    alertBuilder.setMessage("External storage permission is necessary");
+//                    alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                        //                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            ActivityCompat.requestPermissions((Activity) context, new String[]
+//                                    {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//                        }
+//                    });
+//                    AlertDialog alert = alertBuilder.create();
+//                    alert.show();
+//
+//                } else {
+//                    ActivityCompat.requestPermissions((Activity) context, new String[]
+//                            {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//                }
+//                return false;
+//            } else {
+//                return true;
+//            }
+//        } else {
+//            return true;
+//        }
+//    }
 
     private void showBirthdayDate() {
 

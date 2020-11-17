@@ -65,7 +65,7 @@ public class NamakaagaUllatchi extends Fragment implements IServiceListener, Dia
         namakkaga_img = rootView.findViewById(R.id.namakaaga);
         visit = rootView.findViewById(R.id.visit);
 
-        img_url = SPVConstants.BUILD_URL + SPVConstants.BANNER_IMAGES;
+        img_url = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_NAMAKKAGA_URL;
 
         serviceHelper = new ServiceHelper(getActivity());
         serviceHelper.setServiceListener(this);

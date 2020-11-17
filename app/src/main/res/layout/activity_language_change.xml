@@ -2,8 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/tool"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:minHeight="?android:attr/actionBarSize"
+            android:background="@drawable/tool_bg" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="20dp"
+            android:src="@drawable/ic_left_arrow" />
+
+        <TextView
+            android:id="@+id/set_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/back"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:text="@string/lang_title"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:id="@+id/lang_sel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:src="@drawable/ic_lang_icon" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/select_language_layout"

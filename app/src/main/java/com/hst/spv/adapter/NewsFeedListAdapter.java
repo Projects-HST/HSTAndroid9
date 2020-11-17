@@ -40,6 +40,7 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
             newsfeedLayout.setOnClickListener(this);
             shareLayout = (LinearLayout) view.findViewById(R.id.share_layout);
             shareLayout.setOnClickListener(this);
+
             newsImage = (ImageView) view.findViewById(R.id.news_img);
             txtNewsfeedTitle = (TextView) view.findViewById(R.id.news_title);
             txtNewsDate = (TextView) view.findViewById(R.id.news_date);
@@ -104,7 +105,7 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
         }
         holder.txtNewsDate.setText(getserverdateformat(newsFeed.getNewsDate()));
         if (SPVValidator.checkNullString(newsFeed.getCoverImage())) {
-            String url = SPVConstants.BUILD_URL + SPVConstants.ASSETS_URL_NEWSFEED + newsFeed.getCoverImage();
+            String url = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_URL_NEWSFEED + newsFeed.getCoverImage();
             Picasso.get().load(url).into(holder.newsImage);
         } else {
 //            newsImage.setImageResource(R.drawable.news_banner);

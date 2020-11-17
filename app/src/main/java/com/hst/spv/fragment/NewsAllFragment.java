@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class NewsAllFragment extends Fragment implements IServiceListener, Dialo
     NewsFeedList newsFeedList;
     ArrayList<NewsFeed> newsFeedArrayList = new ArrayList<>();
     NewsFeedListAdapter mAdapter;
+    private ImageView newsBanner;
     private TextView txtYouSPV, txtGallery, txtNamakaaga, txtParty;
 
     public static HomeFragment newInstance(int position) {
@@ -79,6 +81,7 @@ public class NewsAllFragment extends Fragment implements IServiceListener, Dialo
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_all_news, container, false);
+        newsBanner = (ImageView)view.findViewById(R.id.namakaaga);
         serviceHelper = new ServiceHelper(view.getContext());
         serviceHelper.setServiceListener(this);
         progressDialogHelper = new ProgressDialogHelper(view.getContext());
@@ -140,7 +143,6 @@ public class NewsAllFragment extends Fragment implements IServiceListener, Dialo
             recyclerView.setAdapter(mAdapter);
             recyclerView.scrollToPosition(listcount);
             swipeRefreshLayout.setRefreshing(false);
-
         }
     }
 
