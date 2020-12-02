@@ -82,7 +82,7 @@ public class NallaramTrustAdapter extends RecyclerView.Adapter<NallaramTrustAdap
         }
         holder.txtNewsDate.setText(getserverdateformat(newsFeed.getNewsDate()));
         if (SPVValidator.checkNullString(newsFeed.getCoverImage())) {
-            String url = SPVConstants.BUILD_URL + SPVConstants.ASSETS_URL_NEWSFEED + newsFeed.getCoverImage();
+            String url = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_URL_NEWSFEED + newsFeed.getCoverImage();
             Picasso.get().load(url).into(holder.newsImage);
         } else {
 //            newsImage.setImageResource(R.drawable.news_banner);

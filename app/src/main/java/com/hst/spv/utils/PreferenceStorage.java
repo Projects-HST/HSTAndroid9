@@ -184,6 +184,21 @@ public class PreferenceStorage {
         return birthDay;
     }
     /*End*/
+    public static void savePhoneNumber(Context context, String type) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SPVConstants.KEY_PHONE_NO, type);
+        editor.apply();
+    }
+
+    public static String getPhoneNumber(Context context) {
+        SharedPreferences sharedPreferences = android.preference.PreferenceManager
+                .getDefaultSharedPreferences(context);
+        String fullName;
+        fullName = sharedPreferences.getString(SPVConstants.KEY_PHONE_NO, "");
+        return fullName;
+    }
 
     /*To store user gender*/
     public static void saveUserGender(Context context, String data) {

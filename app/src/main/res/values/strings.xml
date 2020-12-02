@@ -102,7 +102,7 @@
 
     //Profile
     <string name="txt_name">Name*</string>
-    <string name="txt_password">Password*</string>
+    <string name="txt_ph">Phone Number*</string>
     <string name="txt_mail">Email Id*</string>
     <string name="txt_gen">Gender</string>
     <string name="txt_gen_m">Male</string>

@@ -5,16 +5,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/sc_bg">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/sc_gradient" />
+        android:background="@drawable/sc_gradient" >
 
     <ImageView
         android:id="@+id/img_spv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/app_name"
+        android:layout_centerInParent="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -22,15 +23,20 @@
     <!--    android:src="@drawable/spv"-->
 
     <TextView
+        android:id="@+id/app_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato_bold"
         android:text="@string/ss_name_tag"
         android:textColor="@color/white"
-        android:textSize="32sp"
+        android:textSize="30sp"
+        android:layout_below="@id/img_spv"
+        android:layout_centerHorizontal="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/img_spv" />
+        app:layout_constraintTop_toTopOf="@id/img_spv" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

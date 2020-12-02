@@ -72,7 +72,7 @@ public class SPVConstants {
     public static final String PROFILE_UPDATE = "profile_update";
 
     //ProfilePicUpload
-    public static final String UPLOAD_IMAGE = "profilepic_update/1/";
+    public static final String UPLOAD_IMAGE = "profilepic_update/";
 
     //service params
     public static String PARAM_MESSAGE = "msg";
@@ -81,7 +81,13 @@ public class SPVConstants {
 
     //user details
     public static final String KEY_USER_ID = "user_id";
+    public static final String KEY_USER_IMAGE = "profile_pic";
     public static final String KEY_PHONE_NO = "phone_number";
+    public static final String KEY_USER_GENDER = "gender";
+    public static final String KEY_USERNAME = "full_name";
+    public static final String KEY_USER_BIRTHDAY = "dob";
+    public static final String KEY_USER_EMAIL_ID = "email_id";
+
 
     //update_status
     public static final String KEY_STATUS = "status";
@@ -104,12 +110,6 @@ public class SPVConstants {
 
     //SAVE PARAMS
     public static final String PARAMS_FULL_NAME = "name";
-    public static final String KEY_USER_IMAGE = "profile_pic";
-
-    public static final String KEY_USER_GENDER = "gender";
-    public static final String KEY_USERNAME = "full_name";
-    public static final String KEY_USER_BIRTHDAY = "dob";
-    public static final String KEY_USER_EMAIL_ID = "email_id";
 
     public static final String KEY_LANGUAGE = "language";
 

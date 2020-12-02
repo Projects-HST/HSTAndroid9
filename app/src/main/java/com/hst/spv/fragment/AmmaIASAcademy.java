@@ -3,6 +3,8 @@ package com.hst.spv.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hst.spv.R;
 import com.hst.spv.activity.NamakaagaInitiativesActivity;
+import com.hst.spv.adapter.CourseListAdapter;
+import com.hst.spv.bean.CourseList;
 import com.hst.spv.helper.AlertDialogHelper;
 import com.hst.spv.helper.ProgressDialogHelper;
 import com.hst.spv.interfaces.DialogClickListener;
@@ -27,18 +32,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.util.Log.d;
 
 public class AmmaIASAcademy extends Fragment implements IServiceListener, DialogClickListener {
 
     private static final String TAG = NamakaagaInitiativesActivity.class.getName();
+    private ImageView aca_banner;
+    private TextView abt_academy;
     private View rootView;
-    private TextView abt_academy, abt_upsc, abt_tnpsc, cr_title_1, cr_title_2;
-    private ImageView aca_banner, cr_img_1, cr_img_2;
     private String assets_url;
     private Button visit;
+
+    private ArrayList<CourseList> crsList;
+    private CourseListAdapter crAdapter;
     private ServiceHelper serviceHelper;
     private ProgressDialogHelper dialogHelper;
+    private RecyclerView courseList;
+    RecyclerView.LayoutManager layoutManager;
 
     public static AmmaIASAcademy newInstance(int position) {
         AmmaIASAcademy fragment = new AmmaIASAcademy();
@@ -62,13 +75,15 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
 
         aca_banner = (ImageView) rootView.findViewById(R.id.namakkaga);
         abt_academy = rootView.findViewById(R.id.abt_academy);
-        cr_img_1 = (ImageView) rootView.findViewById(R.id.upsc_logo);
-        cr_img_2 = (ImageView) rootView.findViewById(R.id.tnpsc_logo);
-        abt_upsc = rootView.findViewById(R.id.abt_upsc);
-        abt_tnpsc = rootView.findViewById(R.id.abt_tnpsc);
-        cr_title_1 = rootView.findViewById(R.id.course_title_1);
-        cr_title_2 = rootView.findViewById(R.id.course_title_2);
-        visit = rootView.findViewById(R.id.visit);
+
+        courseList = (RecyclerView) rootView.findViewById(R.id.course_list);
+
+        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        courseList.setLayoutManager(layoutManager);
+
+        courseList.setHasFixedSize(true);
+
+        crsList = new ArrayList<>();
 
         assets_url = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_URL_ACADEMY;
 
@@ -167,47 +182,20 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
 
                 Log.d(TAG, resAcademy.toString());
 
-                String title_image_1 = "";
-                String title_1 = "";
-                String aboutUpsc = "";
-                String title_image_2;
-                String title_2 = "";
-                String aboutTnpsc = "";
-                String image_1 = "";
-                String image_2 = "";
+                String title_image = "";
+                String title = "";
+                String aboutCourses = "";
 
                 for (int i = 0; i < academyResult.length(); i++) {
 
-                    title_image_1 = academyResult.getJSONObject(0).getString("course_image");
-                    image_1 = assets_url.concat(title_image_1);
-                    title_1 = academyResult.getJSONObject(0).getString("course_title_en");
-                    cr_title_1.setText(title_1);
-                    aboutUpsc = academyResult.getJSONObject(0).getString("course_details_en");
-                    abt_upsc.setText(aboutUpsc);
-                    title_image_2 = academyResult.getJSONObject(1).getString("course_image");
-                    image_2 = assets_url.concat(title_image_2);
-                    title_2 = academyResult.getJSONObject(1).getString("course_title_en");
-                    cr_title_2.setText(title_2);
-                    aboutTnpsc = academyResult.getJSONObject(1).getString("course_details_en");
-                    abt_tnpsc.setText(aboutTnpsc);
-                }
-                if ((image_1.length() > 0)) {
+                    title_image = academyResult.getJSONObject(i).getString("course_image");
+                    title = academyResult.getJSONObject(i).getString("course_title_en");
+                    aboutCourses = academyResult.getJSONObject(i).getString("course_details_en");
 
-                    Picasso.get().load(image_1).fit().placeholder(R.drawable.party_logo)
-                            .error(R.drawable.party_logo).into(cr_img_1);
+                    crsList.add(new CourseList(title_image,title,aboutCourses));
                 }
-                else {
-                    cr_img_1.setImageResource(R.drawable.party_logo);
-                }
-
-                if ((image_2.length() > 0)){
-
-                    Picasso.get().load(image_2).fit().placeholder(R.drawable.party_logo)
-                            .error(R.drawable.party_logo).into(cr_img_2);
-                }
-                else {
-                    cr_img_2.setImageResource(R.drawable.party_logo);
-                }
+                crAdapter = new CourseListAdapter(getActivity(), crsList);
+                courseList.setAdapter(crAdapter);
             }
         }
         catch (JSONException e) {

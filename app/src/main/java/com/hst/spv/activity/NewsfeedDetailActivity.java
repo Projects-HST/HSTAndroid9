@@ -105,10 +105,8 @@ public class NewsfeedDetailActivity extends AppCompatActivity implements IServic
                     SwipeRight();
                 }
             }
-
             return true;
         }
-
     };
 
     GestureDetector gestureDetector = new GestureDetector(simpleOnGestureListener);

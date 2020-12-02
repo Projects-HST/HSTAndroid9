@@ -86,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
     private static final String TAG = ProfileActivity.class.getName();
     ImageView prof_pic;
-    EditText prof_name, prof_password, prof_mail, prof_dob;
+    EditText prof_name, prof_phone, prof_mail, prof_dob;
     RadioGroup prof_gen;
     RadioButton male, female, others;
     Button save;
@@ -117,7 +117,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     String birthDay = "";
     String gender = "";
     String profile_image = "";
-    String imageUrl = "";
+    String ph_no = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +126,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
         prof_pic = (ImageView) findViewById(R.id.img_profile);
         prof_name = (EditText) findViewById(R.id.prof_name);
-        prof_password = (EditText) findViewById(R.id.prof_password);
+        prof_phone = (EditText) findViewById(R.id.prof_ph);
         prof_mail = (EditText) findViewById(R.id.prof_mail);
         prof_dob = (EditText) findViewById(R.id.prof_dob);
         prof_gen = (RadioGroup)findViewById(R.id.prof_gen);
@@ -173,12 +173,12 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
             reqFocus(prof_name);
             return false;
         }
-//        else if (!SPVValidator.checkNullString(prof_password.getText().toString().trim())) {
-//
-//            prof_password.setError(getString(R.string.error_entry));
-//            reqFocus(prof_password);
-//            return false;
-//        }
+        else if (!SPVValidator.checkNullString(prof_phone.getText().toString().trim())) {
+
+            prof_phone.setError(getString(R.string.error_entry));
+            reqFocus(prof_phone);
+            return false;
+        }
         else if (prof_mail.getText().length() > 0) {
 
             if (!SPVValidator.isEmailValid(this.prof_mail.getText().toString().trim())) {
@@ -240,6 +240,8 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
         fullName = prof_name.getText().toString().trim();
         PreferenceStorage.saveUserName(this, fullName);
+        ph_no = prof_phone.getText().toString().trim();
+        PreferenceStorage.savePhoneNumber(this, ph_no);
         mailId = prof_mail.getText().toString().trim();
         PreferenceStorage.saveEmailId(this, mailId);
         birthDay = prof_dob.getText().toString().trim();
@@ -273,7 +275,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
             try {
                 jsonObject.put(SPVConstants.KEY_USER_ID, "1");
                 jsonObject.put(SPVConstants.KEY_USERNAME, fullName);
-                jsonObject.put(SPVConstants.KEY_PHONE_NO, "9994449999");
+                jsonObject.put(SPVConstants.KEY_PHONE_NO, ph_no);
                 jsonObject.put(SPVConstants.KEY_USER_EMAIL_ID, mailId);
                 jsonObject.put(SPVConstants.KEY_USER_GENDER, gender);
                 jsonObject.put(SPVConstants.KEY_USER_BIRTHDAY, birthDay);
@@ -311,8 +313,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
 // Determine Uri of camera image to save.
         File pictureFolder = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES
-        );
+                Environment.DIRECTORY_PICTURES);
         final File root = new File(pictureFolder, "SPVImages");
 //        final File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyDir");
 
@@ -371,7 +372,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromInputMethod(getWindow().getDecorView().getWindowToken(), 0);
+        imm.hideSoftInputFromInputMethod(getCurrentFocus().getWindowToken(), 0);
         return true;
     }
 
@@ -427,8 +428,8 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                     mActualFilePath = outputFileUri.getPath();
                     galleryAddPic(mSelectedImageUri);
                 } else {
-//                    selectedImageUri = data == null ? null : data.getData();
-//                    mActualFilePath = getRealPathFromURI(this, selectedImageUri);
+//                    mSelectedImageUri = data == null ? null : data.getData();
+//                    mActualFilePath = getRealPathFromURI(this, mSelectedImageUri);
 //                    Log.d(TAG, "path to image is" + mActualFilePath);
 
                     if (data != null && data.getData() != null) {
@@ -447,6 +448,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                             Intent returnFromGalleryIntent = new Intent();
                             returnFromGalleryIntent.putExtra("picturePath", mActualFilePath);
                             setResult(RESULT_OK, returnFromGalleryIntent);
+                            finish();
                         } catch (Exception e) {
                             e.printStackTrace();
                             Intent returnFromGalleryIntent = new Intent();
@@ -556,7 +558,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
             httpclient = new DefaultHttpClient();
             httppost = new HttpPost(String.format(SPVConstants.BUILD_URL +
-                    SPVConstants.UPLOAD_IMAGE + "/"));
+                    SPVConstants.UPLOAD_IMAGE + PreferenceStorage.getUserId(ProfileActivity.this) + "/"));
 
             try {
                 AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
@@ -577,7 +579,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                     entity.addPart("user_pic", new FileBody(sourceFile));
 
                     // Extra parameters if you want to pass to server
-//                    entity.addPart("user_id", new StringBody(PreferenceStorage.getUserId(ProfileActivity.this)));
+                    entity.addPart("user_id", new StringBody(PreferenceStorage.getUserId(ProfileActivity.this)));
 //                    entity.addPart("user_type", new StringBody(PreferenceStorage.getUserType(ProfileActivity.this)));
 
 //                    totalSize = entity.getContentLength();
@@ -662,6 +664,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                     Log.d(TAG, object.toString());
 
                     fullName = PreferenceStorage.getUserName(this);
+                    ph_no = PreferenceStorage.getPhoneNumber(this);
                     mailId = PreferenceStorage.getEmailId(this);
                     birthDay = PreferenceStorage.getUserBirthday(this);
                     gender = PreferenceStorage.getUserGender(this);
@@ -671,6 +674,10 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                         fullName = object.getString("full_name");
                         if (fullName != null) {
                             prof_name.setText(fullName);
+                        }
+                        ph_no = object.getString("phone_number");
+                        if (ph_no != null){
+                            prof_phone.setText(ph_no);
                         }
                         mailId = object.getString("email_id");
                         if (mailId != null) {

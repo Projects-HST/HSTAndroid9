@@ -104,7 +104,7 @@
 
     //Profile
     <string name="txt_name">Name*</string>
-    <string name="txt_password">Password*</string>
+    <string name="txt_ph">Phone Number*</string>
     <string name="txt_mail">Email Id*</string>
     <string name="txt_dob">Date of Birth</string>
     <string name="txt_gen">Gender</string>
@@ -117,5 +117,6 @@
     <string name="error_entry">Entry Invalid</string>
     <string name="error_mail">Enter valid mail ID</string>
     <string name="empty_entry">Field cannot be empty</string>
+    <string name="lang_title">Change Language</string>
 
 </resources>
