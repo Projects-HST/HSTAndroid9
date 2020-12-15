@@ -24,6 +24,14 @@ public class SPVConstants {
     //ASSETS URL
     public static final String ASSETS_URL = BASE_URL + JOINT_URL;
 
+    //Generate OTP Url
+    public static final String GENERATE_OTP = "generate_otp/";
+
+    //Resend OTP Url
+    public static final String RESEND_OTP = "resend_otp/";
+
+    //Login Url
+    public static final String LOGIN = "login/";
 
     //SPV PERSONAL
     public static final String PERSONAL_URL =  "spv_personal";
@@ -55,6 +63,7 @@ public class SPVConstants {
     //NEWS
     public static final String GET_ALL_NEWS = "all_news";
     public static final String GET_NEWSFEED_DETAIL = "newsfeed_details/";
+    public static final String NEWS_CATEGORY = "newsfeeds_category/";
     public static final String GET_NEWS_CATEGORY = "newsfeeds_categoryid";
 
     //NEWS
@@ -74,10 +83,23 @@ public class SPVConstants {
     //ProfilePicUpload
     public static final String UPLOAD_IMAGE = "profilepic_update/";
 
+    //Party Url
+    public static final String ABOUT_PARTY = "about_party/";
+
+    //Party Election Url
+    public static final String PARTY_ELECTION = "party_elections/";
+
     //service params
     public static String PARAM_MESSAGE = "msg";
     public static String PARAM_MESSAGE_ENG = "msg_en";
     public static String PARAM_MESSAGE_TAMIL = "msg_ta";
+
+    //login params
+    public static final String KEY_MOBILE = "mobile_number";
+    public static String DEVICE_TOKEN = "device_token";
+    public static String MOBILE_TYPE = "mobile_type";
+    public static final String KEY_LANG_ID = "language_id";
+    public static String OTP = "otp";
 
     //user details
     public static final String KEY_USER_ID = "user_id";

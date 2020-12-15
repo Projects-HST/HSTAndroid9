@@ -26,7 +26,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.hst.spv.R;
+import com.hst.spv.activity.GalleryActivity;
+import com.hst.spv.activity.LoginActivity;
 import com.hst.spv.activity.NamakaagaInitiativesActivity;
+import com.hst.spv.activity.ProfileActivity;
 import com.hst.spv.activity.SettingsActivity;
 import com.hst.spv.activity.SplashScreenActivity;
 import com.hst.spv.activity.YourSpvActivity;
@@ -365,12 +368,30 @@ public class SideMenuView extends RelativeLayout implements View.OnClickListener
             profileName = (TextView) rootView.findViewById(R.id.profile_name);
             if (!PreferenceStorage.getUserId(context).isEmpty()) {
                 if(PreferenceStorage.getFullName(context).equalsIgnoreCase("")){
-                    profileName.setText("");
+                    profileName.setText(getResources().getString(R.string.side_menu_sign_in));
                 } else {
                     profileName.setText(PreferenceStorage.getFullName(context));
                 }
             } else {
-                profileName.setText("");
+                profileName.setText(getResources().getString(R.string.side_menu_sign_in));
+            }
+            if (PreferenceStorage.getUserId(context).isEmpty()){
+                profileName.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loginInt = new Intent(context, LoginActivity.class);
+                        context.startActivity(loginInt);
+                    }
+                });
+            }
+            else {
+                profileName.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loginInt = new Intent(context, ProfileActivity.class);
+                        context.startActivity(loginInt);
+                    }
+                });
             }
             vUserImage = (ImageView) rootView.findViewById(R.id.profile_img);
             String url = PreferenceStorage.getUserPicture(context);
@@ -420,9 +441,9 @@ public class SideMenuView extends RelativeLayout implements View.OnClickListener
             this.vGallery.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent homeIntent = new Intent(context, SelectCityActivity.class);
-//                    homeIntent.putExtra("page", "side");
-//                    context.startActivity(homeIntent);
+                    Intent homeIntent = new Intent(context, GalleryActivity.class);
+                    homeIntent.putExtra("page", "side");
+                    context.startActivity(homeIntent);
                 }
             });
             this.vNamakaga = (RelativeLayout) rootView.findViewById(R.id.namakaaga_img);

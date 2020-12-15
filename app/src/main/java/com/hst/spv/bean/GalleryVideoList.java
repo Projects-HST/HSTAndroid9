@@ -10,7 +10,7 @@ public class GalleryVideoList {
     @SerializedName("count")
     @Expose
     private int count;
-    @SerializedName("video_result")
+    @SerializedName("nf_result")
     @Expose
     private ArrayList<Gallery> galleryArrayList = new ArrayList<>();
 

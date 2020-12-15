@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tb_bdr">
+
+        <TextView
+            android:id="@+id/yr"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.5"
+            android:layout_marginHorizontal="0.5dp"
+            android:layout_marginBottom="0.25dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:text="@string/txt_cont"
+            android:textColor="@color/party_txt"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/ldr"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.5"
+            android:layout_marginEnd="0.5dp"
+            android:layout_marginBottom="0.25dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:text="@string/txt_cont"
+            android:textColor="@color/party_txt"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/won"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.5"
+            android:layout_marginEnd="0.5dp"
+            android:layout_marginBottom="0.25dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:text="@string/txt_cont"
+            android:textColor="@color/party_txt"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

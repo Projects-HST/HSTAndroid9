@@ -35,6 +35,7 @@ import com.hst.spv.fragment.EventFragment;
 import com.hst.spv.fragment.HomeFragment;
 import com.hst.spv.fragment.NewsFragment;
 import com.hst.spv.fragment.SocialInitiativesFragment;
+import com.hst.spv.fragment.SocialMediaFragment;
 import com.hst.spv.interfaces.DialogClickListener;
 import com.hst.spv.serviceinterfaces.IServiceListener;
 import com.hst.spv.utils.PreferenceStorage;
@@ -375,9 +376,10 @@ public class MainActivity extends AppCompatActivity implements SideMenuView.OnMe
 //            imgSocial.setImageResource(R.drawable.ic_social_selected);
 //            txtSocial.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
-//        else if (position == 4) {
-//            newFragment = new MobileAppFragment();
-//        } else if (position == 5) {
+        else if (position == 4) {
+            newFragment = new SocialMediaFragment();
+        }
+//        else if (position == 5) {
 //            newFragment = new WebDevelopmentFragment();
 //        } else if (position == 6) {
 //            newFragment = new BrandingFragment();

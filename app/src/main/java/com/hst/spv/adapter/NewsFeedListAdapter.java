@@ -103,7 +103,13 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
             holder.txtNewsfeedDescription.setMovementMethod(LinkMovementMethod.getInstance());
             holder.txtNewsfeedDescription.setText(HtmlCompat.fromHtml(newsFeed.getDescriptionTamil(), HtmlCompat.FROM_HTML_MODE_LEGACY));
         }
-        holder.txtNewsDate.setText(getserverdateformat(newsFeed.getNewsDate()));
+
+        if (PreferenceStorage.getLang(holder.txtNewsfeedTitle.getContext()).equalsIgnoreCase("english")) {
+            holder.txtNewsDate.setText(getserverdateformat(newsFeed.getNewsDate()));
+        }
+        else {
+            holder.txtNewsDate.setText(getTamilDateFormat(newsFeed.getNewsDate()));
+        }
         if (SPVValidator.checkNullString(newsFeed.getCoverImage())) {
             String url = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_URL_NEWSFEED + newsFeed.getCoverImage();
             Picasso.get().load(url).into(holder.newsImage);
@@ -113,18 +119,39 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
     }
 
     private String getserverdateformat(String dd) {
-        String serverFormatDate = "";
-        if (dd != null && dd != "") {
 
+        String serverFormatDate = "";
+        Date testDate = null;
+
+        if (dd != null && dd != "") {
             String date = dd;
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date testDate = null;
             try {
                 testDate = formatter.parse(date);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+            serverFormatDate = sdf.format(testDate);
+            System.out.println(".....Date..." + serverFormatDate);
+        }
+        return serverFormatDate;
+    }
+
+    public String getTamilDateFormat(String dd){
+
+        String serverFormatDate = "";
+        Date testDate = null;
+
+        if (dd != null && dd != "") {
+            String date = dd;
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                testDate = formatter.parse(date);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd / MM / yyyy");
             serverFormatDate = sdf.format(testDate);
             System.out.println(".....Date..." + serverFormatDate);
         }
@@ -147,6 +174,7 @@ public class NewsFeedListAdapter extends RecyclerView.Adapter<NewsFeedListAdapte
 
     @Override
     public int getItemCount() {
+
         return newsFeedArrayList.size();
     }
 }

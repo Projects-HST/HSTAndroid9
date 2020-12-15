@@ -103,7 +103,7 @@ public class AmmaIASAcademy extends Fragment implements IServiceListener, Dialog
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+//            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
             String serverUrl = SPVConstants.BUILD_URL + SPVConstants.ACADEMY_URL;
             serviceHelper.makeGetServiceCall(object.toString(), serverUrl);
         }

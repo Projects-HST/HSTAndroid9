@@ -18,8 +18,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.hst.spv.R;
+import com.hst.spv.activity.GalleryActivity;
 import com.hst.spv.activity.NamakaagaInitiativesActivity;
 import com.hst.spv.activity.NewsfeedDetailActivity;
+import com.hst.spv.activity.PartyActivity;
 import com.hst.spv.activity.YourSpvActivity;
 import com.hst.spv.adapter.NewsFeedListAdapter;
 import com.hst.spv.bean.NewsFeed;
@@ -228,7 +230,9 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
             startActivity(intent);
         }
         if (v == txtGallery) {
-
+            Intent intent = new Intent(getActivity(), GalleryActivity.class);
+//            intent.putExtra("meetingObj", meeting.getId());
+            startActivity(intent);
         }
         if (v == txtNamakaaga) {
             Intent intent = new Intent(getActivity(), NamakaagaInitiativesActivity.class);
@@ -236,7 +240,9 @@ public class HomeFragment extends Fragment implements IServiceListener, DialogCl
             startActivity(intent);
         }
         if (v == txtParty) {
-
+            Intent intent = new Intent(getActivity(), PartyActivity.class);
+//            intent.putExtra("meetingObj", meeting.getId());
+            startActivity(intent);
         }
     }
 }

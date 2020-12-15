@@ -44,7 +44,7 @@
     </style>
 
     <style name="TextInputLayoutTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-        <item name="colorPrimary">@color/txt_prof</item>
+        <item name="android:windowSoftInputMode">stateHidden</item>
     </style>
 
     <style name="NumberPickerStyle">

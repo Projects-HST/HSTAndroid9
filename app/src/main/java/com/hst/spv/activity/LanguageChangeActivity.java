@@ -33,11 +33,12 @@ public class LanguageChangeActivity extends AppCompatActivity implements View.On
 
         englishLayout = findViewById(R.id.english);
         tamilLayout = findViewById(R.id.tamil);
-        back = findViewById(R.id.img_back);
+        back = findViewById(R.id.back);
         imgEnglishCheck = findViewById(R.id.img_eng_check);
         imgTamilCheck = findViewById(R.id.img_tamil_check);
         languageConfirm = findViewById(R.id.confirm_language);
 
+        back.setOnClickListener(this);
         englishLayout.setOnClickListener(this);
         tamilLayout.setOnClickListener(this);
         languageConfirm.setOnClickListener(this);
@@ -48,15 +49,20 @@ public class LanguageChangeActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
 
         if (v == back){
-            Intent homeIntent = new Intent(this, MainActivity.class);
-            homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(homeIntent);
+//            Intent homeIntent = new Intent(this, MainActivity.class);
+//            homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(homeIntent);
             finish();
         }
         if (v == englishLayout) {
-            imgEnglishCheck.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_language_check));
-            imgTamilCheck.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_language_uncheck));
-            englishCheck = true;
+            if(PreferenceStorage.getLang(this).equalsIgnoreCase("english")) {
+                imgEnglishCheck.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_language_check));
+                imgTamilCheck.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_language_uncheck));
+                englishCheck = true;
+            }
+            else {
+                englishCheck = false;
+            }
         }
         if (v == tamilLayout) {
             imgTamilCheck.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_language_check));

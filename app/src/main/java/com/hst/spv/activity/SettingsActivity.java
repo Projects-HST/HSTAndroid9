@@ -139,7 +139,6 @@ public class SettingsActivity extends AppCompatActivity implements DialogClickLi
         }
     }
 
-
     private boolean validateResponse(JSONObject response) {
         boolean signInSuccess = false;
         if ((response != null)) {
@@ -170,12 +169,10 @@ public class SettingsActivity extends AppCompatActivity implements DialogClickLi
         if (v == subscribe){
 
             if(!notifyOn){
-
                 notifyOn = true;
                 getNewsSubscription();
             }
             else {
-
                 notifyOn = false;
                 getNewsSubscription();
             }

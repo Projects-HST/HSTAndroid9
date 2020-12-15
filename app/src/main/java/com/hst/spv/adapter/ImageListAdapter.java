@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.hst.spv.R;
 import com.hst.spv.bean.Gallery;
 import com.hst.spv.utils.PreferenceStorage;
+import com.hst.spv.utils.SPVConstants;
 import com.hst.spv.utils.SPVValidator;
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +24,6 @@ import java.util.Date;
 public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyViewHolder> {
 
     private ArrayList<Gallery> newsFeedArrayList;
-    Context context;
     private OnItemClickListener onItemClickListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -79,9 +79,13 @@ public class ImageListAdapter extends RecyclerView.Adapter<ImageListAdapter.MyVi
         } else {
             holder.txtNewsfeedTitle.setText(capitalizeString(newsFeed.getTitleTamil()));
         }
+
         holder.txtNewsDate.setText(getserverdateformat(newsFeed.getNewsDate()));
+
+
         if (SPVValidator.checkNullString(newsFeed.getCoverImage())) {
-            Picasso.get().load(newsFeed.getCoverImage()).into(holder.newsImage);
+            String url = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_URL_NEWSFEED + newsFeed.getCoverImage();
+            Picasso.get().load(url).into(holder.newsImage);
         } else {
 //            newsImage.setImageResource(R.drawable.news_banner);
         }

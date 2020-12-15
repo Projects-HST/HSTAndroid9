@@ -21,6 +21,11 @@
     <color name="title_txt">#171717</color>
     <color name="txt_content">#383838</color>
 
+    <!--    General-->
+    <color name="black">#000000</color>
+    <color name="lt_black">#070707</color>
+    <color name="grey">#2A737373</color>
+
     //Namakaaga Ullatchi
     <color name="tab_title">#000000</color>
     <color name="btn_st_grad">#155AA7</color>
@@ -41,9 +46,18 @@
     <color name="active_dot">#FFFFFF</color>
     <color name="inactive_dot">#80FFFFFF</color>
 
+    //Party
+    <color name="party_tab">#045C2C</color>
+    <color name="party_txt">#050505</color>
+    <color name="party_tb_bg">#EAECF0</color>
+    <color name="tb_bdr">#AFAFAF</color>
+
     //Profile
     <color name="txt_prof">#69696B</color>
     <color name="lay_outline">#BBBBBB</color>
+
+    //Login
+    <color name="ed_box">#5696DD</color>
 
     <array name="array_dot_active">
         <item>@color/active_dot</item>

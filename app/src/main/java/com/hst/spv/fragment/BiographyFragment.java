@@ -2,6 +2,7 @@ package com.hst.spv.fragment;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -73,24 +74,18 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
     public void onClick(View v) {
 
         if (v == personal){
-
-                personal.setEnabled(true);
-                personal.setBackground(getResources().getDrawable(R.drawable.bt_enabled));
-                personal.setTextColor(getResources().getColor(R.color.white));
-                political.setBackground(getResources().getDrawable(R.drawable.bt_disabled));
-                political.setTextColor(getResources().getColor(R.color.btn_st_grad));
-
-                personalCareer();
+            personal.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.btn_gallery_selected));
+            personal.setTextColor(getResources().getColor(R.color.white));
+            political.setBackground(null);
+            political.setTextColor(getResources().getColor(R.color.btn_st_grad));
+            personalCareer();
         }
 
         if (v == political) {
-
-            political.setEnabled(true);
-            political.setBackground(getResources().getDrawable(R.drawable.bt_enabled));
+            political.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.btn_gallery_selected));
             political.setTextColor(getResources().getColor(R.color.white));
             personal.setTextColor(getResources().getColor(R.color.btn_st_grad));
-            personal.setBackground(getResources().getDrawable(R.drawable.bt_disabled));
-
+            personal.setBackground(null);
             politicalCareer();
         }
     }
@@ -130,7 +125,7 @@ public class BiographyFragment extends Fragment implements View.OnClickListener,
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
+//            dialogHelper.showProgressDialog(getResources().getString(R.string.progress_bar));
             String serverUrl = SPVConstants.BUILD_URL + SPVConstants.POLITICAL_URL;
             serviceHelper.makeGetServiceCall(jsonObject.toString(), serverUrl);
         }

@@ -85,45 +85,45 @@ public class NewsfeedDetailActivity extends AppCompatActivity implements IServic
 
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        super.dispatchTouchEvent(event);
-        return gestureDetector.onTouchEvent(event);
-    }
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent event) {
+//        super.dispatchTouchEvent(event);
+//        return gestureDetector.onTouchEvent(event);
+//    }
 
-    GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
+//    GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
+//
+//        @Override
+//        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+//                               float velocityY) {
+//
+//            float sensitvity = 100;
+//            if (imgUrl.size() >= 1) {
+//                if ((e1.getX() - e2.getX()) > sensitvity) {
+//                    SwipeLeft();
+//                } else if ((e2.getX() - e1.getX()) > sensitvity) {
+//                    SwipeRight();
+//                }
+//            }
+//            return true;
+//        }
+//    };
 
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-                               float velocityY) {
-
-            float sensitvity = 100;
-            if (imgUrl.size() >= 1) {
-                if ((e1.getX() - e2.getX()) > sensitvity) {
-                    SwipeLeft();
-                } else if ((e2.getX() - e1.getX()) > sensitvity) {
-                    SwipeRight();
-                }
-            }
-            return true;
-        }
-    };
-
-    GestureDetector gestureDetector = new GestureDetector(simpleOnGestureListener);
-
-
-    private void SwipeLeft() {
-        aViewFlipper.setInAnimation(this, R.anim.in_from_right);
-        aViewFlipper.showNext();
-        addBottomDots(aViewFlipper.getDisplayedChild());
-    }
+//    GestureDetector gestureDetector = new GestureDetector(simpleOnGestureListener);
 
 
-    private void SwipeRight() {
-        aViewFlipper.setInAnimation(this, R.anim.in_from_left);
-        aViewFlipper.showPrevious();
-        addBottomDots(aViewFlipper.getDisplayedChild());
-    }
+//    private void SwipeLeft() {
+//        aViewFlipper.setInAnimation(this, R.anim.in_from_right);
+//        aViewFlipper.showNext();
+//        addBottomDots(aViewFlipper.getDisplayedChild());
+//    }
+
+
+//    private void SwipeRight() {
+//        aViewFlipper.setInAnimation(this, R.anim.in_from_left);
+//        aViewFlipper.showPrevious();
+//        addBottomDots(aViewFlipper.getDisplayedChild());
+//    }
 
     private void getVideoDetail() {
         JSONObject jsonObject = new JSONObject();
@@ -197,7 +197,7 @@ public class NewsfeedDetailActivity extends AppCompatActivity implements IServic
                     }
                     for (int a = 0; a < imgUrl.size(); a++) {
                         setImageInFlipr(imgUrl.get(a));
-                        addBottomDots(aViewFlipper.getDisplayedChild());
+//                        addBottomDots(aViewFlipper.getDisplayedChild());
                     }
                 }
 
@@ -233,27 +233,27 @@ public class NewsfeedDetailActivity extends AppCompatActivity implements IServic
         aViewFlipper.addView(image);
     }
 
-    private void addBottomDots(int currentPage) {
-        dots = new TextView[imgUrl.size()];
-
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
-
-        dotsLayout.removeAllViews();
-        for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
-            dotsLayout.addView(dots[i]);
-        }
-
-        if (dots.length > 0) {
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
-            dots[currentPage].setTextSize(35);
-        }
-
-    }
+//    private void addBottomDots(int currentPage) {
+//        dots = new TextView[imgUrl.size()];
+//
+//        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
+//        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+//
+//        dotsLayout.removeAllViews();
+//        for (int i = 0; i < dots.length; i++) {
+//            dots[i] = new TextView(this);
+//            dots[i].setText(Html.fromHtml("&#8226;"));
+//            dots[i].setTextSize(35);
+//            dots[i].setTextColor(colorsInactive[currentPage]);
+//            dotsLayout.addView(dots[i]);
+//        }
+//
+//        if (dots.length > 0) {
+//            dots[currentPage].setTextColor(colorsActive[currentPage]);
+//            dots[currentPage].setTextSize(35);
+//        }
+//
+//    }
 
     @Override
     public void onError(String error) {

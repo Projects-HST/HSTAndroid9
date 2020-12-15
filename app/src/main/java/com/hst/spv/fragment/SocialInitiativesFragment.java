@@ -135,7 +135,7 @@ public class SocialInitiativesFragment extends Fragment implements IServiceListe
             newsFeedList = gson.fromJson(response.toString(), NewsFeedList.class);
             newsFeedArrayList.addAll(newsFeedList.getNewsFeedArrayList());
             mAdapter = new NewsFeedListAdapter(newsFeedArrayList, this);
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(mAdapter);
             recyclerView.scrollToPosition(listcount);
@@ -151,6 +151,7 @@ public class SocialInitiativesFragment extends Fragment implements IServiceListe
 //                if (val == 0) {
 //                    paguthiID = "ALL";
 //                }
+//                jsonObject.put(SPVConstants.KEY_USER_ID, "");
                 jsonObject.put(SPVConstants.KEY_NEWSFEED_ID, "5");
                 jsonObject.put(SPVConstants.KEY_OFFSET, count);
                 jsonObject.put(SPVConstants.KEY_ROWCOUNT, "50");

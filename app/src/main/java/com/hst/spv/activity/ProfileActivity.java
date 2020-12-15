@@ -107,6 +107,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     private Uri mSelectedImageUri = null;
     private Bitmap mCurrentUserImageBitmap = null;
     private String mUpdatedImageUrl = null;
+    public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
 
     private RadioButton radioButton;
@@ -270,10 +271,10 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
         if (validateFields()) {
 
+            String userId = PreferenceStorage.getUserId(this);
             JSONObject jsonObject = new JSONObject();
-
             try {
-                jsonObject.put(SPVConstants.KEY_USER_ID, "1");
+                jsonObject.put(SPVConstants.KEY_USER_ID, userId);
                 jsonObject.put(SPVConstants.KEY_USERNAME, fullName);
                 jsonObject.put(SPVConstants.KEY_PHONE_NO, ph_no);
                 jsonObject.put(SPVConstants.KEY_USER_EMAIL_ID, mailId);
@@ -290,13 +291,13 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     private void showUserDetails(){
 
         resString = "userDetails";
-
+        String userId = PreferenceStorage.getUserId(this);
         if (CommonUtils.isNetworkAvailable(getApplicationContext())) {
 
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.put(SPVConstants.KEY_USER_ID, "1");
+                jsonObject.put(SPVConstants.KEY_USER_ID, userId);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -314,7 +315,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 // Determine Uri of camera image to save.
         File pictureFolder = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-        final File root = new File(pictureFolder, "SPVImages");
+        final File root = new File(pictureFolder, "SpvImages");
 //        final File root = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyDir");
 
         if (!root.exists()) {
@@ -372,7 +373,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromInputMethod(getCurrentFocus().getWindowToken(), 0);
+        imm.hideSoftInputFromInputMethod(new View(this).getWindowToken(), 0);
         return true;
     }
 
@@ -448,7 +449,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                             Intent returnFromGalleryIntent = new Intent();
                             returnFromGalleryIntent.putExtra("picturePath", mActualFilePath);
                             setResult(RESULT_OK, returnFromGalleryIntent);
-                            finish();
+
                         } catch (Exception e) {
                             e.printStackTrace();
                             Intent returnFromGalleryIntent = new Intent();
@@ -461,13 +462,13 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
                         setResult(RESULT_CANCELED, returnFromGalleryIntent);
                         finish();
                     }
-                    Log.d(TAG, "image Uri is" + mSelectedImageUri);
-                    if (mSelectedImageUri != null) {
-                        Log.d(TAG, "image URI is" + mSelectedImageUri);
-                        mUpdatedImageUrl = null;
-                        mCurrentUserImageBitmap = decodeFile(destFile);
-                        new UploadFileToServer().execute();
-                    }
+                }
+                Log.d(TAG, "image Uri is" + mSelectedImageUri);
+                if (mSelectedImageUri != null) {
+                    Log.d(TAG, "image URI is" + mSelectedImageUri);
+                    mUpdatedImageUrl = null;
+                    mCurrentUserImageBitmap = decodeFile(destFile);
+                    new UploadFileToServer().execute();
                 }
             }
         }
@@ -558,7 +559,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
 
             httpclient = new DefaultHttpClient();
             httppost = new HttpPost(String.format(SPVConstants.BUILD_URL +
-                    SPVConstants.UPLOAD_IMAGE + PreferenceStorage.getUserId(ProfileActivity.this) + "/"));
+                    SPVConstants.UPLOAD_IMAGE + PreferenceStorage.getUserId(getApplicationContext()) + "/"));
 
             try {
                 AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
@@ -822,6 +823,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogClickLis
         int month = newCalendar.get(Calendar.MONTH);
         int day = newCalendar.get(Calendar.DAY_OF_MONTH);
         int year = newCalendar.get(Calendar.YEAR);
+        prof_dob.setText(currentDate);
         if ((currentDate != null) && !(currentDate.isEmpty())) {
             //extract the date/month and year
             try {
