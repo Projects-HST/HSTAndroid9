@@ -367,10 +367,10 @@ public class SideMenuView extends RelativeLayout implements View.OnClickListener
 
             profileName = (TextView) rootView.findViewById(R.id.profile_name);
             if (!PreferenceStorage.getUserId(context).isEmpty()) {
-                if(PreferenceStorage.getFullName(context).equalsIgnoreCase("")){
+                if(PreferenceStorage.getUserName(context).equals("")){
                     profileName.setText(getResources().getString(R.string.side_menu_sign_in));
                 } else {
-                    profileName.setText(PreferenceStorage.getFullName(context));
+                    profileName.setText(PreferenceStorage.getUserName(context));
                 }
             } else {
                 profileName.setText(getResources().getString(R.string.side_menu_sign_in));

@@ -96,6 +96,7 @@ public class GalleryActivity extends AppCompatActivity implements IServiceListen
         vidLay = (RelativeLayout)findViewById(R.id.videoLayout);
         touchViewLay = (RelativeLayout)findViewById(R.id.touchView);
 
+        touchViewLay.setOnClickListener(this);
         viewMoreImages.setOnClickListener(this);
         viewMoreVideos.setOnClickListener(this);
 
@@ -187,6 +188,12 @@ public class GalleryActivity extends AppCompatActivity implements IServiceListen
             viewMoreImages.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
             galleryArrayList.clear();
             getNewsfeed(String.valueOf(listcount));
+        }
+        if (v == touchViewLay){
+            touchViewLay.setVisibility(GONE);
+            imgLay.setVisibility(View.VISIBLE);
+            viewMoreImages.setClickable(true);
+            viewMoreVideos.setClickable(true);
         }
     }
 
@@ -304,6 +311,7 @@ public class GalleryActivity extends AppCompatActivity implements IServiceListen
     public void onItemClick(View view, int position) {
         Gallery meeting = null;
         meeting = galleryArrayList.get(position);
+        viewMoreImages.setClickable(false);
 //        Intent intent;
 //        intent = new Intent(this, ViewVideoActivity.class);
 //        intent.putExtra("meetingObj", meeting.getId());
@@ -315,10 +323,17 @@ public class GalleryActivity extends AppCompatActivity implements IServiceListen
     public void onItemCClick(View view, int position) {
         Gallery meeting = null;
         meeting = galleryImagesArrayList.get(position);
-        touchViewLay.setVisibility(View.VISIBLE);
+//        imgLay.setClickable(true);
         String imageUrl = SPVConstants.ASSETS_URL + SPVConstants.ASSETS_URL_NEWSFEED + meeting.getCoverImage();
-        if (SPVValidator.checkNullString(imageUrl)){
+        if (SPVValidator.checkNullString(meeting.getCoverImage())){
+            touchViewLay.setVisibility(View.VISIBLE);
+            touchImage.setVisibility(View.VISIBLE);
+            viewMoreVideos.setClickable(false);
             Picasso.get().load(imageUrl).into(touchImage);
+        }
+       else{
+           touchViewLay.setVisibility(GONE);
+           touchImage.setVisibility(GONE);
         }
     }
 }

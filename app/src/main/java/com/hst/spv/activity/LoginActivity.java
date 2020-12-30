@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,11 +55,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String IMEINo = "", resString = "";
     private static final int PERMISSION_REQUEST_CODE = 1;
 
-    private static String[] PERMISSIONS_ALL = {Manifest.permission.READ_CALENDAR,
-            Manifest.permission.WRITE_CALENDAR, Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+//    private static String[] PERMISSIONS_ALL = {Manifest.permission.READ_CALENDAR,
+//            Manifest.permission.WRITE_CALENDAR, Manifest.permission.ACCESS_FINE_LOCATION,
+//            Manifest.permission.ACCESS_COARSE_LOCATION,
+//            Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
     private static final int REQUEST_PERMISSION_All = 111;
 
     @Override
@@ -82,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (prefFirstTime.runTheFirstTime("FirstTimePermit")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                requestAllPermissions();
+//                requestAllPermissions();
             }
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -128,32 +129,50 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.
-                INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(new View(this).getWindowToken(), 0);
-        return true;
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View v = getCurrentFocus();
+
+        if (v != null &&
+                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                v instanceof EditText &&
+                !v.getClass().getName().startsWith("android.webkit.")) {
+            int scrcoords[] = new int[2];
+            v.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + v.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + v.getTop() - scrcoords[1];
+
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom())
+                hideKeyboard(this);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
-    private void requestAllPermissions() {
-
-        boolean requestPermission = PermissionUtil.requestAllPermissions(this);
-
-        if (requestPermission) {
-
-            Log.i(TAG,
-                    "Displaying contacts permission rationale to provide additional context.");
-
-            // Display a SnackBar with an explanation and a button to trigger the request.
-
-            ActivityCompat
-                    .requestPermissions(this, PERMISSIONS_ALL,
-                            REQUEST_PERMISSION_All);
-        } else {
-
-            ActivityCompat.requestPermissions(this, PERMISSIONS_ALL, REQUEST_PERMISSION_All);
+    public static void hideKeyboard(Activity activity) {
+        if (activity != null && activity.getWindow() != null && activity.getWindow().getDecorView() != null) {
+            InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
         }
     }
+
+//    private void requestAllPermissions() {
+//
+//        boolean requestPermission = PermissionUtil.requestAllPermissions(this);
+//
+//        if (requestPermission) {
+//
+//            Log.i(TAG,
+//                    "Displaying contacts permission rationale to provide additional context.");
+//
+//            // Display a SnackBar with an explanation and a button to trigger the request.
+//
+//            ActivityCompat
+//                    .requestPermissions(this, PERMISSIONS_ALL,
+//                            REQUEST_PERMISSION_All);
+//        } else {
+//
+//            ActivityCompat.requestPermissions(this, PERMISSIONS_ALL, REQUEST_PERMISSION_All);
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
@@ -253,7 +272,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (validateSignInResponse(response)) {
 
                 if (resString.equalsIgnoreCase("mob_verify")) {
-
+                    String mobile = "";
+                    mobile = response.getString("mobile_number");
+                    PreferenceStorage.saveMobileNo(this, mobile);
                     Log.d(TAG, response.toString());
 
                     Intent mobileVerify = new Intent(this, NumberVerificationActivity.class);
